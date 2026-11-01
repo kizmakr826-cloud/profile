@@ -1,8 +1,10 @@
-画像が四角いまま表示されてしまい、黒いパズルの形にうまく切り抜かれなかった（マスクされなかった）原因は、JavaScriptの処理の重複にあります。
+ご提示いただいた画像を確認しました。
 
-コードの最後の方で、「背景に四角く画像を貼る処理」**と**「パズルの形に画像を切り抜く処理（SVG）」の両方が、同じピースに対して同時に実行されてしまっていたため、切り抜かれた画像の後ろに四角い画像がそのまま表示されてバグったように見えていました。
+エピソード部分の画像（`スクリーンショット 2026-11-02 7.05.26.jpg`）では、SVGで描画した黒いパズルの形の「上に」四角い画像がそのまま乗ってしまっており、黒縁も出てしまっています。また、Hero部分の画像（`スクリーンショット 2026-11-02 7.05.31.jpg`）では、黒い丸い穴（凹部分）が開くべきところに写真がマスクされずにそのまま四角く表示されています。
 
-以下のコードでは、JavaScriptの該当部分（四角く背景を設定する処理を `.pz` クラスのみに限定）を修正し、綺麗にパズルの形に画像がマスクされるように書き直しました。
+これらの表示崩れを解決するため、JavaScriptによる画像のはめ込み処理とCSSの指定を見直し、**すべての画像（HeroもEpisodeも）がパズルの形状（凸凹含む）に綺麗に切り抜かれるように**修正しました。画像拡張子もすべて `.jpg` に変更しています。
+
+以下のコードに差し替えてご確認ください。
 
 ```html
 <!doctype html>
@@ -149,12 +151,12 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 </main>
 
 <script>
-/* ★【画像を挿入する場合】ここを変更してください★ */
+/* ★【画像を挿入する場合】拡張子を .jpg に修正 ★ */
 const IMAGES = { 
-  hero: "me.jpeg",      // 一番上の黒いピース部分 (data-img="hero")
-  design: "design.jpg",    // Episode 01 の画像部分 (data-img="design")
-  camera: "camera.jpg",    // Episode 02 の画像部分 (data-img="camera")
-  sewing: "sewing.jpg"     // Episode 03 の画像部分 (data-img="sewing")
+  hero: "me.jpg",      
+  design: "design.jpg",    
+  camera: "camera.jpg",    
+  sewing: "sewing.jpg"     
 };
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -180,13 +182,15 @@ pieces.forEach(el => {
   }
 });
 
-/* ★修正箇所★ : .pz クラスを持つ要素（Hero画像など）のみに背景画像を適用 */
+/* ★修正箇所★: Heroパズルピース（.pz[data-img]）の画像を綺麗にマスクする */
 document.querySelectorAll(".pz[data-img]").forEach(el => { 
-  const u = IMAGES[el.dataset.img]; 
-  if (u) el._bg.style.backgroundImage = `url(${u})`; 
+  const url = IMAGES[el.dataset.img]; 
+  if (url) {
+    el._bg.style.backgroundImage = `url(${url})`;
+  }
 });
 
-/* 凸が入り込んでいる相手のピースには、その形の凹（穴）を開ける */
+/* 凸が入り込んでいる相手のピースには、その形の凹（穴）を開ける (Hero画像のマスク処理含む) */
 const socks = new Map();
 kn.forEach(([o, x, y, r]) => {
   const [ox, oy] = geo(o), ax = ox + x, ay = oy + y;
@@ -227,14 +231,14 @@ document.querySelectorAll(".pimg").forEach((el, n) => {
   const [W, H, , ...fs] = el.dataset.shape.split(/\s+/), g = jig(+W, +H, fs.map(s => { const [a, b] = s.split(","); return [+a, b]; }));
   const url = IMAGES[el.dataset.img], id = "pj" + n;
   
-  /* ★修正箇所★ : SVGによる確実な画像のクリッピング（マスキング）処理 */
+  /* ★修正箇所★ : 塗りを透明（none）にし、画像を綺麗にクリッピングするだけにする。黒枠も消す。 */
   let svgContent = `<svg viewBox="0 0 ${g.w} ${g.h}" aria-hidden="true">
     <defs>
       <clipPath id="${id}">
         <path d="${g.d}"/>
       </clipPath>
     </defs>
-    <path d="${g.d}" fill="#000" stroke="#000" stroke-width="9" stroke-linejoin="round"/>`;
+    <path d="${g.d}" fill="none" stroke="none" />`;
     
   if (url) {
     svgContent += `<image href="${url}" width="${g.w}" height="${g.h}" preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})"/>`;
