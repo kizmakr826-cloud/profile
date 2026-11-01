@@ -135,7 +135,6 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 </main>
 
 <script>
-/* 拡張子は全て .jpg に修正済み */
 const IMAGES = { 
   hero: "me.jpg",      
   design: "design.jpg",    
@@ -157,7 +156,7 @@ const mk = (spec, cls, host) => spec.split(";").map(s => s.trim()).filter(Boolea
 const geo = el => ["px","py","pw","ph"].map(k => parseFloat(el.style.getPropertyValue("--" + k)));
 const kn = [];
 
-/* 1. 基本パーツの生成と凸の収集 */
+/* 1. 通常パズルのパーツ生成 */
 pieces.forEach(el => {
   const bg = document.createElement("div"); bg.className = "bg"; el.prepend(bg); el._bg = bg;
   if (el.dataset.d) mk(el.dataset.d, "", bg);
@@ -178,12 +177,12 @@ kn.forEach(([o, x, y, r]) => {
   socks.get(t).push([ax - tx, ay - ty, r]);
 });
 
-/* 3. 画像パズル(Hero)のSVGマスク化 ＆ 色パズルのCSSマスク処理 */
+/* 3. 画像パズル(Hero) と カラーパズルのマスク処理 */
 pieces.forEach((el, i) => {
   const url = el.dataset.img ? IMAGES[el.dataset.img] : null;
   
   if (!url) {
-    // 画像でない通常のパズルは従来のCSSマスク
+    /* 色付きのピースはCSSマスク */
     if (socks.has(el)) {
       const m = socks.get(el).map(([x, y, r]) => `radial-gradient(circle at calc(${x}*var(--u)) calc(${y}*var(--u)),transparent calc(${r - .5}*var(--u)),#000 calc(${r - .5}*var(--u) + 1px))`).join(",");
       const s = el._bg.style;
@@ -191,9 +190,14 @@ pieces.forEach((el, i) => {
       s.setProperty("mask-composite", "intersect"); s.setProperty("-webkit-mask-composite", "source-in");
     }
   } else {
-    // 画像パズル(Hero等)は、黒丸パーツなどを非表示にして完璧なSVGマスクを作る
+    /* ★修正箇所1★: Hero画像用。丸パーツを全削除し、完全なSVGマスクで写真をくり抜く */
     const pw = parseFloat(el.style.getPropertyValue("--pw"));
     const ph = parseFloat(el.style.getPropertyValue("--ph"));
+    
+    // 生成された丸のDOM要素と背景を消去
+    el.querySelectorAll('.c').forEach(c => c.remove());
+    if (el._bg) el._bg.remove();
+    el.style.background = 'transparent';
     
     const myKnobs = [];
     if (el.dataset.k) {
@@ -203,15 +207,15 @@ pieces.forEach((el, i) => {
       });
     }
     
-    const myDataD = [];
+    const myHolesD = [];
     if (el.dataset.d) {
       el.dataset.d.split(";").forEach(s => {
         const [x, y, r] = s.trim().split(/\s+/).map(Number);
-        if (!isNaN(x)) myDataD.push({x, y, r});
+        if (!isNaN(x)) myHolesD.push({x, y, r});
       });
     }
     
-    const myHoles = socks.get(el) || [];
+    const myHolesSocks = socks.get(el) || [];
 
     const getR = (cls, def) => el.classList.contains(cls) ? 54 : def;
     const r_tl = getR('rtl', 5);
@@ -227,25 +231,20 @@ pieces.forEach((el, i) => {
       L 0,${r_tl} A ${r_tl},${r_tl} 0 0 1 ${r_tl},0 Z
     `;
 
-    const maskId = `pz-mask-${i}`;
+    const maskId = `pz-mask-img-${i}`;
+    const pad = 100; // 凸部分が見切れないよう十分な余白
     
-    /* 古い黒丸パーツや背景を見えなくする */
-    el.style.background = 'transparent';
-    el._bg.style.display = 'none';
-    el.querySelectorAll('.c').forEach(c => c.style.display = 'none');
-    
-    /* 凸凹をすべて結合したSVGマスク越しに画像を配置（黒丸問題を完全解消） */
     let svgHtml = `
-      <svg viewBox="0 0 ${pw} ${ph}" style="position:absolute; left:0; top:0; width:100%; height:100%; overflow:visible; pointer-events:none;">
+      <svg viewBox="${-pad} ${-pad} ${pw + pad*2} ${ph + pad*2}" style="position:absolute; left:${-pad}px; top:${-pad}px; width:${pw + pad*2}px; height:${ph + pad*2}px; overflow:visible; pointer-events:none;">
         <defs>
           <mask id="${maskId}">
             <path d="${basePath}" fill="white" />
             ${myKnobs.map(k => `<circle cx="${k.x}" cy="${k.y}" r="${k.r}" fill="white" />`).join('')}
-            ${myDataD.map(h => `<circle cx="${h.x}" cy="${h.y}" r="${h.r}" fill="black" />`).join('')}
-            ${myHoles.map(h => `<circle cx="${h[0]}" cy="${h[1]}" r="${h[2]}" fill="black" />`).join('')}
+            ${myHolesD.map(h => `<circle cx="${h.x}" cy="${h.y}" r="${h.r}" fill="black" />`).join('')}
+            ${myHolesSocks.map(h => `<circle cx="${h[0]}" cy="${h[1]}" r="${h[2]}" fill="black" />`).join('')}
           </mask>
         </defs>
-        <image href="${url}" x="-40" y="-40" width="${pw+80}" height="${ph+80}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />
+        <image href="${url}" x="${-pad}" y="${-pad}" width="${pw + pad*2}" height="${ph + pad*2}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />
       </svg>
     `;
     el.insertAdjacentHTML('afterbegin', svgHtml);
@@ -261,29 +260,42 @@ pieces.forEach(el => {
   el.style.setProperty("--hy", (-(4 + d * 4)).toFixed(0));
 });
 
-/* 4. エピソード画像(浮遊ピース)の処理：完全に黒枠を消し去る */
-const jig = (W, H, feats) => {
-  const R = 38, c = 34, p = R + c + 12, f = n => n.toFixed(1), sides = [[p, p, 1, 0, W], [p + W, p, 0, 1, H], [p + W, p + H, -1, 0, W], [p, p + H, 0, -1, H]];
-  let d = `M${p} ${p}`;
-  sides.forEach(([sx, sy, dx, dy, L], i) => {
-    const [pos, ty] = feats[i], a = pos * L, A = [sx + dx * (a - c / 2), sy + dy * (a - c / 2)], B = [sx + dx * (a + c / 2), sy + dy * (a + c / 2)];
-    d += ` L${f(A[0])} ${f(A[1])} A${R} ${R} 0 1 ${ty === "k" ? 1 : 0} ${f(B[0])} ${f(B[1])} L${f(sx + dx * L)} ${f(sy + dy * L)}`;
-  });
-  return { d: d + "Z", w: W + 2 * p, h: H + 2 * p };
-};
+/* ★修正箇所2★: Episode画像の処理。古いSVGパスを捨てて、他のパーツと同じアール(丸み)と円で構成する */
 document.querySelectorAll(".pimg").forEach((el, n) => {
-  const [W, H, , ...fs] = el.dataset.shape.split(/\s+/), g = jig(+W, +H, fs.map(s => { const [a, b] = s.split(","); return [+a, b]; }));
-  const url = IMAGES[el.dataset.img], id = "pj" + n;
+  const [W_str, H_str, rot_str, ...fs] = el.dataset.shape.split(/\s+/);
+  const W = +W_str, H = +H_str;
+  const url = IMAGES[el.dataset.img];
+  const id = "pimg-mask-" + n;
   
-  /* stroke(線)を完全に除去し、純粋なマスク(くり抜き)のみ適用 */
+  const R = 32; // 丸の半径（他のパズルピースと同じくらい）
+  const cornerRadius = 24; // パズル四隅のアール（角丸）
+  const P = 80; // 凸部分がはみ出すためのパディング
+  
+  let maskElements = `<rect x="${P}" y="${P}" width="${W}" height="${H}" rx="${cornerRadius}" ry="${cornerRadius}" fill="white" />`;
+  
+  fs.forEach((f, i) => {
+    const [pos_str, type] = f.split(",");
+    const pos = +pos_str;
+    let cx = 0, cy = 0;
+    if (i === 0) { cx = P + W * pos; cy = P; } // 上
+    else if (i === 1) { cx = P + W; cy = P + H * pos; } // 右
+    else if (i === 2) { cx = P + W * pos; cy = P + H; } // 下
+    else if (i === 3) { cx = P; cy = P + H * pos; } // 左
+    
+    maskElements += `<circle cx="${cx}" cy="${cy}" r="${R}" fill="${type === 'k' ? 'white' : 'black'}" />`;
+  });
+
+  const totalW = W + P * 2;
+  const totalH = H + P * 2;
+
   let svgContent = `
-    <svg viewBox="0 0 ${g.w} ${g.h}" aria-hidden="true" style="overflow:visible;">
+    <svg viewBox="0 0 ${totalW} ${totalH}" aria-hidden="true" style="position:absolute; left:0; top:0; width:100%; height:auto; overflow:visible;">
       <defs>
         <mask id="${id}">
-          <path d="${g.d}" fill="white" stroke="none" />
+          ${maskElements}
         </mask>
       </defs>
-      ${url ? `<image href="${url}" width="${g.w}" height="${g.h}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})" />` : ''}
+      ${url ? `<image href="${url}" x="0" y="0" width="${totalW}" height="${totalH}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})" />` : ''}
     </svg>
   `;
   el.innerHTML = svgContent;
