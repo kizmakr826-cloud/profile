@@ -48,7 +48,11 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4142*var(--u));marg
 .chip{height:calc(29*var(--u));width:calc(var(--w)*var(--u));border-radius:99px;display:grid;place-items:center;font-size:calc(12*var(--u));letter-spacing:.02em}
 .h2t{font-size:calc(70.5*var(--u));line-height:1.2;font-weight:900;letter-spacing:.005em}
 .nm2{font-size:calc(28*var(--u));line-height:1.3;font-weight:900;letter-spacing:.04em}
+.chip.sc{height:calc(22*var(--u));font-size:calc(9.5*var(--u));font-weight:900}
+.tx2{font-size:calc(10.5*var(--u));line-height:calc(17.5*var(--u));letter-spacing:.06em}
 .lead{font-size:calc(24.4*var(--u));line-height:calc(40*var(--u));letter-spacing:.18em;font-weight:900}
+.tx{font-size:calc(14*var(--u));line-height:calc(25*var(--u));letter-spacing:.14em}
+.s{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));height:calc(var(--h)*var(--u));border-radius:calc(24*var(--u));background:#000 center/cover no-repeat}
 .pname{font-size:calc(46*var(--u));line-height:1.2;letter-spacing:.04em;font-weight:900}
 .pm{font-size:calc(17*var(--u));line-height:calc(35.5*var(--u));letter-spacing:.2em;font-weight:700}
 .clos{width:calc(1440*var(--u));text-align:center;color:var(--gr);font-size:calc(70.8*var(--u));line-height:calc(90*var(--u));font-weight:900;white-space:nowrap}
@@ -106,7 +110,7 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 <div class="pimg" data-img="camera" data-shape="560 410 -11 0.62,k 0.52,h 0.45,h 0.80,k" style="--l:699;--t:1756;--w:724;--rot:-11;--du:6.3s;--dl:-2s;--fx:-6"></div>
 
 <div class="num en ab" style="--l:98;--t:2441">03</div>
-<p class="etx ab" style="--l:98;--t:2584">どのサークルに入ろうか…悩んでいた時、SNSで見かけた縫製<br>技術研究会のファッションショーにビビビッ。ここで見つけた<br>ピースは<span>「自らの手で作る服による表現」。中学の家庭科は大</span><br>の苦手…しかし、これは苦手を克服するチャンス。裁縫の本や<br>Webを見ながら、完璧でなくてもいいからまずは作ってみるを<br>心がけました。</p>
+<p class="etx ab" style="--l:98;--t:2584">どのサークルに入ろうか…悩んでいた時、SNSで見かけた縫製<br>技術研究会のファッションショーにビビビッ。ここで見つけた<br>ピースは「自らの手で作る服による表現」。中学の家庭科は大<br>の苦手…しかし、これは苦手を克服するチャンス。裁縫の本や<br>Webを見ながら、完璧でなくてもいいからまずは作ってみるを<br>心がけました。</p>
 <p class="etx ab" style="--l:98;--t:2844">数をこなすうちにアレンジまでできるように。より「理想の表<br>現」に近づけています。デザインなどの場面でも縫製によるプ<br>ロトタイプという幅が広がりました。</p>
 <div class="pimg" data-img="sewing" data-shape="530 405 7 0.40,k 0.62,h 0.55,k 0.50,h" style="--l:705;--t:2441;--w:694;--rot:7;--du:5.9s;--dl:-4s;--fx:5"></div>
 
@@ -131,7 +135,7 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 </main>
 
 <script>
-/* 拡張子は全て .jpg */
+/* 拡張子は全て .jpg に修正済み */
 const IMAGES = { 
   hero: "me.jpg",      
   design: "design.jpg",    
@@ -153,6 +157,7 @@ const mk = (spec, cls, host) => spec.split(";").map(s => s.trim()).filter(Boolea
 const geo = el => ["px","py","pw","ph"].map(k => parseFloat(el.style.getPropertyValue("--" + k)));
 const kn = [];
 
+/* 1. 基本パーツの生成と凸の収集 */
 pieces.forEach(el => {
   const bg = document.createElement("div"); bg.className = "bg"; el.prepend(bg); el._bg = bg;
   if (el.dataset.d) mk(el.dataset.d, "", bg);
@@ -161,8 +166,8 @@ pieces.forEach(el => {
     el.dataset.k.split(";").map(s => s.trim()).filter(Boolean).forEach(s => { const [x, y, r] = s.split(/\s+/).map(Number); kn.push([el, x, y, r]); });
   }
 });
-document.querySelectorAll("[data-img]").forEach(el => { const u = IMAGES[el.dataset.img]; if (u) (el.classList.contains("pz") ? el._bg : el).style.backgroundImage = `url(${u})`; });
 
+/* 2. 凹み（穴）の計算 */
 const socks = new Map();
 kn.forEach(([o, x, y, r]) => {
   const [ox, oy] = geo(o), ax = ox + x, ay = oy + y;
@@ -172,11 +177,79 @@ kn.forEach(([o, x, y, r]) => {
   if (!socks.has(t)) socks.set(t, []);
   socks.get(t).push([ax - tx, ay - ty, r]);
 });
-socks.forEach((list, t) => {
-  const m = list.map(([x, y, r]) => `radial-gradient(circle at calc(${x}*var(--u)) calc(${y}*var(--u)),transparent calc(${r - .5}*var(--u)),#000 calc(${r - .5}*var(--u) + 1px))`).join(",");
-  const s = t._bg.style;
-  s.setProperty("mask-image", m); s.setProperty("-webkit-mask-image", m);
-  s.setProperty("mask-composite", "intersect"); s.setProperty("-webkit-mask-composite", "source-in");
+
+/* 3. 画像パズル(Hero)のSVGマスク化 ＆ 色パズルのCSSマスク処理 */
+pieces.forEach((el, i) => {
+  const url = el.dataset.img ? IMAGES[el.dataset.img] : null;
+  
+  if (!url) {
+    // 画像でない通常のパズルは従来のCSSマスク
+    if (socks.has(el)) {
+      const m = socks.get(el).map(([x, y, r]) => `radial-gradient(circle at calc(${x}*var(--u)) calc(${y}*var(--u)),transparent calc(${r - .5}*var(--u)),#000 calc(${r - .5}*var(--u) + 1px))`).join(",");
+      const s = el._bg.style;
+      s.setProperty("mask-image", m); s.setProperty("-webkit-mask-image", m);
+      s.setProperty("mask-composite", "intersect"); s.setProperty("-webkit-mask-composite", "source-in");
+    }
+  } else {
+    // 画像パズル(Hero等)は、黒丸パーツなどを非表示にして完璧なSVGマスクを作る
+    const pw = parseFloat(el.style.getPropertyValue("--pw"));
+    const ph = parseFloat(el.style.getPropertyValue("--ph"));
+    
+    const myKnobs = [];
+    if (el.dataset.k) {
+      el.dataset.k.split(";").forEach(s => {
+        const [x, y, r] = s.trim().split(/\s+/).map(Number);
+        if (!isNaN(x)) myKnobs.push({x, y, r});
+      });
+    }
+    
+    const myDataD = [];
+    if (el.dataset.d) {
+      el.dataset.d.split(";").forEach(s => {
+        const [x, y, r] = s.trim().split(/\s+/).map(Number);
+        if (!isNaN(x)) myDataD.push({x, y, r});
+      });
+    }
+    
+    const myHoles = socks.get(el) || [];
+
+    const getR = (cls, def) => el.classList.contains(cls) ? 54 : def;
+    const r_tl = getR('rtl', 5);
+    const r_tr = getR('rtr', 5);
+    const r_br = getR('rbr', 5);
+    const r_bl = getR('rbl', 5);
+
+    const basePath = `
+      M ${r_tl},0
+      L ${pw - r_tr},0 A ${r_tr},${r_tr} 0 0 1 ${pw},${r_tr}
+      L ${pw},${ph - r_br} A ${r_br},${r_br} 0 0 1 ${pw - r_br},${ph}
+      L ${r_bl},${ph} A ${r_bl},${r_bl} 0 0 1 0,${ph - r_bl}
+      L 0,${r_tl} A ${r_tl},${r_tl} 0 0 1 ${r_tl},0 Z
+    `;
+
+    const maskId = `pz-mask-${i}`;
+    
+    /* 古い黒丸パーツや背景を見えなくする */
+    el.style.background = 'transparent';
+    el._bg.style.display = 'none';
+    el.querySelectorAll('.c').forEach(c => c.style.display = 'none');
+    
+    /* 凸凹をすべて結合したSVGマスク越しに画像を配置（黒丸問題を完全解消） */
+    let svgHtml = `
+      <svg viewBox="0 0 ${pw} ${ph}" style="position:absolute; left:0; top:0; width:100%; height:100%; overflow:visible; pointer-events:none;">
+        <defs>
+          <mask id="${maskId}">
+            <path d="${basePath}" fill="white" />
+            ${myKnobs.map(k => `<circle cx="${k.x}" cy="${k.y}" r="${k.r}" fill="white" />`).join('')}
+            ${myDataD.map(h => `<circle cx="${h.x}" cy="${h.y}" r="${h.r}" fill="black" />`).join('')}
+            ${myHoles.map(h => `<circle cx="${h[0]}" cy="${h[1]}" r="${h[2]}" fill="black" />`).join('')}
+          </mask>
+        </defs>
+        <image href="${url}" x="-40" y="-40" width="${pw+80}" height="${ph+80}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />
+      </svg>
+    `;
+    el.insertAdjacentHTML('afterbegin', svgHtml);
+  }
 });
 
 let hs = 7; const rnd0 = i => { const s = Math.sin(i * 91.7 + 17.3) * 43758.5453; return s - Math.floor(s); };
@@ -188,9 +261,9 @@ pieces.forEach(el => {
   el.style.setProperty("--hy", (-(4 + d * 4)).toFixed(0));
 });
 
-/* ★Episode画像のマスク処理：ご提示いただいた画像を参考に、角をシャープ（アールを抑えて直角気味）にしつつ美しいジグソーの凸凹に調整★ */
+/* 4. エピソード画像(浮遊ピース)の処理：完全に黒枠を消し去る */
 const jig = (W, H, feats) => {
-  const R = 24, c = 28, p = R + c + 8, f = n => n.toFixed(1), sides = [[p, p, 1, 0, W], [p + W, p, 0, 1, H], [p + W, p + H, -1, 0, W], [p, p + H, 0, -1, H]];
+  const R = 38, c = 34, p = R + c + 12, f = n => n.toFixed(1), sides = [[p, p, 1, 0, W], [p + W, p, 0, 1, H], [p + W, p + H, -1, 0, W], [p, p + H, 0, -1, H]];
   let d = `M${p} ${p}`;
   sides.forEach(([sx, sy, dx, dy, L], i) => {
     const [pos, ty] = feats[i], a = pos * L, A = [sx + dx * (a - c / 2), sy + dy * (a - c / 2)], B = [sx + dx * (a + c / 2), sy + dy * (a + c / 2)];
@@ -198,11 +271,11 @@ const jig = (W, H, feats) => {
   });
   return { d: d + "Z", w: W + 2 * p, h: H + 2 * p };
 };
-
 document.querySelectorAll(".pimg").forEach((el, n) => {
   const [W, H, , ...fs] = el.dataset.shape.split(/\s+/), g = jig(+W, +H, fs.map(s => { const [a, b] = s.split(","); return [+a, b]; }));
   const url = IMAGES[el.dataset.img], id = "pj" + n;
   
+  /* stroke(線)を完全に除去し、純粋なマスク(くり抜き)のみ適用 */
   let svgContent = `
     <svg viewBox="0 0 ${g.w} ${g.h}" aria-hidden="true" style="overflow:visible;">
       <defs>
