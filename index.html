@@ -1,3 +1,10 @@
+画像が四角いまま表示されてしまい、黒いパズルの形にうまく切り抜かれなかった（マスクされなかった）原因は、JavaScriptの処理の重複にあります。
+
+コードの最後の方で、「背景に四角く画像を貼る処理」**と**「パズルの形に画像を切り抜く処理（SVG）」の両方が、同じピースに対して同時に実行されてしまっていたため、切り抜かれた画像の後ろに四角い画像がそのまま表示されてバグったように見えていました。
+
+以下のコードでは、JavaScriptの該当部分（四角く背景を設定する処理を `.pz` クラスのみに限定）を修正し、綺麗にパズルの形に画像がマスクされるように書き直しました。
+
+```html
 <!doctype html>
 <html lang="ja">
 <head>
@@ -125,7 +132,7 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 <div class="board ab" data-pz style="--l:49;--t:3239;--bh:586">
   <div class="pz bu rtl" style="--px:0;--py:0;--pw:895;--ph:293" data-k="923 175 54.5 b; -15 126 23 b; 215 318 44.5 b; 671 308 23 b" data-d="488 14 22 w">
     <div class="t pname lt" style="--l:52;--t:104">小泉 彩香里 <span class="en">/ akari koizumi</span></div>
-    <div class="t lt" style="--l:52;--t:172;font-size:calc(17*var(--u));letter-spacing:.04em;line-height:1.3;font-weight:700">2003年8月26日生まれ　O型　INFP-T</div>
+    <div class="t lt" style="--l:52;--t:172;font-size:calc(17*var(--u));letter-spacing:.04em;line-height:1.3;font-weight:700">2003年8月26日生まれ O型 INFP-T</div>
   </div>
   <div class="pz gy" style="--px:895;--py:0;--pw:447;--ph:293" data-d="400 98 70 o; 96 104 24 o" data-k="224 308 22 g"></div>
   <div class="pz og" style="--px:0;--py:293;--pw:447;--ph:293" data-d="313 236 97.5 w; 16 174 21 w" data-k="462 146 23.5 o"></div>
@@ -144,7 +151,7 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 <script>
 /* ★【画像を挿入する場合】ここを変更してください★ */
 const IMAGES = { 
-  hero: "me.jpg",      // 一番上の黒いピース部分 (data-img="hero")
+  hero: "me.jpeg",      // 一番上の黒いピース部分 (data-img="hero")
   design: "design.jpg",    // Episode 01 の画像部分 (data-img="design")
   camera: "camera.jpg",    // Episode 02 の画像部分 (data-img="camera")
   sewing: "sewing.jpg"     // Episode 03 の画像部分 (data-img="sewing")
@@ -172,7 +179,12 @@ pieces.forEach(el => {
     el.dataset.k.split(";").map(s => s.trim()).filter(Boolean).forEach(s => { const [x, y, r] = s.split(/\s+/).map(Number); kn.push([el, x, y, r]); });
   }
 });
-document.querySelectorAll("[data-img]").forEach(el => { const u = IMAGES[el.dataset.img]; if (u) (el.classList.contains("pz") ? el._bg : el).style.backgroundImage = `url(${u})`; });
+
+/* ★修正箇所★ : .pz クラスを持つ要素（Hero画像など）のみに背景画像を適用 */
+document.querySelectorAll(".pz[data-img]").forEach(el => { 
+  const u = IMAGES[el.dataset.img]; 
+  if (u) el._bg.style.backgroundImage = `url(${u})`; 
+});
 
 /* 凸が入り込んでいる相手のピースには、その形の凹（穴）を開ける */
 const socks = new Map();
@@ -214,7 +226,22 @@ const jig = (W, H, feats) => {
 document.querySelectorAll(".pimg").forEach((el, n) => {
   const [W, H, , ...fs] = el.dataset.shape.split(/\s+/), g = jig(+W, +H, fs.map(s => { const [a, b] = s.split(","); return [+a, b]; }));
   const url = IMAGES[el.dataset.img], id = "pj" + n;
-  el.innerHTML = `<svg viewBox="0 0 ${g.w} ${g.h}" aria-hidden="true"><defs><clipPath id="${id}"><path d="${g.d}"/></clipPath></defs><path d="${g.d}" fill="#000" stroke="#000" stroke-width="9" stroke-linejoin="round"/>${url ? `<image href="${url}" width="${g.w}" height="${g.h}" preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})"/>` : ""}</svg>`;
+  
+  /* ★修正箇所★ : SVGによる確実な画像のクリッピング（マスキング）処理 */
+  let svgContent = `<svg viewBox="0 0 ${g.w} ${g.h}" aria-hidden="true">
+    <defs>
+      <clipPath id="${id}">
+        <path d="${g.d}"/>
+      </clipPath>
+    </defs>
+    <path d="${g.d}" fill="#000" stroke="#000" stroke-width="9" stroke-linejoin="round"/>`;
+    
+  if (url) {
+    svgContent += `<image href="${url}" width="${g.w}" height="${g.h}" preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})"/>`;
+  }
+  
+  svgContent += `</svg>`;
+  el.innerHTML = svgContent;
 });
 
 /* パズルが組み上がる動き */
