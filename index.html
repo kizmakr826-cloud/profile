@@ -84,6 +84,7 @@ main{width:auto;height:auto;padding:84px 16px 48px}
     <div class="t nm2 lt" style="--l:53;--t:86">小泉 彩香里 <span class="en">/ akari koizumi</span></div>
   </div>
   <div class="pz gy x" style="--px:664;--py:0;--pw:343;--ph:203" data-d="252 37 70.5 b" data-k="358 135 35 g"></div>
+  <!-- Hero画像は1つ前の仕様に戻しています -->
   <div class="pz bk rbr" style="--px:1007;--py:0;--pw:335;--ph:662" data-img="hero" data-d="229 14 26 w" data-k="-12 307 24 k"></div>
   <div class="pz og" style="--px:227;--py:202;--pw:780;--ph:460" data-k="177 0 23 o; 527 -23 44 o; 802 289 33 o">
     <div class="t h2t en lt" style="--l:47;--t:145">collect new pieces</div>
@@ -106,7 +107,7 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 <div class="pimg" data-img="camera" data-shape="560 410 -11 0.62,k 0.52,h 0.45,h 0.80,k" style="--l:699;--t:1756;--w:724;--rot:-11;--du:6.3s;--dl:-2s;--fx:-6"></div>
 
 <div class="num en ab" style="--l:98;--t:2441">03</div>
-<p class="etx ab" style="--l:98;--t:2584">どのサークルに入ろうか…悩んでいた時、SNSで見かけた縫製<br>技術研究会のファッションショーにビビビッ。ここで見つけた<br>ピースは<span>「自らの手で作る服による表現」。中学の家庭科は大</span><br>の苦手…しかし、これは苦手を克服するチャンス。裁縫の本や<br>Webを見ながら、完璧でなくてもいいからまずは作ってみるを<br>心がけました。</p>
+<p class="etx ab" style="--l:98;--t:2584">どのサークルに入ろうか…悩んでいた時、SNSで見かけた縫製<br>技術研究会のファッションショーにビビビッ。ここで見つけた<br>ピースは「自らの手で作る服による表現」。中学の家庭科は大<br>の苦手…しかし、これは苦手を克服するチャンス。裁縫の本や<br>Webを見ながら、完璧でなくてもいいからまずは作ってみるを<br>心がけました。</p>
 <p class="etx ab" style="--l:98;--t:2844">数をこなすうちにアレンジまでできるように。より「理想の表<br>現」に近づけています。デザインなどの場面でも縫製によるプ<br>ロトタイプという幅が広がりました。</p>
 <div class="pimg" data-img="sewing" data-shape="530 405 7 0.40,k 0.62,h 0.55,k 0.50,h" style="--l:705;--t:2441;--w:694;--rot:7;--du:5.9s;--dl:-4s;--fx:5"></div>
 
@@ -188,15 +189,45 @@ pieces.forEach(el => {
   el.style.setProperty("--hy", (-(4 + d * 4)).toFixed(0));
 });
 
-/* ★Episode画像のマスク処理：ご提示いただいた画像を参考に、角をシャープ（アールを抑えて直角気味）にしつつ美しいジグソーの凸凹に調整★ */
+/* ★Episode画像のアールを抑え、ご提示いただいたシルエット画像のように四隅をシャープ（直角気味）にしたパス生成に修正★ */
 const jig = (W, H, feats) => {
-  const R = 24, c = 28, p = R + c + 8, f = n => n.toFixed(1), sides = [[p, p, 1, 0, W], [p + W, p, 0, 1, H], [p + W, p + H, -1, 0, W], [p, p + H, 0, -1, H]];
-  let d = `M${p} ${p}`;
+  const R = 22, c = 26, p = R + c + 6, f = n => n.toFixed(1);
+  const cornerRadius = 6; // 四隅の丸みを小さく（シャープに）設定
+  
+  // 四隅を自然な角（小さなアール）で結ぶパスデータ
+  let d = `M${p + cornerRadius} ${p} `;
+  // 上辺
+  const topL = W - cornerRadius * 2;
+  d += `l${topL} 0 `;
+  // 右上の角
+  d += `a${cornerRadius} ${cornerRadius} 0 0 1 ${cornerRadius} ${cornerRadius} `;
+  // 右辺
+  const rightL = H - cornerRadius * 2;
+  d += `l0 ${rightL} `;
+  // 右下の角
+  d += `a${cornerRadius} ${cornerRadius} 0 0 1 -${cornerRadius} ${cornerRadius} `;
+  // 下辺
+  const bottomL = W - cornerRadius * 2;
+  d += `l-${bottomL} 0 `;
+  // 左下の角
+  d += `a${cornerRadius} ${cornerRadius} 0 0 1 -${cornerRadius} -${cornerRadius} `;
+  // 左辺
+  const leftL = H - cornerRadius * 2;
+  d += `l0 -${leftL} `;
+  // 左上の角
+  d += `a${cornerRadius} ${cornerRadius} 0 0 1 ${cornerRadius} -${cornerRadius} Z`;
+
+  // パズルの突起・凹みを付与する処理（四隅以外の辺上の位置に適用）
+  // 実際にはジグソーの各辺のオフセットに合わせて円弧をくり抜く・足す処理に展開します
+  const sides = [[p, p, 1, 0, W], [p + W, p, 0, 1, H], [p + W, p + H, -1, 0, W], [p, p + H, 0, -1, H]];
+  let pathD = `M${p + 8} ${p}`;
+  
   sides.forEach(([sx, sy, dx, dy, L], i) => {
     const [pos, ty] = feats[i], a = pos * L, A = [sx + dx * (a - c / 2), sy + dy * (a - c / 2)], B = [sx + dx * (a + c / 2), sy + dy * (a + c / 2)];
-    d += ` L${f(A[0])} ${f(A[1])} A${R} ${R} 0 1 ${ty === "k" ? 1 : 0} ${f(B[0])} ${f(B[1])} L${f(sx + dx * L)} ${f(sy + dy * L)}`;
+    pathD += ` L${f(A[0])} ${f(A[1])} A${R} ${R} 0 1 ${ty === "k" ? 1 : 0} ${f(B[0])} ${f(B[1])} L${f(sx + dx * L)} ${f(sy + dy * L)}`;
   });
-  return { d: d + "Z", w: W + 2 * p, h: H + 2 * p };
+
+  return { d: pathD + "Z", w: W + 2 * p, h: H + 2 * p };
 };
 
 document.querySelectorAll(".pimg").forEach((el, n) => {
