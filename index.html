@@ -23,14 +23,9 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4142*var(--u));marg
 .hd{margin:0;font-size:calc(80*var(--u));line-height:1;font-weight:900;white-space:nowrap}
 .num{font-size:calc(124*var(--u));line-height:1;font-weight:900;color:var(--or)}
 .etx{font-size:calc(17*var(--u));line-height:calc(36.8*var(--u));letter-spacing:.17em;color:#000;white-space:nowrap;font-weight:700}
-
-/* 写真ピースの浮遊アニメーション */
-.pimg { position:absolute; left:calc(var(--l)*var(--u)); top:calc(var(--t)*var(--u)); animation:flt var(--du,5.5s) ease-in-out var(--dl,0s) infinite; }
-@keyframes flt{
-  0%,100%{transform:translate(0,0) rotate(calc(var(--rot)*1deg - 2deg))}
-  50%{transform:translate(calc(var(--fx,6)*1px),calc(-14*var(--u))) rotate(calc(var(--rot)*1deg + 2deg))}
-}
-
+.pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));animation:flt var(--du,5.5s) ease-in-out var(--dl,0s) infinite;pointer-events:none}
+.pimg svg{display:block;width:100%;height:auto;overflow:visible}
+@keyframes flt{0%,100%{transform:translate(0,0) rotate(calc(var(--rot)*1deg - 2deg))}50%{transform:translate(calc(var(--fx,6)*1px*var(--k,1)),calc(-14*var(--u))) rotate(calc(var(--rot)*1deg + 2deg))}}
 .board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u))}
 [data-pz]{--p:0}
 .pz{--pp:clamp(0,calc(var(--p)*1.6 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg)));opacity:clamp(0,calc(var(--pp)*2.5),1);transition:translate .35s cubic-bezier(.3,1.6,.5,1),rotate .35s cubic-bezier(.3,1.6,.5,1),scale .35s cubic-bezier(.3,1.6,.5,1)}
@@ -62,7 +57,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4142*var(--u));marg
 @media(max-width:760px){
 :root{--u:1px}
 main{width:auto;height:auto;padding:84px 16px 48px}
-.ab{position:static}
+.ab,.pimg{position:static}
 .navw{top:14px;left:0;margin:0;width:100%}.nav{right:16px;gap:8px}.nav a{height:34px;padding:0 16px;font-size:13px}
 .board{width:auto;height:auto;display:flex;flex-direction:column;gap:14px;margin:0}
 .pz{position:relative;left:auto;top:auto;width:auto;height:auto;transform:none!important;opacity:1!important;border-radius:24px!important;padding:28px 24px}
@@ -73,8 +68,7 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 .nm2{margin:0;font-size:22px}.pname{margin:0 0 8px;font-size:30px}.h2t{font-size:34px;line-height:1.25;margin:0 0 12px}.lead{font-size:18px;line-height:1.6;letter-spacing:.1em}
 .pm{font-size:15px;line-height:1.9;letter-spacing:.08em}
 .hd{font-size:48px;margin:56px 0 12px}.num{font-size:72px;margin-top:28px}
-.pimg{width:100%; height:auto!important; margin:16px 0; animation-duration:6s; display:block; position:static;}
-.pz[data-img] { aspect-ratio: 4 / 3; min-height: 300px; padding: 0 !important; }
+.pimg{width:100%;margin:16px 0;animation-duration:6s}
 .clos{width:auto;font-size:30px;line-height:1.3;margin:48px 0 0;white-space:normal}.cr{width:auto;margin-top:16px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -90,6 +84,7 @@ main{width:auto;height:auto;padding:84px 16px 48px}
     <div class="t nm2 lt" style="--l:53;--t:86">小泉 彩香里 <span class="en">/ akari koizumi</span></div>
   </div>
   <div class="pz gy x" style="--px:664;--py:0;--pw:343;--ph:203" data-d="252 37 70.5 b" data-k="358 135 35 g"></div>
+  <!-- Hero画像は1つ前の仕様（背景画像＋マスク）に戻しました -->
   <div class="pz bk rbr" style="--px:1007;--py:0;--pw:335;--ph:662" data-img="hero" data-d="229 14 26 w" data-k="-12 307 24 k"></div>
   <div class="pz og" style="--px:227;--py:202;--pw:780;--ph:460" data-k="177 0 23 o; 527 -23 44 o; 802 289 33 o">
     <div class="t h2t en lt" style="--l:47;--t:145">collect new pieces</div>
@@ -104,29 +99,17 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 <div class="num en ab" style="--l:98;--t:1124">01</div>
 <p class="etx ab" style="--l:98;--t:1271">卒業研究で、映像と記憶のデザインをテーマに、新たなアーカ<br>イブ体験の方法を模索したどり着いた、ここで見つけたピース<br>は「インタラクティブな表現」。けれど、そんなもの作ったこ<br>とはない…AIに聞きながらTouchDesignerを独学しました。</p>
 <p class="etx ab" style="--l:98;--t:1456">より能動的な体験が自身の手で実装可能になり、定性的な体験<br>価値を作り出すことができました。</p>
-
-<!-- Episode 01: 他のピースと全く同じ丸み(rtl rtr rbr rbl)を持たせた新しい構成 -->
-<div class="board ab pimg" data-pz style="--l:800; --t:1179; width:calc(570*var(--u)); height:calc(400*var(--u)); --rot:8; --du:5.6s; --dl:0s; --fx:7">
-  <div class="pz gy rtl rtr rbr rbl" style="--px:0;--py:0;--pw:570;--ph:400" data-img="design" data-k="330 0 35 w; 570 312 35 w" data-d="342 400 35 w; 0 248 35 w"></div>
-</div>
+<div class="pimg" data-img="design" data-shape="570 400 8 0.58,k 0.78,k 0.60,h 0.62,h" style="--l:720;--t:1099;--w:734;--rot:8;--du:5.6s;--dl:0s;--fx:7"></div>
 
 <div class="num en ab" style="--l:98;--t:1766">02</div>
 <p class="etx ab" style="--l:98;--t:1911">高校の部活でカメラを始めたことをきっかけに、カメラの可<br>能性に惹かれるように。音楽も好きな私がここで見つけた<br>ピースは「バンドのライブ撮影やMV制作」。全くの未経験<br>だけれど、実践あるのみ！ライブハウスでバンドマンたちに<br>「カメラをやっていて、作品をぜひ見ていただいて良ければ<br>撮らせてください」声をかけました。</p>
 <p class="etx ab" style="--l:98;--t:2169">今では、10組以上のバンドの撮影やクリエイティブを担当す<br>るまでになり、デザイナー以外のクリエイターと一緒に作る<br>楽しさも知りました。</p>
-
-<!-- Episode 02 -->
-<div class="board ab pimg" data-pz style="--l:779; --t:1836; width:calc(560*var(--u)); height:calc(410*var(--u)); --rot:-11; --du:6.3s; --dl:-2s; --fx:-6">
-  <div class="pz bu rtl rtr rbr rbl" style="--px:0;--py:0;--pw:560;--ph:410" data-img="camera" data-k="347 0 35 w; 0 328 35 w" data-d="560 213 35 w; 252 410 35 w"></div>
-</div>
+<div class="pimg" data-img="camera" data-shape="560 410 -11 0.62,k 0.52,h 0.45,h 0.80,k" style="--l:699;--t:1756;--w:724;--rot:-11;--du:6.3s;--dl:-2s;--fx:-6"></div>
 
 <div class="num en ab" style="--l:98;--t:2441">03</div>
 <p class="etx ab" style="--l:98;--t:2584">どのサークルに入ろうか…悩んでいた時、SNSで見かけた縫製<br>技術研究会のファッションショーにビビビッ。ここで見つけた<br>ピースは「自らの手で作る服による表現」。中学の家庭科は大<br>の苦手…しかし、これは苦手を克服するチャンス。裁縫の本や<br>Webを見ながら、完璧でなくてもいいからまずは作ってみるを<br>心がけました。</p>
-<p class="etx ab" style="--l:98;--t:2844">数をこなすうちにアレンジまでできるように。より「理想の表<br>現」に近づけています。デザインなどの場面でも縫製によるプ<br>ロトタイプという幅が広がりました。</p>
-
-<!-- Episode 03 -->
-<div class="board ab pimg" data-pz style="--l:785; --t:2521; width:calc(530*var(--u)); height:calc(405*var(--u)); --rot:7; --du:5.9s; --dl:-4s; --fx:5">
-  <div class="pz og rtl rtr rbr rbl" style="--px:0;--py:0;--pw:530;--ph:405" data-img="sewing" data-k="212 0 35 w; 291 405 35 w" data-d="530 251 35 w; 0 202 35 w"></div>
-</div>
+<p class="etx ab" style="--l:98;--t:2844">数をこなすうちにアレンジまでできるように。より<span>「理想の表</span><br>現」に近づけています。デザインなどの場面でも縫製によるプ<br>ロトタイプという幅が広がりました。</p>
+<div class="pimg" data-img="sewing" data-shape="530 405 7 0.40,k 0.62,h 0.55,k 0.50,h" style="--l:705;--t:2441;--w:694;--rot:7;--du:5.9s;--dl:-4s;--fx:5"></div>
 
 <h2 class="hd en ab fade-hd" id="profile" style="--l:103;--t:3162;color:var(--bl)">profile</h2>
 <div class="board ab" data-pz style="--l:49;--t:3239;--bh:586">
@@ -171,7 +154,6 @@ const mk = (spec, cls, host) => spec.split(";").map(s => s.trim()).filter(Boolea
 const geo = el => ["px","py","pw","ph"].map(k => parseFloat(el.style.getPropertyValue("--" + k)));
 const kn = [];
 
-/* 1. 通常パズルのパーツ生成 */
 pieces.forEach(el => {
   const bg = document.createElement("div"); bg.className = "bg"; el.prepend(bg); el._bg = bg;
   if (el.dataset.d) mk(el.dataset.d, "", bg);
@@ -180,8 +162,8 @@ pieces.forEach(el => {
     el.dataset.k.split(";").map(s => s.trim()).filter(Boolean).forEach(s => { const [x, y, r] = s.split(/\s+/).map(Number); kn.push([el, x, y, r]); });
   }
 });
+document.querySelectorAll("[data-img]").forEach(el => { const u = IMAGES[el.dataset.img]; if (u) (el.classList.contains("pz") ? el._bg : el).style.backgroundImage = `url(${u})`; });
 
-/* 2. 凹み（穴）の計算 */
 const socks = new Map();
 kn.forEach(([o, x, y, r]) => {
   const [ox, oy] = geo(o), ax = ox + x, ay = oy + y;
@@ -191,92 +173,13 @@ kn.forEach(([o, x, y, r]) => {
   if (!socks.has(t)) socks.set(t, []);
   socks.get(t).push([ax - tx, ay - ty, r]);
 });
-
-/* 3. 【最重要】Hero画像 ＆ Episode画像 の 完全SVGマスク処理 */
-/* 余計な黒枠や丸パーツを全排除し、全ての画像を完璧にパズルの形に切り抜く処理に統一しました */
-pieces.forEach((el, i) => {
-  const url = el.dataset.img ? IMAGES[el.dataset.img] : null;
-  
-  if (!url) {
-    /* 色付きのピースはCSSマスクのまま */
-    if (socks.has(el)) {
-      const m = socks.get(el).map(([x, y, r]) => `radial-gradient(circle at calc(${x}*var(--u)) calc(${y}*var(--u)),transparent calc(${r - .5}*var(--u)),#000 calc(${r - .5}*var(--u) + 1px))`).join(",");
-      const s = el._bg.style;
-      s.setProperty("mask-image", m); s.setProperty("-webkit-mask-image", m);
-      s.setProperty("mask-composite", "intersect"); s.setProperty("-webkit-mask-composite", "source-in");
-    }
-  } else {
-    /* 画像用（Hero・Episode共通）：丸パーツを全削除し、完全なSVGマスクで写真をくり抜く */
-    const pw = parseFloat(el.style.getPropertyValue("--pw"));
-    const ph = parseFloat(el.style.getPropertyValue("--ph"));
-    
-    // 生成された丸のDOM要素と背景を消去（真っ黒になるのを防ぐ）
-    el.querySelectorAll('.c').forEach(c => c.remove());
-    if (el._bg) el._bg.remove();
-    el.style.background = 'transparent';
-    
-    const myKnobs = [];
-    if (el.dataset.k) {
-      el.dataset.k.split(";").forEach(s => {
-        const [x, y, r] = s.trim().split(/\s+/).map(Number);
-        if (!isNaN(x)) myKnobs.push({x, y, r});
-      });
-    }
-    
-    const myHolesD = [];
-    if (el.dataset.d) {
-      el.dataset.d.split(";").forEach(s => {
-        const [x, y, r] = s.trim().split(/\s+/).map(Number);
-        if (!isNaN(x)) myHolesD.push({x, y, r});
-      });
-    }
-    
-    const myHolesSocks = socks.get(el) || [];
-
-    // Episode用に全方向アール(54)を付けた角丸も美しく処理
-    const getR = (cls, def) => el.classList.contains(cls) ? 54 : def;
-    const r_tl = getR('rtl', 5);
-    const r_tr = getR('rtr', 5);
-    const r_br = getR('rbr', 5);
-    const r_bl = getR('rbl', 5);
-
-    const basePath = `
-      M ${r_tl},0
-      L ${pw - r_tr},0 A ${r_tr},${r_tr} 0 0 1 ${pw},${r_tr}
-      L ${pw},${ph - r_br} A ${r_br},${r_br} 0 0 1 ${pw - r_br},${ph}
-      L ${r_bl},${ph} A ${r_bl},${r_bl} 0 0 1 0,${ph - r_bl}
-      L 0,${r_tl} A ${r_tl},${r_tl} 0 0 1 ${r_tl},0 Z
-    `;
-
-    const maskId = `pz-mask-img-${i}`;
-    const pad = 60; // 凸部分が見切れないよう十分な余白
-    
-    // モバイルでも伸縮するように％指定でSVGコンテナを配置
-    const widthPct = ((pw + pad*2) / pw * 100).toFixed(2);
-    const heightPct = ((ph + pad*2) / ph * 100).toFixed(2);
-    const leftPct = (-pad / pw * 100).toFixed(2);
-    const topPct = (-pad / ph * 100).toFixed(2);
-    
-    let svgHtml = `
-      <svg viewBox="${-pad} ${-pad} ${pw + pad*2} ${ph + pad*2}" style="position:absolute; left:${leftPct}%; top:${topPct}%; width:${widthPct}%; height:${heightPct}%; overflow:visible; pointer-events:none;">
-        <defs>
-          <mask id="${maskId}">
-            <!-- ここで綺麗なパズルのシルエットを合成 -->
-            <path d="${basePath}" fill="white" />
-            ${myKnobs.map(k => `<circle cx="${k.x}" cy="${k.y}" r="${k.r}" fill="white" />`).join('')}
-            ${myHolesD.map(h => `<circle cx="${h.x}" cy="${h.y}" r="${h.r}" fill="black" />`).join('')}
-            ${myHolesSocks.map(h => `<circle cx="${h[0]}" cy="${h[1]}" r="${h[2]}" fill="black" />`).join('')}
-          </mask>
-        </defs>
-        <!-- 黒枠などは一切出さず、写真をマスクで直接切り抜く -->
-        <image href="${url}" x="${-pad}" y="${-pad}" width="${pw + pad*2}" height="${ph + pad*2}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />
-      </svg>
-    `;
-    el.insertAdjacentHTML('afterbegin', svgHtml);
-  }
+socks.forEach((list, t) => {
+  const m = list.map(([x, y, r]) => `radial-gradient(circle at calc(${x}*var(--u)) calc(${y}*var(--u)),transparent calc(${r - .5}*var(--u)),#000 calc(${r - .5}*var(--u) + 1px))`).join(",");
+  const s = t._bg.style;
+  s.setProperty("mask-image", m); s.setProperty("-webkit-mask-image", m);
+  s.setProperty("mask-composite", "intersect"); s.setProperty("-webkit-mask-composite", "source-in");
 });
 
-/* ホバー時の浮き上がり方を抑える設定 */
 let hs = 7; const rnd0 = i => { const s = Math.sin(i * 91.7 + 17.3) * 43758.5453; return s - Math.floor(s); };
 pieces.forEach(el => {
   const [, , w, h] = geo(el), m = Math.max(w, h), a = rnd0(hs++), b = rnd0(hs++), c = rnd0(hs++), d = rnd0(hs++);
@@ -286,7 +189,34 @@ pieces.forEach(el => {
   el.style.setProperty("--hy", (-(4 + d * 4)).toFixed(0));
 });
 
-/* パズルが組み上がる動き */
+/* ★Episode画像のマスク処理：丸み(アール)を適度なサイズ（R=20, 角丸=12）に調整して自然なテイストに修正★ */
+const jig = (W, H, feats) => {
+  const R = 20, c = 24, p = R + c + 8, f = n => n.toFixed(1), sides = [[p, p, 1, 0, W], [p + W, p, 0, 1, H], [p + W, p + H, -1, 0, W], [p, p + H, 0, -1, H]];
+  let d = `M${p} ${p}`;
+  sides.forEach(([sx, sy, dx, dy, L], i) => {
+    const [pos, ty] = feats[i], a = pos * L, A = [sx + dx * (a - c / 2), sy + dy * (a - c / 2)], B = [sx + dx * (a + c / 2), sy + dy * (a + c / 2)];
+    d += ` L${f(A[0])} ${f(A[1])} A${R} ${R} 0 1 ${ty === "k" ? 1 : 0} ${f(B[0])} ${f(B[1])} L${f(sx + dx * L)} ${f(sy + dy * L)}`;
+  });
+  return { d: d + "Z", w: W + 2 * p, h: H + 2 * p };
+};
+
+document.querySelectorAll(".pimg").forEach((el, n) => {
+  const [W, H, , ...fs] = el.dataset.shape.split(/\s+/), g = jig(+W, +H, fs.map(s => { const [a, b] = s.split(","); return [+a, b]; }));
+  const url = IMAGES[el.dataset.img], id = "pj" + n;
+  
+  let svgContent = `
+    <svg viewBox="0 0 ${g.w} ${g.h}" aria-hidden="true" style="overflow:visible;">
+      <defs>
+        <mask id="${id}">
+          <path d="${g.d}" fill="white" stroke="none" />
+        </mask>
+      </defs>
+      ${url ? `<image href="${url}" width="${g.w}" height="${g.h}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})" />` : ''}
+    </svg>
+  `;
+  el.innerHTML = svgContent;
+});
+
 const rnd = i => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
 const boards = [...document.querySelectorAll("[data-pz]")].map(c => ({ c, load: c.dataset.pz === "load", items: [...c.children].filter(e => e.classList.contains("pz")) }));
 const ease = x => 1 - Math.pow(1 - x, 2);
