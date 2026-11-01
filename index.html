@@ -24,23 +24,24 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4142*var(--u));marg
 .num{font-size:calc(124*var(--u));line-height:1;font-weight:900;color:var(--or)}
 .etx{font-size:calc(17*var(--u));line-height:calc(36.8*var(--u));letter-spacing:.17em;color:#000;white-space:nowrap;font-weight:700}
 
-/* 画像ピース：時間をかけてゆっくり滑らかに収まるように変更 */
-.pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.3),1);transform:translate(calc((1 - var(--pp))*350px), calc((1 - var(--pp))*120px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*18deg));opacity:clamp(0,calc(var(--pp)*2.5),1);transition:transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),opacity .8s ease;pointer-events:none}
+/* 画像ピース：ゆっくりと減速し、そのままふわふわループへ自然につながる設定 */
+.pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.2),1);transform:translate(calc((1 - var(--pp))*400px), calc((1 - var(--pp))*150px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*20deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),opacity 1.0s ease;pointer-events:none}
 .pimg.done{transform:translate(0,0) rotate(calc(var(--rot)*1deg));animation:flt var(--du,6s) ease-in-out var(--dl,0s) infinite}
 .pimg svg{display:block;width:100%;height:auto;overflow:visible}
 
 @keyframes flt{0%,100%{transform:translate(0,0) rotate(calc(var(--rot)*1deg - 2deg))}50%{transform:translate(calc(var(--fx,6)*1px*var(--k,1)),calc(-14*var(--u))) rotate(calc(var(--rot)*1deg + 2deg))}}
 .board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u))}
 [data-pz]{--p:0}
-/* パズルピース全体の移動・回転トランジションをゆっくりに */
-.pz{--pp:clamp(0,calc(var(--p)*1.4 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.03));opacity:clamp(0,calc(var(--pp)*2.5),1);transition:translate 0.9s cubic-bezier(0.16, 1, 0.3, 1),rotate 0.9s cubic-bezier(0.16, 1, 0.3, 1),scale 0.9s cubic-bezier(0.16, 1, 0.3, 1)}
+
+/* パズルピース全体の動きをさらに滑らかで長いイージングに変更 */
+.pz{--pp:clamp(0,calc(var(--p)*1.2 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.03));opacity:clamp(0,calc(var(--pp)*2),1);transition:translate 1.4s cubic-bezier(0.16, 1, 0.3, 1),rotate 1.4s cubic-bezier(0.16, 1, 0.3, 1),scale 1.4s cubic-bezier(0.16, 1, 0.3, 1)}
 .done .pz{transform:none;opacity:1}
 .pz:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-4)*var(--u));rotate:var(--ha,-1deg);scale:1.01}
-[data-pz].snap .pz{animation:pita .8s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.4s)}
+[data-pz].snap .pz{animation:pita 1.2s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.4s)}
 @keyframes pita{0%{scale:1.02}100%{scale:1}}
 
-/* スクロール連動フェードイン・スライドアップ汎用クラスもゆっくりに */
-.fade-hd{--p:0;--pp:clamp(0,calc(var(--p)*1.4),1);opacity:clamp(0,calc(var(--pp)*2.5),1);transform:translateY(calc((1 - var(--pp))*30px));transition:transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.7s ease;}
+/* テキスト等のフェードイン・スライドアップもよりマイルドに */
+.fade-hd{--p:0;--pp:clamp(0,calc(var(--p)*1.2),1);opacity:clamp(0,calc(var(--pp)*2),1);transform:translateY(calc((1 - var(--pp))*35px));transition:transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),opacity 1.0s ease;}
 .fade-hd.done{transform:none;opacity:1}
 
 .og{--col:var(--or)}.bu{--col:var(--bl)}.pb{--col:var(--pb)}.gy{--col:var(--gy)}.bk{--col:#000}
@@ -344,7 +345,7 @@ const hero = boards[0];
 const startHero = () => {
   if (reduce) { setP(hero.c, 1); return; }
   let t0; setP(hero.c, 0);
-  const f = ts => { t0 = t0 ?? ts; const q = Math.min(1, Math.max(0, (ts - t0 - 250) / 2000)); setP(hero.c, ease(q)); if (q < 1) requestAnimationFrame(f); else hero.c.classList.add("snap"); };
+  const f = ts => { t0 = t0 ?? ts; const q = Math.min(1, Math.max(0, (ts - t0 - 250) / 2200)); setP(hero.c, ease(q)); if (q < 1) requestAnimationFrame(f); else hero.c.classList.add("snap"); };
   requestAnimationFrame(f);
 };
 build(); upd(); startHero();
