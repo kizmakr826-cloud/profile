@@ -31,8 +31,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4980*var(--u));marg
 .en{font-family:"Outfit","Poppins",sans-serif;font-weight:800}
 .hd{margin:0;font-size:calc(80*var(--u));line-height:1;font-weight:900;white-space:nowrap}
 .num{font-size:calc(124*var(--u));line-height:1;font-weight:900;color:var(--or)}
-/* 黒色の文章の文字サイズを 17*var(--u) から 18*var(--u) に1pt大きく調整 */
-.etx{font-size:calc(18*var(--u));line-height:calc(36.8*var(--u));letter-spacing:.17em;color:#000;white-space:nowrap;font-weight:700}
+.etx{font-size:calc(17*var(--u));line-height:calc(36.8*var(--u));letter-spacing:.17em;color:#000;white-space:nowrap;font-weight:700}
 
 /* 画像ピース */
 .pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);transform:translate(calc((1 - var(--pp))*300px), calc((1 - var(--pp))*100px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*15deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.9s ease;pointer-events:none}
@@ -91,7 +90,7 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 .pz{position:relative;left:auto;top:auto;width:auto;height:auto;transform:none!important;opacity:1!important;border-radius:24px!important;padding:28px 24px}
 .c{display:none}.pz.x{display:none}.pz{isolation:isolate}.bg{z-index:-1;-webkit-mask-image:none!important;mask-image:none!important}
 .t,.s{position:static}.t{white-space:normal}
-.lead br,.etx br,.pm br{display:none}.etx{white-space:normal;font-size:16px;line-height:1.9;letter-spacing:.08em;margin:10px 0}
+.lead br,.etx br,.pm br{display:none}.etx{white-space:normal;font-size:15px;line-height:1.9;letter-spacing:.08em;margin:10px 0}
 .pz.bk{min-height:300px}
 .nm2{margin:0;font-size:22px}.pname{margin:0 0 8px;font-size:30px}.h2t{font-size:34px;line-height:1.25;margin:0 0 12px}.lead{font-size:18px;line-height:1.6;letter-spacing:.1em}
 .pm{font-size:15px;line-height:1.9;letter-spacing:.08em}
@@ -112,6 +111,7 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 <div class="band wh" style="--t:1545;--h:2261"></div>
 
 <div class="board ab" data-pz="load" style="--l:49;--t:130;--bh:663">
+  <!-- data-k を削除し、はみ出していた白い丸をなくしました -->
   <div class="pz bu rtl" style="--px:0;--py:0;--pw:798;--ph:226" data-d="549.5 37.5 61.5 w; 813 68 22 g">
     <div class="t h2t en lt" style="--l:2;--t:134">collect new pieces</div>
   </div>
@@ -376,7 +376,5 @@ document.querySelector('.nav a[href="#top"]').addEventListener("click", e => {
 addEventListener("scroll", upd, { passive: true });
 addEventListener("resize", () => { build(); upd(); });
 </script>
-<ElicitationsGroup>
-</ElicitationsGroup>
 </body>
 </html>
