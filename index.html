@@ -137,7 +137,6 @@ transition: transform 0.3s ease;
     transform: none !important;
   }
 
-  /* スマホ版では絶対配置を完全にリセットし、フローレイアウトに統一 */
   .ab {
     position: relative !important;
     left: auto !important;
@@ -235,10 +234,7 @@ transition: transform 0.3s ease;
   }
   .pimg svg { width: 100%; height: auto; }
   
-  /* 余白の原因となっていたPC用の白い帯を完全に非表示に */
   .band.wh { display: none !important; }
-  
-  /* 電光掲示板とプロフィール、クレジットの配置を正常な順番に整理 */
   .band.gn { position: relative !important; left: auto !important; margin: 28px -16px 20px !important; width: 100vw; height: 48px; }
   .mq { font-size: 20px; line-height: 1.2; }
   .mq span { padding-right: 24px; }
@@ -494,7 +490,8 @@ const upd = () => {
   boards.forEach(({ c, load }) => {
     if (load) return;
     const r = c.getBoundingClientRect();
-    const p = reduce ? 1 : ease(Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.65))));
+    // どんな画面比率（高さ）でも確実に最後までスナップするように判定範囲を拡幅（vh * 0.95 に調整）
+    const p = reduce ? 1 : ease(Math.min(1, Math.max(0, (vh * 0.95 - r.top) / (vh * 0.5))));
     setP(c, p);
     if (p >= .999) c.classList.add("snap"); else if (p < .9) c.classList.remove("snap");
   });
@@ -502,7 +499,7 @@ const upd = () => {
   fadeHds.forEach(el => {
     if (reduce) { el.style.setProperty("--p", "1"); el.classList.add("done"); return; }
     const r = el.getBoundingClientRect();
-    const p = ease(Math.min(1, Math.max(0, (vh * 0.80 - r.top) / (vh * 0.65))));
+    const p = ease(Math.min(1, Math.max(0, (vh * 0.90 - r.top) / (vh * 0.5))));
     el.style.setProperty("--p", p.toFixed(3));
     el.classList.toggle("done", p >= .999);
   });
@@ -510,7 +507,7 @@ const upd = () => {
   pimgs.forEach(el => {
     if (reduce) { el.style.setProperty("--p", "1"); el.classList.add("done"); return; }
     const r = el.getBoundingClientRect();
-    const p = ease(Math.min(1, Math.max(0, (vh * 0.80 - r.top) / (vh * 0.65))));
+    const p = ease(Math.min(1, Math.max(0, (vh * 0.90 - r.top) / (vh * 0.5))));
     el.style.setProperty("--p", p.toFixed(3));
     el.classList.toggle("done", p >= .999);
   });
