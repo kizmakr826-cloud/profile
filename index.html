@@ -12,7 +12,6 @@
 <style>
 :root{
   color-scheme:light;
-  /* PC表示時：1440pxを基準幅として、画面幅（vw）に合わせて縮小・拡大するように調整 */
   --u: calc(100vw / 1440);
   --cur:url("data:image/svg+xml,%3Csvg width=%2264%22 height=%2264%22 viewBox=%220 0 61 61%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E %3Cpath d=%22M20.0119 7.64739C19.8571 8.61174 19.896 9.62338 20.1643 10.628C21.1856 14.4509 25.1129 16.7221 28.9358 15.7011C32.7588 14.6798 35.0301 10.7526 34.0089 6.92955C33.7405 5.92501 33.2705 5.02846 32.6555 4.26979L48.6389 -2.63806e-05L52.9087 15.9834C51.9444 15.8286 50.9328 15.8675 49.9281 16.1358C46.1052 17.157 43.834 21.0844 44.8551 24.9073C45.8764 28.7303 49.8036 31.0017 53.6266 29.9804C54.6313 29.7119 55.5274 29.2412 56.2861 28.626L60.5562 44.6104L44.5718 48.8805C45.1868 49.6392 45.6578 50.5354 45.9261 51.54C46.9472 55.3629 44.676 59.2902 40.853 60.3115C37.0301 61.3328 33.1029 59.0613 32.0815 55.2384C31.8132 54.2339 31.7744 53.2222 31.9292 52.2578L15.9457 56.5277L11.6756 40.5433C10.9169 41.1584 10.0208 41.6292 9.01614 41.8976C5.19308 42.9189 1.26591 40.6476 0.244623 36.8245C-0.776497 33.0016 1.49473 29.0743 5.3177 28.053C6.32233 27.7847 7.33392 27.7459 8.2983 27.9007L4.02848 11.9172L20.0119 7.64739Z%22 fill=%22%2300C410%22/%3E %3C/svg%3E") 32 32,auto;
   --or:#f26411;--bl:#415efd;--pb:#415efd;--gy:#fff;--bg:#f4f4f4;--gr:#00c410;
@@ -102,7 +101,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .cr{width:calc(1440*var(--u));text-align:center;color:#a3a3a3;font-size:calc(14*var(--u));line-height:calc(18*var(--u));font-weight:500;letter-spacing:.04em}
 
 @media(max-width:760px){
-:root{--u:1px}
+:root{--u:min(calc(100vw / 430), 1.2px)}
 html{scroll-padding-top:70px;}
 main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px 48px}
 .ab,.pimg{position:static}
@@ -112,29 +111,38 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 .nav{position:fixed;top:60px;left:0;width:100%;background:rgba(244, 244, 244, 0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);flex-direction:column;align-items:center;padding:24px 0;gap:16px;border-bottom:1px solid rgba(0,196,16,0.15);box-shadow:0 10px 30px rgba(0,0,0,0.06);transform:translateY(-120%);opacity:0;visibility:hidden;transition:all .4s cubic-bezier(0.16, 1, 0.3, 1);pointer-events:auto}
 .nav.open{transform:translateY(0);opacity:1;visibility:visible}
 .nav a{width:80%;max-width:280px;height:46px;font-size:15px;justify-content:center}
-.board{width:auto;height:auto;display:flex;flex-direction:column;gap:14px;margin:0}
-.pz{position:relative;left:auto;top:auto;width:auto;height:auto;transform:none!important;opacity:1!important;border-radius:24px!important;padding:28px 24px}
-.c{display:none}.pz.x{display:none}.pz{isolation:isolate}.bg{z-index:-1;-webkit-mask-image:none!important;mask-image:none!important}
-.t,.s{position:static}.t{white-space:normal}
-.lead br,.etx br,.pm br{display:none}.etx{white-space:normal;font-size:15px;line-height:1.9;letter-spacing:.08em;margin:10px 0}
-.pz.bk{min-height:300px}
-.nm2{margin:0;font-size:22px}.pname{margin:0 0 8px;font-size:30px}.h2t{font-size:34px;line-height:1.25;margin:0 0 12px}.lead{font-size:18px;line-height:1.6;letter-spacing:.1em}
-.pm{font-size:15px;line-height:1.9;letter-spacing:.08em}
-.hd{font-size:48px;margin:40px 0 16px;order:0}
-.num{font-size:72px;margin-top:20px}
-.pimg{width:100%;margin:16px 0;animation-duration:3.2s;transform:none!important}
-.board.ab{position:relative;left:auto;top:auto}
-.cr{width:auto;margin-top:40px;position:static;font-weight:500;order:10}
-.band.wh{display:none}
-.band.gn{position:relative;left:auto;margin:48px -16px 48px;width:auto;height:80px;order:4}
-.mq{font-size:26px;line-height:1.2}.mq span{padding-right:40px}
-.intro{font-size:18px;line-height:2.2;letter-spacing:.08em;white-space:normal;margin:24px 0}
 
-/* スマホ版の流れに合わせた並び順（order）の調整 */
+/* スマホ版でもPC版と同様のパズル構造・アスペクト比を維持して綺麗に組み上げる設定 */
+.board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u));margin:24px auto}
+.board.ab{position:relative;left:auto;top:auto}
+.pz{position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));border-radius:calc(5*var(--u));padding:0}
+.bg{position:absolute;inset:0;border-radius:inherit;overflow:hidden;background:var(--col) center/cover no-repeat;pointer-events:none}
+.c{position:absolute;left:calc((var(--cx) - var(--rr))*var(--u));top:calc((var(--cy) - var(--rr))*var(--u));width:calc(var(--rr)*2*var(--u));height:calc(var(--rr)*2*var(--u));border-radius:50%;pointer-events:none}
+.c.k{z-index:5}
+.t{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));margin:0;white-space:nowrap}
+.pname{font-size:calc(36*var(--u));line-height:1.2;letter-spacing:.04em;font-weight:900}
+.pm{font-size:calc(14*var(--u));line-height:calc(30*var(--u));letter-spacing:.15em;font-weight:700}
+.lt{color:var(--gy)}
+
+.c{display:block}
+.pz.x{display:block}
+.pz.bk{min-height:auto}
+.h2t{font-size:calc(65*var(--u));line-height:1.2;font-weight:900;letter-spacing:.005em}
+.lead{font-size:calc(36*var(--u));line-height:calc(58*var(--u));letter-spacing:.08em;font-weight:900}
+.etx{white-space:nowrap;font-size:calc(15*var(--u));line-height:calc(33*var(--u));letter-spacing:.14em;margin:0}
+.hd{font-size:calc(70*var(--u));margin:56px 0 16px;order:0}
+.num{font-size:calc(110*var(--u));margin-top:24px}
+.pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));margin:0;animation-duration:3.2s}
+.cr{width:auto;margin-top:48px;position:static;font-weight:500;order:10}
+.band.wh{display:none}
+.band.gn{position:relative;left:auto;margin:48px -16px;width:auto;height:calc(140*var(--u));order:4}
+.mq{font-size:calc(45*var(--u));line-height:1.2}.mq span{padding-right:80px}
+.intro{font-size:calc(24*var(--u));line-height:calc(56*var(--u));letter-spacing:.12em;white-space:nowrap;margin:32px 0}
+
+/* スマホ版の順番調整 */
 #piece { order: 0; }
 .board.ab[data-pz="load"] { order: 1; }
 .intro { order: 2; }
-.hd#piece ~ .num, .hd#piece ~ .etx, .hd#piece ~ .pimg { order: 3; }
 .band.gn { order: 4; }
 #profile { order: 5; }
 .board.ab:not([data-pz="load"]) { order: 6; }
@@ -179,7 +187,7 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 <!-- 01 -->
 <div class="num en ab fade-hd" style="--l:98;--t:1702">01</div>
 <p class="etx ab fade-hd" style="--l:98;--t:1849">卒業研究では「映像と記憶のデザイン」をテーマに、<br>新たなアーカイブ体験の方法を模索しました。</p>
-<p class="etx ab fade-hd" style="--l:98;--t:1949">そこで見つけたピースは、「インタラクティブな表現」。<br>でも、作ったことはない……。そこでAIにも相談し<br>ながら、TouchDesignerを独学しました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:1949">そこで見つけたピースは、「インタラクティブな表現」。<br>でも、作ったことはない……。そこでAIにも相談し<br>ながら, TouchDesignerを独学しました。</p>
 <p class="etx ab fade-hd" style="--l:98;--t:2085">その結果、より能動的な体験を自分の手で実装できる<br>ように。定性的な価値を持つ体験を、デザインとして<br>形にすることができました。</p>
 <div class="pimg" data-img="design" data-vb="735 1703 676 503" data-pd="M1023.7 1723.3C1045.9 1723.3 1063.9 1741.3 1063.9 1763.5C1063.9 1774.2 1059.8 1783.9 1053.0 1791.1L1346.0 1835.0C1348.7 1835.4 1350.6 1838.0 1350.2 1840.7L1329.7 1977.0C1335.9 1973.2 1343.1 1971.0 1350.9 1971.0C1373.2 1971.0 1391.2 1989.0 1391.2 2011.3C1391.2 2033.5 1373.2 2051.5 1350.9 2051.5C1338.8 2051.5 1328.0 2046.2 1320.6 2037.8L1299.0 2182.0C1298.6 2184.7 1296.0 2186.6 1293.3 2186.2L1153.6 2165.2C1161.5 2157.9 1166.4 2147.4 1166.4 2135.7C1166.4 2113.5 1148.4 2095.5 1126.2 2095.5C1103.9 2095.5 1085.9 2113.5 1085.9 2135.7C1085.9 2143.1 1087.9 2150.0 1091.3 2155.9L758.9 2106.1C756.2 2105.6 754.3 2103.1 754.7 2100.4L775.2 1963.7C780.0 1968.5 786.6 1971.4 793.8 1971.4C808.4 1971.4 820.3 1959.5 820.3 1944.9C820.3 1930.3 808.4 1918.5 793.8 1918.5C789.4 1918.5 785.2 1919.6 781.5 1921.5L805.9 1759.1C806.3 1756.3 808.8 1754.5 811.6 1754.9L987.5 1781.2C984.9 1775.9 983.4 1769.9 983.4 1763.5C983.4 1741.3 1001.4 1723.3 1023.7 1723.3Z" style="--l:735;--t:1703;--w:676;--rot:0;--du:3.0s;--dl:0s;--fx:7"></div>
 
@@ -371,7 +379,7 @@ document.querySelectorAll(".pimg").forEach((el, n) => {
     }
   }
 
-  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw} ${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
+  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw}" height="${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
 });
 
 const rnd = i => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
