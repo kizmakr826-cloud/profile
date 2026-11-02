@@ -12,7 +12,7 @@
 *,*::before,*::after{box-sizing:inherit;cursor:var(--cur)}
 html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:calc(100*var(--u))}
 body{margin:0;background:var(--bg);overflow-x:hidden;font-family:"Zen Kaku Gothic New","Yu Gothic",sans-serif;font-weight:700}
-main{position:relative;width:calc(1440*var(--u));height:calc(4900*var(--u));margin:0 auto}
+main{position:relative;width:calc(1440*var(--u));height:calc(4800*var(--u));margin:0 auto}
 .ab{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));margin:0}
 .navw{position:fixed;top:0;left:0;width:100%;height:calc(70*var(--u));z-index:100;pointer-events:none;transition:opacity .6s cubic-bezier(0.16, 1, 0.3, 1),translate .8s cubic-bezier(.16,1,.3,1);background:rgba(244, 244, 244, 0.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.4)}
 .navw:not(.show){opacity:0;visibility:hidden;translate:0 calc(-20*var(--u))}
@@ -23,7 +23,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4900*var(--u));marg
 .band{position:absolute;left:50%;margin-left:-50vw;width:100vw;top:calc(var(--t)*var(--u));height:calc(var(--h)*var(--u))}
 .band.wh{background:#fff}
 .band.gn{background:var(--gr);overflow:hidden;display:flex;align-items:center}
-.mq{display:flex;flex:none;width:max-content;color:#fff;font-size:calc(70.8*var(--u));line-height:calc(90*var(--u));font-weight:900;white-space:nowrap;animation:mq 30s linear infinite}
+.mq{display:flex;flex:none;width:max-content;color:#fff;font-size:calc(60*var(--u));line-height:calc(75*var(--u));font-weight:900;white-space:nowrap;animation:mq 30s linear infinite}
 .mq span{padding-right:calc(150*var(--u))}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .intro{margin:0;font-size:calc(28*var(--u));line-height:calc(67*var(--u));letter-spacing:.12em;color:var(--or);font-weight:900;white-space:nowrap}
@@ -97,7 +97,7 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 .hd{font-size:48px;margin:56px 0 12px}.num{font-size:72px;margin-top:28px}
 .pimg{width:100%;margin:16px 0;animation-duration:6s;transform:none!important}
 .board.ab{position:relative;left:auto;top:auto}.cr{width:auto;margin-top:32px;position:static}
-.band.wh{display:none}.band.gn{position:relative;left:auto;margin:32px -16px;width:auto;height:120px}.mq{font-size:34px;line-height:1.3}.mq span{padding-right:60px}
+.band.wh{display:none}.band.gn{position:relative;left:auto;margin:32px -16px;width:auto;height:90px}.mq{font-size:28px;line-height:1.2}.mq span{padding-right:40px}
 .intro{font-size:18px;line-height:2.2;letter-spacing:.08em;white-space:normal;margin:24px 0}.nvname{display:none}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -108,9 +108,8 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 <main id="top">
 <div class="navw en"><div class="nvname">小泉 彩香里 <span class="en">/ akari koizumi</span></div><nav class="nav" aria-label="ページ内リンク"><a href="#top">top</a><a href="#piece">piece</a><a href="#profile">profile</a></nav></div>
 
-<div class="band wh" style="--t:1480;--h:2261"></div>
+<div class="band wh" style="--t:1480;--h:2160"></div>
 
-<!-- heroボード全体の上の位置を上に詰めて調整 -->
 <div class="board ab" data-pz="load" style="--l:49;--t:80;--bh:663">
   <div class="pz bu rtl" style="--px:0;--py:0;--pw:798;--ph:226" data-d="549.5 37.5 61.5 w; 813 68 22 g">
     <div class="t h2t en lt" style="--l:2;--t:134">collect new pieces</div>
@@ -124,7 +123,6 @@ main{width:auto;height:auto;padding:70px 16px 48px}
   <div class="pz bu x" style="--px:0;--py:448;--pw:227;--ph:215" data-d="59 27 46 g; 113 184 61 o; 212 157 22 o" data-k="150 -13 22 b; 245 98 29 b"></div>
 </div>
 
-<!-- イントロ部分の位置も連動して上に調整 -->
 <p class="intro ab fade-hd" style="--l:312;--t:934">こんにちは<br>小泉彩香里です。<br>私の強みは<br>新しいピースを集め続け<br>やりたい！へ向かっていくこと。<br>ここではそのピースをいくつかご紹介します。</p>
 
 <h2 class="hd en ab fade-hd" id="piece" style="--l:100;--t:1556;color:var(--or)">piece</h2>
@@ -150,11 +148,11 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 <p class="etx ab fade-hd" style="--l:98;--t:3472">数をこなすうちに、アレンジまでできるように。少し<br>ずつ「理想の表現」に近づけるようになりました。デ<br>ザインの場面でも、縫製によるプロトタイピングとい<br>う新たな選択肢が広がりました。</p>
 <div class="pimg" data-img="sewing" data-vb="754 3046 626 517" data-pd="M990.3 3107.7C989.5 3085.5 1006.9 3066.8 1029.1 3066.0C1051.4 3065.2 1070.0 3082.6 1070.8 3104.8C1071.2 3115.5 1067.4 3125.3 1060.9 3132.8L1355.2 3166.2C1358.0 3166.5 1359.9 3169.0 1359.6 3171.8L1342.3 3324.2C1334.8 3313.2 1321.9 3306.1 1307.5 3306.6C1285.3 3307.4 1267.9 3326.1 1268.7 3348.3C1269.5 3370.5 1288.2 3387.9 1310.4 3387.1C1320.5 3386.7 1329.5 3382.7 1336.4 3376.4L1320.6 3514.7C1320.3 3517.4 1317.9 3519.4 1315.1 3519.1L1187.6 3504.6C1186.5 3525.2 1169.9 3541.8 1148.9 3542.6C1126.6 3543.4 1108.0 3526.0 1107.2 3503.8C1107.1 3501.0 1107.3 3498.2 1107.7 3495.5L778.2 3458.0C775.5 3457.7 773.5 3455.2 773.8 3452.5L789.4 3315.2C794.4 3319.7 801.0 3322.4 808.3 3322.2C822.9 3321.7 834.3 3309.4 833.8 3294.8C833.3 3280.2 821.0 3268.8 806.4 3269.3C802.0 3269.5 797.8 3270.7 794.2 3272.8L812.8 3109.6C813.1 3106.8 815.6 3104.9 818.3 3105.2L995.1 3125.3C992.2 3120.0 990.6 3114.1 990.3 3107.7Z" style="--l:754;--t:3046;--w:626;--rot:0;--du:5.9s;--dl:-4s;--fx:5"></div>
 
-<!-- 電光掲示板 -->
-<div class="band gn en" style="--t:3756;--h:274" aria-label="You are one of my new pieces !!"><div class="mq" aria-hidden="true"><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div></div></div>
+<!-- 電光掲示板（高さを短くし、エピソード03とスムーズに接続） -->
+<div class="band gn en" style="--t:3700;--h:180" aria-label="You are one of my new pieces !!"><div class="mq" aria-hidden="true"><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div></div></div>
 
-<h2 class="hd en ab fade-hd" id="profile" style="--l:103;--t:4145;color:var(--bl)">profile</h2>
-<div class="board ab" data-pz style="--l:49;--t:4244;--bh:586">
+<h2 class="hd en ab fade-hd" id="profile" style="--l:103;--t:3985;color:var(--bl)">profile</h2>
+<div class="board ab" data-pz style="--l:49;--t:4084;--bh:586">
   <div class="pz bu rtl" style="--px:0;--py:0;--pw:895;--ph:293" data-k="923 175 54.5 b; -15 126 23 b; 215 318 44.5 b; 671 308 23 b" data-d="488 14 22 w">
     <div class="t pname lt" style="--l:52;--t:104">小泉 彩香里 <span class="en">/ akari koizumi</span></div>
     <div class="t lt" style="--l:52;--t:172;font-size:calc(17*var(--u));letter-spacing:.04em;line-height:1.3;font-weight:700">2003年8月26日生まれ O型 INFP-T</div>
@@ -169,7 +167,7 @@ main{width:auto;height:auto;padding:70px 16px 48px}
   </div>
 </div>
 
-<p class="cr en ab" style="--l:0;--t:4870">©2026 akari koizumi</p>
+<p class="cr en ab" style="--l:0;--t:4710">©2026 akari koizumi</p>
 </main>
 
 <script>
