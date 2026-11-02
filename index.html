@@ -195,31 +195,32 @@ transition: transform 0.3s ease;
     top: calc(100 * var(--pz-u)) !important;
   }
   .board[data-pz="load"] .lead {
-    font-size: calc(32 * var(--pz-u)) !important;
+    font-size: calc(36 * var(--pz-u)) !important; /* heroのリード文を大きく調整 */
     line-height: 1.6;
-    left: calc(40 * var(--pz-u)) !important;
-    top: calc(160 * var(--pz-u)) !important;
+    left: calc(35 * var(--pz-u)) !important;
+    top: calc(150 * var(--pz-u)) !important;
   }
 
   .board:not([data-pz="load"]) .pname {
-    font-size: calc(36 * var(--pz-u)) !important;
-    left: calc(32 * var(--pz-u)) !important;
-    top: calc(80 * var(--pz-u)) !important;
+    font-size: calc(34 * var(--pz-u)) !important;
+    left: calc(28 * var(--pz-u)) !important;
+    top: calc(70 * var(--pz-u)) !important;
   }
   .board:not([data-pz="load"]) .pname + .lt {
-    font-size: calc(17 * var(--pz-u)) !important;
-    left: calc(32 * var(--pz-u)) !important;
-    top: calc(150 * var(--pz-u)) !important;
-  }
-  .board:not([data-pz="load"]) .pm {
-    font-size: calc(19 * var(--pz-u)) !important;
-    line-height: 1.6;
+    font-size: calc(15 * var(--pz-u)) !important;
     left: calc(28 * var(--pz-u)) !important;
-    top: calc(68 * var(--pz-u)) !important;
+    top: calc(140 * var(--pz-u)) !important;
+  }
+  /* profile内の大学名・学んでいること（.pm）の文字を小さく調整 */
+  .board:not([data-pz="load"]) .pm {
+    font-size: calc(14 * var(--pz-u)) !important;
+    line-height: 1.5;
+    left: calc(24 * var(--pz-u)) !important;
+    top: calc(52 * var(--pz-u)) !important;
   }
   .lt { color: var(--gy); }
 
-  .intro { font-size: 14px; line-height: 2.0; letter-spacing: .1em; white-space: normal; margin: 16px 0; }
+  .intro { font-size: 16px; line-height: 2.1; letter-spacing: .1em; white-space: normal; margin: 16px 0; } /* heroの日本語部分（イントロ）を大きく調整 */
   .hd { font-size: 24px; margin: 28px 0 8px; }
   .num { font-size: 52px; margin: 12px 0 2px; }
   .etx { white-space: normal; font-size: 12.5px; line-height: 1.8; letter-spacing: .08em; margin: 4px 0; width: 100%; color: #333; }
