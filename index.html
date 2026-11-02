@@ -67,6 +67,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .pz{--pp:clamp(0,calc(var(--p)*1.1 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.02));opacity:clamp(0,calc(var(--pp)*2),1);transition:translate 1.4s cubic-bezier(0.16, 1, 0.3, 1),rotate 1.4s cubic-bezier(0.16, 1, 0.3, 1),scale 1.4s cubic-bezier(0.16, 1, 0.3, 1)}
 .done .pz{transform:none;opacity:1}
 
+/* ホバーアニメーションは指定されたピースのみに適用 */
 .pz.interactive:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-3)*var(--u));rotate:var(--ha,-0.5deg);scale:1.008;transition:translate 0.3s cubic-bezier(0.16, 1, 0.3, 1),rotate 0.3s cubic-bezier(0.16, 1, 0.3, 1),scale 0.3s cubic-bezier(0.16, 1, 0.3, 1)}
 
 [data-pz="load"].snap .pz{animation:heroPita 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.2s)}
@@ -103,7 +104,6 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 @media(max-width:760px){
   :root{--u:min(calc(100vw / 430), 1.2px)}
   html{scroll-padding-top:70px;}
-  /* HTMLの記述順を活かし、自然なフロー（上から下）で並べる設定 */
   main{display:flex;flex-direction:column;width:100%;height:auto;padding:84px 16px 48px;overflow-x:hidden;}
   
   .navw{top:0;left:0;margin:0;width:100%;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
@@ -116,20 +116,15 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
   /* スマホ版でのホバーアニメーションを完全無効化 */
   .pz.interactive:hover{transform:none;translate:0 0;rotate:0deg;scale:1}
 
-  /* ドキュメントフローに沿った配置に修正 */
   .ab {
     position: relative !important;
     left: auto !important;
     top: auto !important;
   }
 
-  /* 
-   スマホ版でもPC版と同様のパズル構造・アスペクト比を維持しつつ、
-   画面幅に合わせてパズル全体を綺麗に縮小する設定 
-  */
   .board {
-    --board-w: 1342; /* PC版Heroパズルの総横幅 */
-    --pz-u: calc(min(100vw - 32px, 500px) / var(--board-w)); /* 画面幅ベースのスケール単位 */
+    --board-w: 1342;
+    --pz-u: calc(min(100vw - 32px, 500px) / var(--board-w));
     position: relative !important;
     isolation: isolate;
     width: calc(var(--board-w) * var(--pz-u)) !important;
@@ -139,7 +134,6 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
     top: auto !important;
   }
 
-  /* パズルピースの座標とサイズを --pz-u でスケーリング */
   .pz {
     position: absolute !important;
     left: calc(var(--px) * var(--pz-u)) !important;
@@ -164,7 +158,6 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
   .pz.x { display: block; }
   .pz.bk { min-height: auto; }
 
-  /* テキストの座標も --pz-u でスケーリング */
   .t {
     position: absolute !important;
     left: calc(var(--l) * var(--pz-u)) !important;
@@ -173,10 +166,6 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
     white-space: nowrap;
   }
 
-  /* 
-   Heroパズル内のテキストサイズと位置の最適化 
-   (画像に合わせて文字を大きく見せる)
-  */
   .board[data-pz="load"] .h2t {
     font-size: calc(100 * var(--pz-u)) !important;
     line-height: 1.1;
@@ -190,7 +179,6 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
     top: calc(150 * var(--pz-u)) !important;
   }
 
-  /* Profileパズル内のテキスト最適化 */
   .board:not([data-pz="load"]) .pname {
     font-size: calc(52 * var(--pz-u)) !important;
     left: calc(40 * var(--pz-u)) !important;
@@ -209,7 +197,6 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
   }
   .lt { color: var(--gy); }
 
-  /* エピソード等のマージンとサイズ調整 */
   .intro { font-size: calc(18 * var(--u)); line-height: calc(36 * var(--u)); letter-spacing: .12em; white-space: normal; margin: 32px 0; }
   .hd { font-size: calc(60 * var(--u)); margin: 48px 0 16px; }
   .num { font-size: calc(90 * var(--u)); margin: 24px 0 8px; }
@@ -252,11 +239,14 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 <div class="band wh" style="--t:1480;--h:2220"></div>
 
 <div class="board ab" data-pz="load" style="--l:49;--t:80;--bh:663">
-  <div class="pz bu rtl interactive" style="--px:0;--py:0;--pw:798;--ph:226" data-d="798 68 22 g; 549.5 37.5 30 w">
+  <!-- 左上のタイトルピースはホバーなしに変更 -->
+  <div class="pz bu rtl" style="--px:0;--py:0;--pw:798;--ph:226" data-d="798 68 22 g; 549.5 37.5 30 w">
     <div class="t h2t en lt" style="--l:2;--t:134">collect new pieces</div>
   </div>
   <div class="pz gy x" style="--px:798;--py:1;--pw:209;--ph:223" data-d="118.5 38.5 70.5 b" data-k="224 136 35 g"></div>
-  <div class="pz bk rbr interactive" style="--px:1007;--py:1;--pw:335;--ph:662" data-img="hero" data-d="229.5 13.5 26 w" data-k="-25.5 559.5 43.5 k"></div>
+  <!-- 右端の画像ピースはホバーなしに変更 -->
+  <div class="pz bk rbr" style="--px:1007;--py:1;--pw:335;--ph:662" data-img="hero" data-d="229.5 13.5 26 w" data-k="-25.5 559.5 43.5 k"></div>
+  <!-- 「新しいピースを集め続け やりたい！へ向かっていく」のオレンジピースのみ interactive を付与 -->
   <div class="pz og interactive" style="--px:227;--py:224;--pw:780;--ph:439" data-k="177 0 23 o; 645.5 -19.5 43.5 o; 798 116 33 o; 678 448 23 o" data-d="216.5 398.5 62.5 w">
     <div class="t lead lt" style="--l:36;--t:110">新しいピースを集め続け<br>やりたい！へ向かっていく</div>
   </div>
@@ -294,16 +284,18 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 
 <h2 class="hd en ab fade-hd" id="profile" style="--l:103;--t:3985;color:var(--bl)">profile</h2>
 <div class="board ab" data-pz style="--l:49;--t:4084;--bh:586">
+  <!-- 「小泉 彩香里」の名前が入ったピースのみ interactive を付与 -->
   <div class="pz bu rtl interactive" style="--px:0;--py:0;--pw:895;--ph:293" data-k="923 175 54.5 b; -15 126 23 b; 215 318 44.5 b; 671 308 23 b" data-d="488 14 22 w">
     <div class="t pname lt" style="--l:52;--t:104">小泉 彩香里 <span class="en">/ akari koizumi</span></div>
     <div class="t lt" style="--l:52;--t:172;font-size:calc(17*var(--u));letter-spacing:.04em;line-height:1.3;font-weight:700">2003年8月26日生まれ O型 INFP-T</div>
   </div>
   <div class="pz gy" style="--px:895;--py:0;--pw:447;--ph:293" data-d="400 98 70 o; 96 104 24 o" data-k="224 308 22 g"></div>
   <div class="pz og" style="--px:0;--py:293;--pw:447;--ph:293" data-d="313 236 97.5 w; 16 174 21 w" data-k="462 146 23.5 o"></div>
-  <div class="pz gy interactive" style="--px:447;--py:293;--pw:448;--ph:293" data-k="463 146 23 g; 167 311 35 g">
+  <!-- その他のプロフィールピースはホバーなしに変更 -->
+  <div class="pz gy" style="--px:447;--py:293;--pw:448;--ph:293" data-k="463 146 23 g; 167 311 35 g">
     <p class="t pm lt" style="--l:89;--t:74;color:var(--or)">千葉大学 大学院<br>融合理工学府 創成工学専攻<br>デザインコース<br>意匠形態学研究室 所属</p>
   </div>
-  <div class="pz bu rbr interactive" style="--px:895;--py:293;--pw:447;--ph:293" data-k="462 115 23 b" data-d="267 274 21 w">
+  <div class="pz bu rbr" style="--px:895;--py:293;--pw:447;--ph:293" data-k="462 115 23 b" data-d="267 274 21 w">
     <p class="t pm lt" style="--l:53;--t:79">コミュニケーションデザインや<br>UXデザインを軸にしながら<br>デザインと人々の生活、感情について<br>楽しく考え続けている。</p>
   </div>
 </div>
