@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>akari koizumi</title>
+<!-- カーソルと同じデザインのSVGをファビコンに設定 -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg width=%2264%22 height=%2264%22 viewBox=%220 0 61 61%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E %3Cpath d=%22M20.0119 7.64739C19.8571 8.61174 19.896 9.62338 20.1643 10.628C21.1856 14.4509 25.1129 16.7221 28.9358 15.7011C32.7588 14.6798 35.0301 10.7526 34.0089 6.92955C33.7405 5.92501 33.2705 5.02846 32.6555 4.26979L48.6389 -2.63806e-05L52.9087 15.9834C51.9444 15.8286 50.9328 15.8675 49.9281 16.1358C46.1052 17.157 43.834 21.0844 44.8551 24.9073C45.8764 28.7303 49.8036 31.0017 53.6266 29.9804C54.6313 29.7119 55.5274 29.2412 56.2861 28.626L60.5562 44.6104L44.5718 48.8805C45.1868 49.6392 45.6578 50.5354 45.9261 51.54C46.9472 55.3629 44.676 59.2902 40.853 60.3115C37.0301 61.3328 33.1029 59.0613 32.0815 55.2384C31.8132 54.2339 31.7744 53.2222 31.9292 52.2578L15.9457 56.5277L11.6756 40.5433C10.9169 41.1584 10.0208 41.6292 9.01614 41.8976C5.19308 42.9189 1.26591 40.6476 0.244623 36.8245C-0.776497 33.0016 1.49473 29.0743 5.3177 28.053C6.32233 27.7847 7.33392 27.7459 8.2983 27.9007L4.02848 11.9172L20.0119 7.64739Z%22 fill=%22%2300C410%22/%3E %3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
@@ -324,7 +326,7 @@ document.querySelectorAll(".pimg").forEach((el, n) => {
     }
   }
 
-  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw} ${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
+  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw}" height="${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
 });
 
 const rnd = i => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
