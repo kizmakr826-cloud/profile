@@ -112,7 +112,6 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 .nav.open{transform:translateY(0);opacity:1;visibility:visible}
 .nav a{width:80%;max-width:280px;height:46px;font-size:15px;justify-content:center}
 
-/* スマホ版でも常にパズルとして完璧に組み上がる指定 */
 .board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u));margin:24px auto}
 .board.ab{position:relative;left:auto;top:auto}
 .pz{position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));border-radius:calc(5*var(--u));padding:0}
@@ -139,7 +138,6 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 .mq{font-size:calc(45*var(--u));line-height:1.2}.mq span{padding-right:80px}
 .intro{font-size:calc(24*var(--u));line-height:calc(56*var(--u));letter-spacing:.12em;white-space:nowrap;margin:32px 0}
 
-/* スマホ版の順番調整 */
 #piece { order: 0; }
 .board.ab[data-pz="load"] { order: 1; }
 .intro { order: 2; }
@@ -168,15 +166,21 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 <div class="band wh" style="--t:1480;--h:2220"></div>
 
 <div class="board ab" data-pz="load" style="--l:49;--t:80;--bh:663">
-  <div class="pz bu rtl interactive" style="--px:0;--py:0;--pw:798;--ph:226" data-d="798 68 22 g; 549.5 37.5 30 w">
+  <!-- 1. 左上の青いピース (collect new pieces) -->
+  <div class="pz bu rtl interactive" style="--px:0;--py:0;--pw:798;--ph:226" data-d="798 127 34 g" data-k="798 127 34 b">
     <div class="t h2t en lt" style="--l:2;--t:134">collect new pieces</div>
   </div>
+  <!-- 2. 右上の白いスペース/隠しピース -->
   <div class="pz gy x" style="--px:798;--py:1;--pw:209;--ph:223" data-d="118.5 38.5 70.5 b" data-k="224 136 35 g"></div>
-  <div class="pz bk rbr interactive" style="--px:1007;--py:1;--pw:335;--ph:662" data-img="hero" data-d="229.5 13.5 26 w" data-k="-25.5 559.5 43.5 k"></div>
-  <div class="pz og interactive" style="--px:227;--py:224;--pw:780;--ph:439" data-k="177 0 23 o; 645.5 -19.5 43.5 o; 798 116 33 o; 678 448 23 o" data-d="216.5 398.5 62.5 w">
+  <!-- 3. 右端の黒いピース (写真入り) -->
+  <div class="pz bk rbr interactive" style="--px:1007;--py:1;--pw:335;--ph:662" data-img="hero" data-d="12 433 33 w; 229.5 13.5 26 w" data-k="-25.5 559.5 43.5 k"></div>
+  <!-- 4. 中央のオレンジ色のピース (新しいピースを...) -->
+  <div class="pz og interactive" style="--px:227;--py:224;--pw:780;--ph:439" data-k="177 0 23 o; 645.5 -19.5 43.5 o; 798 116 33 o; 678 448 23 o" data-d="216.5 398.5 62.5 w; 780 200 34 w">
     <div class="t lead lt" style="--l:36;--t:110">新しいピースを集め続け<br>やりたい！へ向かっていく</div>
   </div>
-  <div class="pz gy x" style="--px:0;--py:224;--pw:227;--ph:224" data-d="101 78 84 b; 157 81.5 43.5 o"></div>
+  <!-- 5. 左下の青いピース(上の部分) -->
+  <div class="pz gy x" style="--px:0;--py:224;--pw:227;--ph:224" data-d="101 78 84 b; 157 81.5 43.5 o" data-k="227 116 33 o"></div>
+  <!-- 6. 左下の青いピース(下部分) -->
   <div class="pz bu x" style="--px:0;--py:448;--pw:227;--ph:215" data-d="59 27 46 g; 113 184 61 o; 212 157 22 o" data-k="150 -13 22 b; 245 98 29 b"></div>
 </div>
 
