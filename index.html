@@ -195,7 +195,7 @@ transition: transform 0.3s ease;
     top: calc(100 * var(--pz-u)) !important;
   }
   .board[data-pz="load"] .lead {
-    font-size: calc(40 * var(--pz-u)) !important; /* パズル内のlead文字をもっと大きく調整 */
+    font-size: calc(40 * var(--pz-u)) !important;
     line-height: 1.5;
     left: calc(30 * var(--pz-u)) !important;
     top: calc(140 * var(--pz-u)) !important;
@@ -211,15 +211,21 @@ transition: transform 0.3s ease;
     left: calc(28 * var(--pz-u)) !important;
     top: calc(140 * var(--pz-u)) !important;
   }
+
+  /* profile内の大学名・学んでいること（.pm）の文字サイズをもとのサイズ感に戻し、ピースに対して中央にきれいに収まるよう調整 */
   .board:not([data-pz="load"]) .pm {
-    font-size: calc(14 * var(--pz-u)) !important;
-    line-height: 1.5;
-    left: calc(24 * var(--pz-u)) !important;
-    top: calc(52 * var(--pz-u)) !important;
+    font-size: calc(17 * var(--pz-u)) !important;
+    line-height: 1.65;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    white-space: normal !important;
+    text-align: center !important;
+    width: 90% !important;
   }
   .lt { color: var(--gy); }
 
-  .intro { font-size: 19px; line-height: 2.2; letter-spacing: .1em; white-space: normal; margin: 20px 0; font-weight: 900; } /* ピース下のイントロ（日本語文）をさらに大きく・太く調整 */
+  .intro { font-size: 19px; line-height: 2.2; letter-spacing: .1em; white-space: normal; margin: 20px 0; font-weight: 900; }
   .hd { font-size: 24px; margin: 28px 0 8px; }
   .num { font-size: 52px; margin: 12px 0 2px; }
   .etx { white-space: normal; font-size: 12.5px; line-height: 1.8; letter-spacing: .08em; margin: 4px 0; width: 100%; color: #333; }
