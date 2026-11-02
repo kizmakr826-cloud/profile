@@ -8,14 +8,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
-/* 全体のスケールを少し拡大（基準値をアップ） */
 :root{color-scheme:light;--u:min(calc(100vw / 1300), calc(100vh / 810));--cur:url("data:image/svg+xml,%3Csvg width=%2248%22 height=%2248%22 viewBox=%220 0 61 61%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E %3Cpath d=%22M20.0119 7.64739C19.8571 8.61174 19.896 9.62338 20.1643 10.628C21.1856 14.4509 25.1129 16.7221 28.9358 15.7011C32.7588 14.6798 35.0301 10.7526 34.0089 6.92955C33.7405 5.92501 33.2705 5.02846 32.6555 4.26979L48.6389 -2.63806e-05L52.9087 15.9834C51.9444 15.8286 50.9328 15.8675 49.9281 16.1358C46.1052 17.157 43.834 21.0844 44.8551 24.9073C45.8764 28.7303 49.8036 31.0017 53.6266 29.9804C54.6313 29.7119 55.5274 29.2412 56.2861 28.626L60.5562 44.6104L44.5718 48.8805C45.1868 49.6392 45.6578 50.5354 45.9261 51.54C46.9472 55.3629 44.676 59.2902 40.853 60.3115C37.0301 61.3328 33.1029 59.0613 32.0815 55.2384C31.8132 54.2339 31.7744 53.2222 31.9292 52.2578L15.9457 56.5277L11.6756 40.5433C10.9169 41.1584 10.0208 41.6292 9.01614 41.8976C5.19308 42.9189 1.26591 40.6476 0.244623 36.8245C-0.776497 33.0016 1.49473 29.0743 5.3177 28.053C6.32233 27.7847 7.33392 27.7459 8.2983 27.9007L4.02848 11.9172L20.0119 7.64739Z%22 fill=%22%2300C410%22/%3E %3C/svg%3E") 24 24,auto;--or:#f26411;--bl:#415efd;--pb:#415efd;--gy:#fff;--bg:#f4f4f4;--gr:#00c410;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *,*::before,*::after{box-sizing:inherit;cursor:var(--cur)}
-html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:calc(120*var(--u))}
+html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:calc(100*var(--u))}
 body{margin:0;background:var(--bg);overflow-x:hidden;font-family:"Zen Kaku Gothic New","Yu Gothic",sans-serif;font-weight:700}
 main{position:relative;width:calc(1440*var(--u));height:calc(4980*var(--u));margin:0 auto}
 .ab{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));margin:0}
-.navw{position:fixed;top:calc(38*var(--u));left:0;width:100%;height:0;z-index:100;pointer-events:none;transition:opacity .6s cubic-bezier(0.16, 1, 0.3, 1),translate .8s cubic-bezier(.16,1,.3,1)}
+/* ナビゲーションバーの上の余白を詰めるため、topの位置を縮小 */
+.navw{position:fixed;top:calc(20*var(--u));left:0;width:100%;height:0;z-index:100;pointer-events:none;transition:opacity .6s cubic-bezier(0.16, 1, 0.3, 1),translate .8s cubic-bezier(.16,1,.3,1)}
 .navw:not(.show){opacity:0;visibility:hidden;translate:0 calc(-20*var(--u))}
 .nvname{position:absolute;left:max(32px, 4vw);top:calc(6*var(--u));line-height:calc(41*var(--u));font-size:calc(19*var(--u));font-weight:900;letter-spacing:.04em;color:var(--gr);white-space:nowrap}
 .nav{position:absolute;right:max(32px, 4vw);top:0;display:flex;gap:calc(19*var(--u));pointer-events:auto}
@@ -83,10 +83,10 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4980*var(--u));marg
 
 @media(max-width:760px){
 :root{--u:1px}
-html{scroll-padding-top:70px;}
-main{width:auto;height:auto;padding:84px 16px 48px}
+html{scroll-padding-top:60px;}
+main{width:auto;height:auto;padding:70px 16px 48px}
 .ab,.pimg{position:static}
-.navw{top:14px;left:0;margin:0;width:100%}.nav{right:16px;gap:8px}.nav a{height:34px;padding:0 16px;font-size:13px}
+.navw{top:10px;left:0;margin:0;width:100%}.nav{right:16px;gap:8px}.nav a{height:34px;padding:0 16px;font-size:13px}
 .board{width:auto;height:auto;display:flex;flex-direction:column;gap:14px;margin:0}
 .pz{position:relative;left:auto;top:auto;width:auto;height:auto;transform:none!important;opacity:1!important;border-radius:24px!important;padding:28px 24px}
 .c{display:none}.pz.x{display:none}.pz{isolation:isolate}.bg{z-index:-1;-webkit-mask-image:none!important;mask-image:none!important}
