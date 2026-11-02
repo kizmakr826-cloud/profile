@@ -129,7 +129,7 @@ transition: transform 0.3s ease;
   .nav.open{transform:translateY(0);opacity:1;visibility:visible}
   .nav a{width:80%;max-width:280px;height:40px;font-size:13px;justify-content:center}
 
-  /* スマホ版でのインタラクティブなホバーアニメーションを完全になくす設定 */
+  /* ホバーアニメーションを完全になくしつつ、ふわふわ動く浮遊アニメーション(.pimg.done)はスマホ版でも有効にする */
   .pz.interactive:hover {
     transform: none !important;
     translate: 0 0 !important;
@@ -137,11 +137,19 @@ transition: transform 0.3s ease;
     scale: 1 !important;
   }
 
-  .pimg, .pz, .fade-hd {
+  .pz, .fade-hd {
     transition: none !important;
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .pimg {
+    transition: opacity 0.9s ease !important;
+    opacity: 1 !important;
+  }
+  .pimg.done {
+    animation: flt var(--du,3.2s) ease-in-out var(--dl,0s) infinite !important;
   }
 
   .ab {
@@ -525,7 +533,7 @@ const upd = () => {
 const hero = boards[0];
 const startHero = () => {
   if (reduce) { setP(hero.c, 1); return; }
-  let t0; hero.c.classList.remove("snap"); setP(hero.c, 0);
+  let t0; hero.c.classList.0 = t0 ?? ts; const q = Math.min(1, Math.max(0, (ts - t0 - 150) / 950)); setP(hero.c, ease(q)); if (q < 1) requestAnimationFrame(f); else hero.c.classList.add("snap"); };
   const f = ts => { t0 = t0 ?? ts; const q = Math.min(1, Math.max(0, (ts - t0 - 150) / 950)); setP(hero.c, ease(q)); if (q < 1) requestAnimationFrame(f); else hero.c.classList.add("snap"); };
   requestAnimationFrame(f);
 };
