@@ -111,24 +111,25 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 .pz.bk{min-height:300px}
 .nm2{margin:0;font-size:22px}.pname{margin:0 0 8px;font-size:30px}.h2t{font-size:34px;line-height:1.25;margin:0 0 12px}.lead{font-size:18px;line-height:1.6;letter-spacing:.1em}
 .pm{font-size:15px;line-height:1.9;letter-spacing:.08em}
-.hd{font-size:48px;margin:56px 0 12px;order:1}
-.num{font-size:72px;margin-top:28px}
+.hd{font-size:48px;margin:40px 0 16px;order:0}
+.num{font-size:72px;margin-top:20px}
 .pimg{width:100%;margin:16px 0;animation-duration:3.2s;transform:none!important}
 .board.ab{position:relative;left:auto;top:auto}
-.cr{width:auto;margin-top:32px;position:static;font-weight:500;order:10}
+.cr{width:auto;margin-top:40px;position:static;font-weight:500;order:10}
 .band.wh{display:none}
-.band.gn{position:relative;left:auto;margin:40px -16px 20px;width:auto;height:90px;order:3}
-.mq{font-size:28px;line-height:1.2}.mq span{padding-right:40px}
+.band.gn{position:relative;left:auto;margin:48px -16px 48px;width:auto;height:80px;order:4}
+.mq{font-size:26px;line-height:1.2}.mq span{padding-right:40px}
 .intro{font-size:18px;line-height:2.2;letter-spacing:.08em;white-space:normal;margin:24px 0}
 
-/* スマホ版の要素の並び順（order）を整理 */
-#piece{order:0}
-/* 01〜03のピース群 */
-.num:nth-of-type(1), .pimg:nth-of-type(1) { order: 0 }
-.num:nth-of-type(2), .pimg:nth-of-type(2) { order: 0 }
-.num:nth-of-type(3), .pimg:nth-of-type(3) { order: 0 }
-#profile{order:4}
-.board.ab:not([data-pz="load"]){order:5}
+/* スマホ版の流れに合わせた並び順（order）の調整 */
+#piece { order: 0; }
+.board.ab[data-pz="load"] { order: 1; }
+.intro { order: 2; }
+/* 01〜03ピース群 */
+.hd#piece ~ .num, .hd#piece ~ .etx, .hd#piece ~ .pimg { order: 3; }
+.band.gn { order: 4; }
+#profile { order: 5; }
+.board.ab:not([data-pz="load"]) { order: 6; }
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
