@@ -98,6 +98,9 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 .nav.open{transform:translateY(0);opacity:1;visibility:visible}
 .nav a{width:80%;max-width:280px;height:46px;font-size:15px;justify-content:center}
 
+/* スマホ版でのホバーアニメーションを完全無効化 */
+.pz.interactive:hover{transform:none;translate:0 0;rotate:0deg;scale:1}
+
 .board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u));margin:24px auto}
 .board.ab{position:relative;left:auto;top:auto}
 .pz{position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));border-radius:calc(5*var(--u));padding:0}
