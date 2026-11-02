@@ -8,10 +8,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:light;--u:min(calc(100vw / 1300), calc(100vh / 810));--cur:url("data:image/svg+xml,%3Csvg width=%2264%22 height=%2264%22 viewBox=%220 0 61 61%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E %3Cpath d=%22M20.0119 7.64739C19.8571 8.61174 19.896 9.62338 20.1643 10.628C21.1856 14.4509 25.1129 16.7221 28.9358 15.7011C32.7588 14.6798 35.0301 10.7526 34.0089 6.92955C33.7405 5.92501 33.2705 5.02846 32.6555 4.26979L48.6389 -2.63806e-05L52.9087 15.9834C51.9444 15.8286 50.9328 15.8675 49.9281 16.1358C46.1052 17.157 43.834 21.0844 44.8551 24.9073C45.8764 28.7303 49.8036 31.0017 53.6266 29.9804C54.6313 29.7119 55.5274 29.2412 56.2861 28.626L60.5562 44.6104L44.5718 48.8805C45.1868 49.6392 45.6578 50.5354 45.9261 51.54C46.9472 55.3629 44.676 59.2902 40.853 60.3115C37.0301 61.3328 33.1029 59.0613 32.0815 55.2384C31.8132 54.2339 31.7744 53.2222 31.9292 52.2578L15.9457 56.5277L11.6756 40.5433C10.9169 41.1584 10.0208 41.6292 9.01614 41.8976C5.19308 42.9189 1.26591 40.6476 0.244623 36.8245C-0.776497 33.0016 1.49473 29.0743 5.3177 28.053C6.32233 27.7847 7.33392 27.7459 8.2983 27.9007L4.02848 11.9172L20.0119 7.64739Z%22 fill=%22%2300C410%22/%3E %3C/svg%3E") 32 32,auto;--or:#f26411;--bl:#415efd;--pb:#415efd;--gy:#fff;--bg:#f4f4f4;--gr:#00c410;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*,*::before,*::after{box-sizing:inherit;cursor:var(--cur)}
+:root{color-scheme:light;--u:min(calc(100vw / 1300), calc(100vh / 810));--or:#f26411;--bl:#415efd;--pb:#415efd;--gy:#fff;--bg:#f4f4f4;--gr:#00c410;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+@media (hover: hover) and (pointer: fine) {
+  body, *, a, button, .pz.interactive{cursor:none!important}
+}
 html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:calc(100*var(--u))}
 body{margin:0;background:var(--bg);overflow-x:hidden;font-family:"Zen Kaku Gothic New","Yu Gothic",sans-serif;font-weight:700}
+
+/* もっちり追従するカスタムカーソル */
+.custom-cursor{position:fixed;top:0;left:0;width:48px;height:48px;pointer-events:none;z-index:9999;transform:translate(-50%, -50%);will-change:transform;transition:transform 0.15s ease-out}
+.custom-cursor svg{display:block;width:100%;height:100%}
+
 main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));margin:0 auto}
 .ab{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));margin:0}
 .navw{position:fixed;top:0;left:0;width:100%;height:calc(70*var(--u));z-index:100;pointer-events:none;transition:opacity .6s cubic-bezier(0.16, 1, 0.3, 1),translate .8s cubic-bezier(.16,1,.3,1);background:rgba(244, 244, 244, 0.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.4)}
@@ -19,7 +27,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .nvname{position:absolute;left:max(32px, 4vw);top:calc(14.5*var(--u));line-height:calc(41*var(--u));font-size:calc(19*var(--u));font-weight:900;letter-spacing:.04em;color:var(--gr);white-space:nowrap;pointer-events:auto}
 .nav{position:absolute;right:max(32px, 4vw);top:calc(14.5*var(--u));display:flex;gap:calc(19*var(--u));pointer-events:auto}
 .nav a{display:grid;place-items:center;height:calc(41*var(--u));padding:0 calc(25*var(--u));border-radius:99px;background:var(--gr);color:#fff;font-size:calc(17*var(--u));font-weight:900;text-decoration:none;transition:translate .3s cubic-bezier(.3,1.6,.5,1),background .2s,color .2s,box-shadow .2s}
-.nav a:hover,.nav a:focus-visible{translate:0 calc(-4*var(--u));background:#fff;color:var(--gr);box-shadow:0 8px 20px rgba(0,196,16,0.15);cursor:none}
+.nav a:hover,.nav a:focus-visible{translate:0 calc(-4*var(--u));background:#fff;color:var(--gr);box-shadow:0 8px 20px rgba(0,196,16,0.15)}
 .band{position:absolute;left:50%;margin-left:-50vw;width:100vw;top:calc(var(--t)*var(--u));height:calc(var(--h)*var(--u))}
 .band.wh{background:#fff}
 .band.gn{background:var(--gr);overflow:hidden;display:flex;align-items:center}
@@ -101,12 +109,20 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 .board.ab{position:relative;left:auto;top:auto}.cr{width:auto;margin-top:32px;position:static;font-weight:500}
 .band.wh{display:none}.band.gn{position:relative;left:auto;margin:32px -16px;width:auto;height:90px}.mq{font-size:28px;line-height:1.2}.mq span{padding-right:40px}
 .intro{font-size:18px;line-height:2.2;letter-spacing:.08em;white-space:normal;margin:24px 0}.nvname{display:none}
+.custom-cursor{display:none}
 }
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.custom-cursor{display:none}}
 </style>
-<noscript><style>[data-pz]{--p:1} .fade-hd{--p:1} .pimg{--p:1}</style></noscript>
+<noscript><style>[data-pz]{--p:1} .fade-hd{--p:1} .pimg{--p:1} *, *, a{cursor:auto!important} .custom-cursor{display:none}</style></noscript>
 </head>
 <body>
+<!-- もっちり追従するカスタムカーソル用要素 -->
+<div class="custom-cursor" id="customCursor" aria-hidden="true">
+  <svg width="64" height="64" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20.0119 7.64739C19.8571 8.61174 19.896 9.62338 20.1643 10.628C21.1856 14.4509 25.1129 16.7221 28.9358 15.7011C32.7588 14.6798 35.0301 10.7526 34.0089 6.92955C33.7405 5.92501 33.2705 5.02846 32.6555 4.26979L48.6389 -2.63806e-05L52.9087 15.9834C51.9444 15.8286 50.9328 15.8675 49.9281 16.1358C46.1052 17.157 43.834 21.0844 44.8551 24.9073C45.8764 28.7303 49.8036 31.0017 53.6266 29.9804C54.6313 29.7119 55.5274 29.2412 56.2861 28.626L60.5562 44.6104L44.5718 48.8805C45.1868 49.6392 45.6578 50.5354 45.9261 51.54C46.9472 55.3629 44.676 59.2902 40.853 60.3115C37.0301 61.3328 33.1029 59.0613 32.0815 55.2384C31.8132 54.2339 31.7744 53.2222 31.9292 52.2578L15.9457 56.5277L11.6756 40.5433C10.9169 41.1584 10.0208 41.6292 9.01614 41.8976C5.19308 42.9189 1.26591 40.6476 0.244623 36.8245C-0.776497 33.0016 1.49473 29.0743 5.3177 28.053C6.32233 27.7847 7.33392 27.7459 8.2983 27.9007L4.02848 11.9172L20.0119 7.64739Z" fill="#00C410"/>
+  </svg>
+</div>
+
 <main id="top">
 <div class="navw en"><div class="nvname">akari koizumi</div><nav class="nav" aria-label="ページ内リンク"><a href="#top">top</a><a href="#piece">piece</a><a href="#profile">profile</a></nav></div>
 
@@ -180,6 +196,25 @@ const IMAGES = {
   camera: "camera.jpg",    
   sewing: "sewing.jpg"     
 };
+
+/* もっちり追従するカスタムカーソルの制御ロジック */
+const cursor = document.getElementById("customCursor");
+let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+let cursorX = mouseX, cursorY = mouseY;
+
+window.addEventListener("mousemove", e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+const updateCursor = () => {
+  // 追従の滑らかさ（係数を小さくするとよりモッチリとした遅れが出ます）
+  cursorX += (mouseX - cursorX) * 0.18;
+  cursorY += (mouseY - cursorY) * 0.18;
+  cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+  requestAnimationFrame(updateCursor);
+};
+requestAnimationFrame(updateCursor);
 
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const PAL = { o: "#f26411", b: "#415efd", p: "#415efd", g: "#ffffff", w: "#f4f4f4", k: "#000000" };
@@ -296,7 +331,7 @@ pieces.forEach(el => {
   el.style.setProperty("--hy", (-(4 + d * 4)).toFixed(0));
 });
 
-/* 4. エピソード画像(浮遊ピース)の処理（sewing.jpgは十分に拡大し、顔が完全に上外側に切れるよう調整） */
+/* 4. エピソード画像(浮遊ピース)の処理 */
 const jig = (W, H, feats) => {
   const R = 38, c = 34, p = R + c + 12, f = n => n.toFixed(1), sides = [[p, p, 1, 0, W], [p + W, p, 0, 1, H], [p + W, p + H, -1, 0, W], [p, p + H, 0, -1, H]];
   let d = `M${p} ${p}`;
@@ -312,7 +347,6 @@ document.querySelectorAll(".pimg").forEach((el, n) => {
   let imgTag = "";
   if (url) {
     if (el.dataset.img === "sewing") {
-      // カーソル拡大に合わせて調整した縫製画像のスケール＆オフセット
       imgTag = `<image onerror="this.style.display='none'" href="${url}" x="${vx - 140}" y="${vy - 240}" width="${vw + 280}" height="${vh + 280}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})"/>`;
     } else {
       imgTag = `<image onerror="this.style.display='none'" href="${url}" x="${vx}" y="${vy}" width="${vw}" height="${vh}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})"/>`;
