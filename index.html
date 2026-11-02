@@ -490,8 +490,10 @@ const upd = () => {
   boards.forEach(({ c, load }) => {
     if (load) return;
     const r = c.getBoundingClientRect();
-    // どんな画面比率（高さ）でも確実に最後までスナップするように判定範囲を拡幅（vh * 0.95 に調整）
-    const p = reduce ? 1 : ease(Math.min(1, Math.max(0, (vh * 0.95 - r.top) / (vh * 0.5))));
+    // プロフィールボード（data-pzの2つ目）の進捗判定を、1スクロール（約vh * 0.2〜0.3程度の移動）で一気に0から1まで完結するよう調整
+    const startOffset = vh * 1.05;
+    const endOffset = vh * 0.45;
+    const p = reduce ? 1 : ease(Math.min(1, Math.max(0, (startOffset - r.top) / (startOffset - endOffset))));
     setP(c, p);
     if (p >= .999) c.classList.add("snap"); else if (p < .9) c.classList.remove("snap");
   });
