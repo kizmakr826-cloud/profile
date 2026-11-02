@@ -101,7 +101,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .cr{width:calc(1440*var(--u));text-align:center;color:#a3a3a3;font-size:calc(14*var(--u));line-height:calc(18*var(--u));font-weight:500;letter-spacing:.04em}
 
 @media(max-width:760px){
-:root{--u:min(calc(100vw / 430), 1.2px)}
+:root{--u:min(calc(100vw / 410), 1.15px)}
 html{scroll-padding-top:70px;}
 main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px 48px}
 .ab,.pimg{position:static}
@@ -112,7 +112,7 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 .nav.open{transform:translateY(0);opacity:1;visibility:visible}
 .nav a{width:80%;max-width:280px;height:46px;font-size:15px;justify-content:center}
 
-/* スマホ版でもPC版と同様のパズル構造・アスペクト比を維持して綺麗に組み上げる設定 */
+/* スマホ版でも常にパズルとして完璧に組み上がる指定 */
 .board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u));margin:24px auto}
 .board.ab{position:relative;left:auto;top:auto}
 .pz{position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));border-radius:calc(5*var(--u));padding:0}
@@ -121,7 +121,7 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 .c.k{z-index:5}
 .t{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));margin:0;white-space:nowrap}
 .pname{font-size:calc(36*var(--u));line-height:1.2;letter-spacing:.04em;font-weight:900}
-.pm{font-size:calc(14*var(--u));line-height:calc(30*var(--u));letter-spacing:.15em;font-weight:700}
+.pm{font-size:calc(13.5*var(--u));line-height:calc(29*var(--u));letter-spacing:.12em;font-weight:700}
 .lt{color:var(--gy)}
 
 .c{display:block}
@@ -187,7 +187,7 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 <!-- 01 -->
 <div class="num en ab fade-hd" style="--l:98;--t:1702">01</div>
 <p class="etx ab fade-hd" style="--l:98;--t:1849">卒業研究では「映像と記憶のデザイン」をテーマに、<br>新たなアーカイブ体験の方法を模索しました。</p>
-<p class="etx ab fade-hd" style="--l:98;--t:1949">そこで見つけたピースは、「インタラクティブな表現」。<br>でも、作ったことはない……。そこでAIにも相談し<br>ながら, TouchDesignerを独学しました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:1949">そこで見つけたピースは、「インタラクティブな表現」。<br>でも、作ったことはない……。そこでAIにも相談し<br>ながら、TouchDesignerを独学しました。</p>
 <p class="etx ab fade-hd" style="--l:98;--t:2085">その結果、より能動的な体験を自分の手で実装できる<br>ように。定性的な価値を持つ体験を、デザインとして<br>形にすることができました。</p>
 <div class="pimg" data-img="design" data-vb="735 1703 676 503" data-pd="M1023.7 1723.3C1045.9 1723.3 1063.9 1741.3 1063.9 1763.5C1063.9 1774.2 1059.8 1783.9 1053.0 1791.1L1346.0 1835.0C1348.7 1835.4 1350.6 1838.0 1350.2 1840.7L1329.7 1977.0C1335.9 1973.2 1343.1 1971.0 1350.9 1971.0C1373.2 1971.0 1391.2 1989.0 1391.2 2011.3C1391.2 2033.5 1373.2 2051.5 1350.9 2051.5C1338.8 2051.5 1328.0 2046.2 1320.6 2037.8L1299.0 2182.0C1298.6 2184.7 1296.0 2186.6 1293.3 2186.2L1153.6 2165.2C1161.5 2157.9 1166.4 2147.4 1166.4 2135.7C1166.4 2113.5 1148.4 2095.5 1126.2 2095.5C1103.9 2095.5 1085.9 2113.5 1085.9 2135.7C1085.9 2143.1 1087.9 2150.0 1091.3 2155.9L758.9 2106.1C756.2 2105.6 754.3 2103.1 754.7 2100.4L775.2 1963.7C780.0 1968.5 786.6 1971.4 793.8 1971.4C808.4 1971.4 820.3 1959.5 820.3 1944.9C820.3 1930.3 808.4 1918.5 793.8 1918.5C789.4 1918.5 785.2 1919.6 781.5 1921.5L805.9 1759.1C806.3 1756.3 808.8 1754.5 811.6 1754.9L987.5 1781.2C984.9 1775.9 983.4 1769.9 983.4 1763.5C983.4 1741.3 1001.4 1723.3 1023.7 1723.3Z" style="--l:735;--t:1703;--w:676;--rot:0;--du:3.0s;--dl:0s;--fx:7"></div>
 
