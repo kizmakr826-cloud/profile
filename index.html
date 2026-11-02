@@ -117,6 +117,7 @@ main{width:auto;height:auto;padding:70px 16px 48px}
     <div class="t h2t en lt" style="--l:2;--t:134">collect new pieces</div>
   </div>
   <div class="pz gy x" style="--px:798;--py:1;--pw:209;--ph:223" data-d="118.5 38.5 70.5 b" data-k="224 136 35 g"></div>
+  <!-- me.jpg の画像ピース：拡大表示のためオフセットとサイズを調整 -->
   <div class="pz bk rbr interactive" style="--px:1007;--py:1;--pw:335;--ph:662" data-img="hero" data-d="229.5 13.5 26 w" data-k="-25.5 559.5 43.5 k"></div>
   <div class="pz og interactive" style="--px:227;--py:224;--pw:780;--ph:439" data-k="177 0 23 o; 645.5 -19.5 43.5 o; 798 116 33 o; 678 448 23 o" data-d="216.5 398.5 62.5 w">
     <div class="t lead lt" style="--l:36;--t:110">新しいピースを集め続け<br>やりたい！へ向かっていく</div>
@@ -148,7 +149,7 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 <p class="etx ab fade-hd" style="--l:98;--t:3162">サークルに入ろうか迷っていたとき、SNSで見かけた<br>縫製技術研究会のファッションショーにビビビッ。</p>
 <p class="etx ab fade-hd" style="--l:98;--t:3262">そこで見つけたピースは、「自分の手で作る服による<br>表現」。中学の家庭科は大の苦手……。でも、これは<br>苦手を克服するチャンス！ 裁縫の本やWebを参考に、<br>完璧でなくてもいいから、まずは作ってみることを心が<br>けました。</p>
 <p class="etx ab fade-hd" style="--l:98;--t:3472">数をこなすうちに、アレンジまでできるように。<br>デザインの場面でも、縫製によるプロトタイピングとい<br>う新たな選択肢が広がりました。</p>
-<!-- sewing.jpg の画像マスク表示領域（さらに拡大し、顔が完全に上外側に切れるようオフセットを調整） -->
+<!-- sewing.jpg の画像マスク表示領域（十分な拡大と顔が外側に切れるオフセット調整） -->
 <div class="pimg" data-img="sewing" data-vb="754 3046 626 517" data-pd="M990.3 3107.7C989.5 3085.5 1006.9 3066.8 1029.1 3066.0C1051.4 3065.2 1070.0 3082.6 1070.8 3104.8C1071.2 3115.5 1067.4 3125.3 1060.9 3132.8L1355.2 3166.2C1358.0 3166.5 1359.9 3169.0 1359.6 3171.8L1342.3 3324.2C1334.8 3313.2 1321.9 3306.1 1307.5 3306.6C1285.3 3307.4 1267.9 3326.1 1268.7 3348.3C1269.5 3370.5 1288.2 3387.9 1310.4 3387.1C1320.5 3386.7 1329.5 3382.7 1336.4 3376.4L1320.6 3514.7C1320.3 3517.4 1317.9 3519.4 1315.1 3519.1L1187.6 3504.6C1186.5 3525.2 1169.9 3541.8 1148.9 3542.6C1126.6 3543.4 1108.0 3526.0 1107.2 3503.8C1107.1 3501.0 1107.3 3498.2 1107.7 3495.5L778.2 3458.0C775.5 3457.7 773.5 3455.2 773.8 3452.5L789.4 3315.2C794.4 3319.7 801.0 3322.4 808.3 3322.2C822.9 3321.7 834.3 3309.4 833.8 3294.8C833.3 3280.2 821.0 3268.8 806.4 3269.3C802.0 3269.5 797.8 3270.7 794.2 3272.8L812.8 3109.6C813.1 3106.8 815.6 3104.9 818.3 3105.2L995.1 3125.3C992.2 3120.0 990.6 3114.1 990.3 3107.7Z" style="--l:754;--t:3046;--w:626;--rot:0;--du:5.9s;--dl:-4s;--fx:5"></div>
 
 <!-- 電光掲示板 -->
@@ -270,6 +271,14 @@ pieces.forEach((el, i) => {
     el._bg.style.display = 'none';
     el.querySelectorAll('.c').forEach(c => c.style.display = 'none');
     
+    // me.jpg（hero）はさらにしっかり拡大（x, yのマイナス値を大きく、幅と高さを大きく調整）
+    let imgSvgTag = "";
+    if (el.dataset.img === "hero") {
+      imgSvgTag = `<image onerror="this.style.display='none'" href="${url}" x="-120" y="-120" width="${pw+240}" height="${ph+240}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />`;
+    } else {
+      imgSvgTag = `<image onerror="this.style.display='none'" href="${url}" x="-40" y="-40" width="${pw+80}" height="${ph+80}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />`;
+    }
+
     let svgHtml = `
       <svg viewBox="0 0 ${pw} ${ph}" style="position:absolute; left:0; top:0; width:100%; height:100%; overflow:visible; pointer-events:none;">
         <defs>
@@ -280,7 +289,7 @@ pieces.forEach((el, i) => {
             ${myHoles.map(h => `<circle cx="${h[0]}" cy="${h[1]}" r="${h[2]}" fill="black" />`).join('')}
           </mask>
         </defs>
-        <rect x="-150" y="-150" width="${pw+300}" height="${ph+300}" fill="#000" mask="url(#${maskId})" /><image onerror="this.style.display='none'" href="${url}" x="-40" y="-40" width="${pw+80}" height="${ph+80}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />
+        <rect x="-150" y="-150" width="${pw+300}" height="${ph+300}" fill="#000" mask="url(#${maskId})" />${imgSvgTag}
       </svg>
     `;
     el.insertAdjacentHTML('afterbegin', svgHtml);
@@ -312,7 +321,6 @@ document.querySelectorAll(".pimg").forEach((el, n) => {
   let imgTag = "";
   if (url) {
     if (el.dataset.img === "sewing") {
-      // カーソル拡大に合わせて調整した縫製画像のスケール＆オフセット
       imgTag = `<image onerror="this.style.display='none'" href="${url}" x="${vx - 140}" y="${vy - 240}" width="${vw + 280}" height="${vh + 280}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})"/>`;
     } else {
       imgTag = `<image onerror="this.style.display='none'" href="${url}" x="${vx}" y="${vy}" width="${vw}" height="${vh}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})"/>`;
