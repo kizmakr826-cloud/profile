@@ -46,8 +46,8 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4800*var(--u));marg
 .pz{--pp:clamp(0,calc(var(--p)*1.1 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.02));opacity:clamp(0,calc(var(--pp)*2),1);transition:translate 1.4s cubic-bezier(0.16, 1, 0.3, 1),rotate 1.4s cubic-bezier(0.16, 1, 0.3, 1),scale 1.4s cubic-bezier(0.16, 1, 0.3, 1)}
 .done .pz{transform:none;opacity:1}
 
-/* 文字や写真が含まれるピースのみホバーアニメーションを適用 */
-.pz.hoverable:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-3)*var(--u));rotate:var(--ha,-0.5deg);scale:1.008;transition:translate 0.3s cubic-bezier(0.16, 1, 0.3, 1),rotate 0.3s cubic-bezier(0.16, 1, 0.3, 1),scale 0.3s cubic-bezier(0.16, 1, 0.3, 1)}
+/* 文字や写真が含まれるピース（インタラクティブ対象）のみホバーアニメーションを適用 */
+.pz.interactive:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-3)*var(--u));rotate:var(--ha,-0.5deg);scale:1.008;transition:translate 0.3s cubic-bezier(0.16, 1, 0.3, 1),rotate 0.3s cubic-bezier(0.16, 1, 0.3, 1),scale 0.3s cubic-bezier(0.16, 1, 0.3, 1)}
 
 /* heroロード時専用のスナップアニメーション */
 [data-pz="load"].snap .pz{animation:heroPita 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.2s)}
@@ -112,14 +112,14 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 
 <div class="band wh" style="--t:1480;--h:2220"></div>
 
-<!-- Heroボード：文字や写真が含まれるピースにのみ hoverable クラスを付与 -->
+<!-- heroボード（文字・写真ありピースにのみ .interactive を付与） -->
 <div class="board ab" data-pz="load" style="--l:49;--t:80;--bh:663">
-  <div class="pz bu rtl hoverable" style="--px:0;--py:0;--pw:798;--ph:226" data-d="549.5 37.5 61.5 w; 813 68 22 g">
+  <div class="pz bu rtl interactive" style="--px:0;--py:0;--pw:798;--ph:226" data-d="549.5 37.5 61.5 w; 813 68 22 g">
     <div class="t h2t en lt" style="--l:2;--t:134">collect new pieces</div>
   </div>
   <div class="pz gy x" style="--px:798;--py:1;--pw:209;--ph:223" data-d="118.5 38.5 70.5 b" data-k="224 136 35 g"></div>
-  <div class="pz bk rbr hoverable" style="--px:1007;--py:1;--pw:335;--ph:662" data-img="hero" data-d="229.5 13.5 26 w" data-k="-25.5 559.5 43.5 k"></div>
-  <div class="pz og hoverable" style="--px:227;--py:224;--pw:780;--ph:439" data-k="177 0 23 o; 645.5 -19.5 43.5 o; 798 116 33 o; 678 448 23 o" data-d="216.5 398.5 62.5 w">
+  <div class="pz bk rbr interactive" style="--px:1007;--py:1;--pw:335;--ph:662" data-img="hero" data-d="229.5 13.5 26 w" data-k="-25.5 559.5 43.5 k"></div>
+  <div class="pz og interactive" style="--px:227;--py:224;--pw:780;--ph:439" data-k="177 0 23 o; 645.5 -19.5 43.5 o; 798 116 33 o; 678 448 23 o" data-d="216.5 398.5 62.5 w">
     <div class="t lead lt" style="--l:36;--t:110">新しいピースを集め続け<br>やりたい！へ向かっていく</div>
   </div>
   <div class="pz gy x" style="--px:0;--py:224;--pw:227;--ph:224" data-d="101 78 84 b; 157 81.5 43.5 o"></div>
@@ -133,7 +133,7 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 <!-- 01 -->
 <div class="num en ab fade-hd" style="--l:98;--t:1702">01</div>
 <p class="etx ab fade-hd" style="--l:98;--t:1849">卒業研究では「映像と記憶のデザイン」をテーマに、<br>新たなアーカイブ体験の方法を模索しました。</p>
-<p class="etx ab fade-hd" style="--l:98;--t:1949">そこで見つけたピースは、「インタラクティブな表現」。<br>でも、作ったことはない……。そこでAIにも相談し<br>ながら, TouchDesignerを独学しました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:1949">そこで見つけたピースは、「インタラクティブな表現」。<br>でも、作ったことはない……。そこでAIにも相談し<br>ながら、TouchDesignerを独学しました。</p>
 <p class="etx ab fade-hd" style="--l:98;--t:2085">その結果、より能動的な体験を自分の手で実装できる<br>ように。定性的な価値を持つ体験を、デザインとして<br>形にすることができました。</p>
 <div class="pimg" data-img="design" data-vb="735 1703 676 503" data-pd="M1023.7 1723.3C1045.9 1723.3 1063.9 1741.3 1063.9 1763.5C1063.9 1774.2 1059.8 1783.9 1053.0 1791.1L1346.0 1835.0C1348.7 1835.4 1350.6 1838.0 1350.2 1840.7L1329.7 1977.0C1335.9 1973.2 1343.1 1971.0 1350.9 1971.0C1373.2 1971.0 1391.2 1989.0 1391.2 2011.3C1391.2 2033.5 1373.2 2051.5 1350.9 2051.5C1338.8 2051.5 1328.0 2046.2 1320.6 2037.8L1299.0 2182.0C1298.6 2184.7 1296.0 2186.6 1293.3 2186.2L1153.6 2165.2C1161.5 2157.9 1166.4 2147.4 1166.4 2135.7C1166.4 2113.5 1148.4 2095.5 1126.2 2095.5C1103.9 2095.5 1085.9 2113.5 1085.9 2135.7C1085.9 2143.1 1087.9 2150.0 1091.3 2155.9L758.9 2106.1C756.2 2105.6 754.3 2103.1 754.7 2100.4L775.2 1963.7C780.0 1968.5 786.6 1971.4 793.8 1971.4C808.4 1971.4 820.3 1959.5 820.3 1944.9C820.3 1930.3 808.4 1918.5 793.8 1918.5C789.4 1918.5 785.2 1919.6 781.5 1921.5L805.9 1759.1C806.3 1756.3 808.8 1754.5 811.6 1754.9L987.5 1781.2C984.9 1775.9 983.4 1769.9 983.4 1763.5C983.4 1741.3 1001.4 1723.3 1023.7 1723.3Z" style="--l:735;--t:1703;--w:676;--rot:0;--du:5.6s;--dl:0s;--fx:7"></div>
 
@@ -155,18 +155,18 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 <div class="band gn en" style="--t:3700;--h:180" aria-label="You are one of my new pieces !!"><div class="mq" aria-hidden="true"><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div></div></div>
 
 <h2 class="hd en ab fade-hd" id="profile" style="--l:103;--t:3985;color:var(--bl)">profile</h2>
-<!-- Profileボード：文字（名前・所属・紹介文）が含まれるピースにのみ hoverable クラスを付与 -->
+<!-- profileボード（文字情報を含むピースにのみ .interactive を付与） -->
 <div class="board ab" data-pz style="--l:49;--t:4084;--bh:586">
-  <div class="pz bu rtl hoverable" style="--px:0;--py:0;--pw:895;--ph:293" data-k="923 175 54.5 b; -15 126 23 b; 215 318 44.5 b; 671 308 23 b" data-d="488 14 22 w">
+  <div class="pz bu rtl interactive" style="--px:0;--py:0;--pw:895;--ph:293" data-k="923 175 54.5 b; -15 126 23 b; 215 318 44.5 b; 671 308 23 b" data-d="488 14 22 w">
     <div class="t pname lt" style="--l:52;--t:104">小泉 彩香里 <span class="en">/ akari koizumi</span></div>
     <div class="t lt" style="--l:52;--t:172;font-size:calc(17*var(--u));letter-spacing:.04em;line-height:1.3;font-weight:700">2003年8月26日生まれ O型 INFP-T</div>
   </div>
   <div class="pz gy" style="--px:895;--py:0;--pw:447;--ph:293" data-d="400 98 70 o; 96 104 24 o" data-k="224 308 22 g"></div>
   <div class="pz og" style="--px:0;--py:293;--pw:447;--ph:293" data-d="313 236 97.5 w; 16 174 21 w" data-k="462 146 23.5 o"></div>
-  <div class="pz gy hoverable" style="--px:447;--py:293;--pw:448;--ph:293" data-k="463 146 23 g; 167 311 35 g">
+  <div class="pz gy interactive" style="--px:447;--py:293;--pw:448;--ph:293" data-k="463 146 23 g; 167 311 35 g">
     <p class="t pm lt" style="--l:89;--t:74;color:var(--or)">千葉大学 大学院<br>融合理工学府 創成工学専攻<br>デザインコース<br>意匠形態学研究室 所属</p>
   </div>
-  <div class="pz bu rbr hoverable" style="--px:895;--py:293;--pw:447;--ph:293" data-k="462 115 23 b" data-d="267 274 21 w">
+  <div class="pz bu rbr interactive" style="--px:895;--py:293;--pw:447;--ph:293" data-k="462 115 23 b" data-d="267 274 21 w">
     <p class="t pm lt" style="--l:53;--t:79">コミュニケーションデザインや<br>UXデザインを軸にしながら<br>デザインと人々の生活、感情について<br>楽しく考え続けている。</p>
   </div>
 </div>
@@ -379,7 +379,5 @@ document.querySelector('.nav a[href="#top"]').addEventListener("click", e => {
 addEventListener("scroll", upd, { passive: true });
 addEventListener("resize", () => { build(); upd(); });
 </script>
-<ElicitationsGroup>
-</ElicitationsGroup>
 </body>
 </html>
