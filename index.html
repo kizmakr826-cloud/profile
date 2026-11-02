@@ -14,11 +14,12 @@ html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:calc(100*var(--
 body{margin:0;background:var(--bg);overflow-x:hidden;font-family:"Zen Kaku Gothic New","Yu Gothic",sans-serif;font-weight:700}
 main{position:relative;width:calc(1440*var(--u));height:calc(4980*var(--u));margin:0 auto}
 .ab{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));margin:0}
-/* ナビゲーションバーの上の余白を詰めるため、topの位置を縮小 */
-.navw{position:fixed;top:calc(20*var(--u));left:0;width:100%;height:0;z-index:100;pointer-events:none;transition:opacity .6s cubic-bezier(0.16, 1, 0.3, 1),translate .8s cubic-bezier(.16,1,.3,1)}
+
+/* ナビゲーションバー全体に半透明の白背景と背景ぼかし（backdrop-filter）を設定 */
+.navw{position:fixed;top:0;left:0;width:100%;height:calc(70*var(--u));z-index:100;pointer-events:none;transition:opacity .6s cubic-bezier(0.16, 1, 0.3, 1),translate .8s cubic-bezier(.16,1,.3,1);background:rgba(244, 244, 244, 0.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.4)}
 .navw:not(.show){opacity:0;visibility:hidden;translate:0 calc(-20*var(--u))}
-.nvname{position:absolute;left:max(32px, 4vw);top:calc(6*var(--u));line-height:calc(41*var(--u));font-size:calc(19*var(--u));font-weight:900;letter-spacing:.04em;color:var(--gr);white-space:nowrap}
-.nav{position:absolute;right:max(32px, 4vw);top:0;display:flex;gap:calc(19*var(--u));pointer-events:auto}
+.nvname{position:absolute;left:max(32px, 4vw);top:calc(14.5*var(--u));line-height:calc(41*var(--u));font-size:calc(19*var(--u));font-weight:900;letter-spacing:.04em;color:var(--gr);white-space:nowrap;pointer-events:auto}
+.nav{position:absolute;right:max(32px, 4vw);top:calc(14.5*var(--u));display:flex;gap:calc(19*var(--u));pointer-events:auto}
 .nav a{display:grid;place-items:center;height:calc(41*var(--u));padding:0 calc(25*var(--u));border-radius:99px;background:var(--gr);color:#fff;font-size:calc(17*var(--u));font-weight:900;text-decoration:none;transition:translate .3s cubic-bezier(.3,1.6,.5,1),background .2s,color .2s,box-shadow .2s}
 .nav a:hover,.nav a:focus-visible{translate:0 calc(-4*var(--u));background:#fff;color:var(--gr);box-shadow:0 8px 20px rgba(0,196,16,0.15)}
 .band{position:absolute;left:50%;margin-left:-50vw;width:100vw;top:calc(var(--t)*var(--u));height:calc(var(--h)*var(--u))}
@@ -86,7 +87,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4980*var(--u));marg
 html{scroll-padding-top:60px;}
 main{width:auto;height:auto;padding:70px 16px 48px}
 .ab,.pimg{position:static}
-.navw{top:10px;left:0;margin:0;width:100%}.nav{right:16px;gap:8px}.nav a{height:34px;padding:0 16px;font-size:13px}
+.navw{top:0;left:0;margin:0;width:100%;height:56px}.nvname{top:11px}.nav{top:11px;right:16px;gap:8px}.nav a{height:34px;padding:0 16px;font-size:13px}
 .board{width:auto;height:auto;display:flex;flex-direction:column;gap:14px;margin:0}
 .pz{position:relative;left:auto;top:auto;width:auto;height:auto;transform:none!important;opacity:1!important;border-radius:24px!important;padding:28px 24px}
 .c{display:none}.pz.x{display:none}.pz{isolation:isolate}.bg{z-index:-1;-webkit-mask-image:none!important;mask-image:none!important}
