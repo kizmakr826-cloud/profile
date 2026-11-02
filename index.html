@@ -33,12 +33,12 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .num{font-size:calc(124*var(--u));line-height:1;font-weight:900;color:var(--or)}
 .etx{font-size:calc(17*var(--u));line-height:calc(36.8*var(--u));letter-spacing:.17em;color:#000;white-space:nowrap;font-weight:700}
 
-/* 画像ピース */
+/* 画像ピース（浮遊アニメーションの振幅を大きく調整） */
 .pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);transform:translate(calc((1 - var(--pp))*300px), calc((1 - var(--pp))*100px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*15deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.9s ease;pointer-events:none}
 .pimg.done{transform:translate(0,0) rotate(calc(var(--rot)*1deg));animation:flt var(--du,6s) ease-in-out var(--dl,0s) infinite}
 .pimg svg{display:block;width:100%;height:auto;overflow:visible}
 
-@keyframes flt{0%,100%{transform:translate(0,0) rotate(calc(var(--rot)*1deg - 2deg))}50%{transform:translate(calc(var(--fx,6)*1px*var(--k,1)),calc(-12*var(--u))) rotate(calc(var(--rot)*1deg + 2deg))}}
+@keyframes flt{0%,100%{transform:translate(0,0) rotate(calc(var(--rot)*1deg - 2deg))}50%{transform:translate(calc(var(--fx,6)*1px*var(--k,1)),calc(-26*var(--u))) rotate(calc(var(--rot)*1deg + 3deg))}}
 .board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u))}
 [data-pz]{--p:0}
 
@@ -112,7 +112,6 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 
 <div class="band wh" style="--t:1480;--h:2220"></div>
 
-<!-- 修正されたheroボード（各ピースの接合部・凹凸の重なりを調整） -->
 <div class="board ab" data-pz="load" style="--l:49;--t:80;--bh:663">
   <div class="pz bu rtl interactive" style="--px:0;--py:0;--pw:798;--ph:226" data-d="798 68 22 g; 549.5 37.5 30 w">
     <div class="t h2t en lt" style="--l:2;--t:134">collect new pieces</div>
@@ -325,7 +324,7 @@ document.querySelectorAll(".pimg").forEach((el, n) => {
     }
   }
 
-  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw}" height="${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
+  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw} ${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
 });
 
 const rnd = i => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
