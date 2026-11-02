@@ -108,7 +108,8 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 <main id="top">
 <div class="navw en"><div class="nvname">小泉 彩香里 <span class="en">/ akari koizumi</span></div><nav class="nav" aria-label="ページ内リンク"><a href="#top">top</a><a href="#piece">piece</a><a href="#profile">profile</a></nav></div>
 
-<div class="band wh" style="--t:1480;--h:2160"></div>
+<!-- エピソード領域全体の白い背景（band.wh）の高さを伸ばし、緑の背景（t:3700）にきれいに接するように調整 -->
+<div class="band wh" style="--t:1480;--h:2220"></div>
 
 <div class="board ab" data-pz="load" style="--l:49;--t:80;--bh:663">
   <div class="pz bu rtl" style="--px:0;--py:0;--pw:798;--ph:226" data-d="549.5 37.5 61.5 w; 813 68 22 g">
@@ -148,7 +149,7 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 <p class="etx ab fade-hd" style="--l:98;--t:3472">数をこなすうちに、アレンジまでできるように。少し<br>ずつ「理想の表現」に近づけるようになりました。デ<br>ザインの場面でも、縫製によるプロトタイピングとい<br>う新たな選択肢が広がりました。</p>
 <div class="pimg" data-img="sewing" data-vb="754 3046 626 517" data-pd="M990.3 3107.7C989.5 3085.5 1006.9 3066.8 1029.1 3066.0C1051.4 3065.2 1070.0 3082.6 1070.8 3104.8C1071.2 3115.5 1067.4 3125.3 1060.9 3132.8L1355.2 3166.2C1358.0 3166.5 1359.9 3169.0 1359.6 3171.8L1342.3 3324.2C1334.8 3313.2 1321.9 3306.1 1307.5 3306.6C1285.3 3307.4 1267.9 3326.1 1268.7 3348.3C1269.5 3370.5 1288.2 3387.9 1310.4 3387.1C1320.5 3386.7 1329.5 3382.7 1336.4 3376.4L1320.6 3514.7C1320.3 3517.4 1317.9 3519.4 1315.1 3519.1L1187.6 3504.6C1186.5 3525.2 1169.9 3541.8 1148.9 3542.6C1126.6 3543.4 1108.0 3526.0 1107.2 3503.8C1107.1 3501.0 1107.3 3498.2 1107.7 3495.5L778.2 3458.0C775.5 3457.7 773.5 3455.2 773.8 3452.5L789.4 3315.2C794.4 3319.7 801.0 3322.4 808.3 3322.2C822.9 3321.7 834.3 3309.4 833.8 3294.8C833.3 3280.2 821.0 3268.8 806.4 3269.3C802.0 3269.5 797.8 3270.7 794.2 3272.8L812.8 3109.6C813.1 3106.8 815.6 3104.9 818.3 3105.2L995.1 3125.3C992.2 3120.0 990.6 3114.1 990.3 3107.7Z" style="--l:754;--t:3046;--w:626;--rot:0;--du:5.9s;--dl:-4s;--fx:5"></div>
 
-<!-- 電光掲示板（高さを短くし、エピソード03とスムーズに接続） -->
+<!-- 電光掲示板 -->
 <div class="band gn en" style="--t:3700;--h:180" aria-label="You are one of my new pieces !!"><div class="mq" aria-hidden="true"><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div></div></div>
 
 <h2 class="hd en ab fade-hd" id="profile" style="--l:103;--t:3985;color:var(--bl)">profile</h2>
@@ -375,7 +376,5 @@ document.querySelector('.nav a[href="#top"]').addEventListener("click", e => {
 addEventListener("scroll", upd, { passive: true });
 addEventListener("resize", () => { build(); upd(); });
 </script>
-<ElicitationsGroup>
-</ElicitationsGroup>
 </body>
 </html>
