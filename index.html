@@ -101,51 +101,135 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .cr{width:calc(1440*var(--u));text-align:center;color:#a3a3a3;font-size:calc(14*var(--u));line-height:calc(18*var(--u));font-weight:500;letter-spacing:.04em}
 
 @media(max-width:760px){
-:root{--u:min(calc(100vw / 430), 1.2px)}
-html{scroll-padding-top:70px;}
-main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px 48px}
-.ab,.pimg{position:static}
-.navw{top:0;left:0;margin:0;width:100%;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
-.nvname{position:static;font-size:16px;pointer-events:auto}
-.menu-btn{display:block}
-.nav{position:fixed;top:60px;left:0;width:100%;background:rgba(244, 244, 244, 0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);flex-direction:column;align-items:center;padding:24px 0;gap:16px;border-bottom:1px solid rgba(0,196,16,0.15);box-shadow:0 10px 30px rgba(0,0,0,0.06);transform:translateY(-120%);opacity:0;visibility:hidden;transition:all .4s cubic-bezier(0.16, 1, 0.3, 1);pointer-events:auto}
-.nav.open{transform:translateY(0);opacity:1;visibility:visible}
-.nav a{width:80%;max-width:280px;height:46px;font-size:15px;justify-content:center}
+  :root{--u:min(calc(100vw / 430), 1.2px)}
+  html{scroll-padding-top:70px;}
+  /* HTMLの記述順を活かし、自然なフロー（上から下）で並べる設定 */
+  main{display:flex;flex-direction:column;width:100%;height:auto;padding:84px 16px 48px;overflow-x:hidden;}
+  
+  .navw{top:0;left:0;margin:0;width:100%;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+  .nvname{position:static;font-size:16px;pointer-events:auto}
+  .menu-btn{display:block}
+  .nav{position:fixed;top:60px;left:0;width:100%;background:rgba(244, 244, 244, 0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);flex-direction:column;align-items:center;padding:24px 0;gap:16px;border-bottom:1px solid rgba(0,196,16,0.15);box-shadow:0 10px 30px rgba(0,0,0,0.06);transform:translateY(-120%);opacity:0;visibility:hidden;transition:all .4s cubic-bezier(0.16, 1, 0.3, 1);pointer-events:auto}
+  .nav.open{transform:translateY(0);opacity:1;visibility:visible}
+  .nav a{width:80%;max-width:280px;height:46px;font-size:15px;justify-content:center}
 
-/* スマホ版でもPC版と同様のパズル構造・アスペクト比を維持して綺麗に組み上げる設定 */
-.board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u));margin:24px auto}
-.board.ab{position:relative;left:auto;top:auto}
-.pz{position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));border-radius:calc(5*var(--u));padding:0}
-.bg{position:absolute;inset:0;border-radius:inherit;overflow:hidden;background:var(--col) center/cover no-repeat;pointer-events:none}
-.c{position:absolute;left:calc((var(--cx) - var(--rr))*var(--u));top:calc((var(--cy) - var(--rr))*var(--u));width:calc(var(--rr)*2*var(--u));height:calc(var(--rr)*2*var(--u));border-radius:50%;pointer-events:none}
-.c.k{z-index:5}
-.t{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));margin:0;white-space:nowrap}
-.pname{font-size:calc(36*var(--u));line-height:1.2;letter-spacing:.04em;font-weight:900}
-.pm{font-size:calc(14*var(--u));line-height:calc(30*var(--u));letter-spacing:.15em;font-weight:700}
-.lt{color:var(--gy)}
+  /* スマホ版でのホバーアニメーションを完全無効化 */
+  .pz.interactive:hover{transform:none;translate:0 0;rotate:0deg;scale:1}
 
-.c{display:block}
-.pz.x{display:block}
-.pz.bk{min-height:auto}
-.h2t{font-size:calc(65*var(--u));line-height:1.2;font-weight:900;letter-spacing:.005em}
-.lead{font-size:calc(36*var(--u));line-height:calc(58*var(--u));letter-spacing:.08em;font-weight:900}
-.etx{white-space:nowrap;font-size:calc(15*var(--u));line-height:calc(33*var(--u));letter-spacing:.14em;margin:0}
-.hd{font-size:calc(70*var(--u));margin:56px 0 16px;order:0}
-.num{font-size:calc(110*var(--u));margin-top:24px}
-.pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));margin:0;animation-duration:3.2s}
-.cr{width:auto;margin-top:48px;position:static;font-weight:500;order:10}
-.band.wh{display:none}
-.band.gn{position:relative;left:auto;margin:48px -16px;width:auto;height:calc(140*var(--u));order:4}
-.mq{font-size:calc(45*var(--u));line-height:1.2}.mq span{padding-right:80px}
-.intro{font-size:calc(24*var(--u));line-height:calc(56*var(--u));letter-spacing:.12em;white-space:nowrap;margin:32px 0}
+  /* ドキュメントフローに沿った配置に修正 */
+  .ab {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+  }
 
-/* スマホ版の順番調整 */
-#piece { order: 0; }
-.board.ab[data-pz="load"] { order: 1; }
-.intro { order: 2; }
-.band.gn { order: 4; }
-#profile { order: 5; }
-.board.ab:not([data-pz="load"]) { order: 6; }
+  /* 
+   スマホ版でもPC版と同様のパズル構造・アスペクト比を維持しつつ、
+   画面幅に合わせてパズル全体を綺麗に縮小する設定 
+  */
+  .board {
+    --board-w: 1342; /* PC版Heroパズルの総横幅 */
+    --pz-u: calc(min(100vw - 32px, 500px) / var(--board-w)); /* 画面幅ベースのスケール単位 */
+    position: relative !important;
+    isolation: isolate;
+    width: calc(var(--board-w) * var(--pz-u)) !important;
+    height: calc(var(--bh) * var(--pz-u)) !important;
+    margin: 24px auto 32px !important;
+    left: auto !important;
+    top: auto !important;
+  }
+
+  /* パズルピースの座標とサイズを --pz-u でスケーリング */
+  .pz {
+    position: absolute !important;
+    left: calc(var(--px) * var(--pz-u)) !important;
+    top: calc(var(--py) * var(--pz-u)) !important;
+    width: calc(var(--pw) * var(--pz-u)) !important;
+    height: calc(var(--ph) * var(--pz-u)) !important;
+    border-radius: calc(12 * var(--pz-u)) !important;
+    padding: 0;
+  }
+  .bg { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; background: var(--col) center/cover no-repeat; pointer-events: none; }
+  .c {
+    position: absolute !important;
+    left: calc((var(--cx) - var(--rr)) * var(--pz-u)) !important;
+    top: calc((var(--cy) - var(--rr)) * var(--pz-u)) !important;
+    width: calc(var(--rr) * 2 * var(--pz-u)) !important;
+    height: calc(var(--rr) * 2 * var(--pz-u)) !important;
+    border-radius: 50%;
+    pointer-events: none;
+    display: block;
+  }
+  .c.k { z-index: 5; }
+  .pz.x { display: block; }
+  .pz.bk { min-height: auto; }
+
+  /* テキストの座標も --pz-u でスケーリング */
+  .t {
+    position: absolute !important;
+    left: calc(var(--l) * var(--pz-u)) !important;
+    top: calc(var(--t) * var(--pz-u)) !important;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  /* 
+   Heroパズル内のテキストサイズと位置の最適化 
+   (画像に合わせて文字を大きく見せる)
+  */
+  .board[data-pz="load"] .h2t {
+    font-size: calc(100 * var(--pz-u)) !important;
+    line-height: 1.1;
+    left: calc(24 * var(--pz-u)) !important;
+    top: calc(85 * var(--pz-u)) !important;
+  }
+  .board[data-pz="load"] .lead {
+    font-size: calc(48 * var(--pz-u)) !important;
+    line-height: 1.6;
+    left: calc(48 * var(--pz-u)) !important;
+    top: calc(150 * var(--pz-u)) !important;
+  }
+
+  /* Profileパズル内のテキスト最適化 */
+  .board:not([data-pz="load"]) .pname {
+    font-size: calc(52 * var(--pz-u)) !important;
+    left: calc(40 * var(--pz-u)) !important;
+    top: calc(70 * var(--pz-u)) !important;
+  }
+  .board:not([data-pz="load"]) .pname + .lt {
+    font-size: calc(22 * var(--pz-u)) !important;
+    left: calc(40 * var(--pz-u)) !important;
+    top: calc(150 * var(--pz-u)) !important;
+  }
+  .board:not([data-pz="load"]) .pm {
+    font-size: calc(26 * var(--pz-u)) !important;
+    line-height: 1.6;
+    left: calc(32 * var(--pz-u)) !important;
+    top: calc(64 * var(--pz-u)) !important;
+  }
+  .lt { color: var(--gy); }
+
+  /* エピソード等のマージンとサイズ調整 */
+  .intro { font-size: calc(18 * var(--u)); line-height: calc(36 * var(--u)); letter-spacing: .12em; white-space: normal; margin: 32px 0; }
+  .hd { font-size: calc(60 * var(--u)); margin: 48px 0 16px; }
+  .num { font-size: calc(90 * var(--u)); margin: 24px 0 8px; }
+  .etx { white-space: normal; font-size: calc(15 * var(--u)); line-height: 1.8; letter-spacing: .14em; margin: 8px 0; width: 100%; }
+  
+  .pimg {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    margin: 24px 0 48px !important;
+    animation-duration: 3.2s;
+  }
+  .pimg svg { width: 100%; height: auto; }
+  
+  .band.wh { display: none; }
+  .band.gn { position: relative !important; left: auto !important; margin: 48px -16px; width: 100vw; height: calc(100 * var(--u)); }
+  .mq { font-size: calc(36 * var(--u)); line-height: 1.2; }
+  .mq span { padding-right: 40px; }
+  .cr { width: auto; margin-top: 48px; position: relative !important; font-weight: 500; text-align: center; }
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
