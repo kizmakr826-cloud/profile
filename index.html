@@ -108,9 +108,9 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 <main id="top">
 <div class="navw en"><div class="nvname">小泉 彩香里 <span class="en">/ akari koizumi</span></div><nav class="nav" aria-label="ページ内リンク"><a href="#top">top</a><a href="#piece">piece</a><a href="#profile">profile</a></nav></div>
 
-<!-- 白の背景（.band.wh）の高さを伸ばし、下の電光掲示板（--t:3756）の位置まで接するように変更 -->
-<div class="band wh" style="--t:1480;--h:2276"></div>
+<div class="band wh" style="--t:1480;--h:2261"></div>
 
+<!-- heroボード全体の上の位置を上に詰めて調整 -->
 <div class="board ab" data-pz="load" style="--l:49;--t:80;--bh:663">
   <div class="pz bu rtl" style="--px:0;--py:0;--pw:798;--ph:226" data-d="549.5 37.5 61.5 w; 813 68 22 g">
     <div class="t h2t en lt" style="--l:2;--t:134">collect new pieces</div>
@@ -124,6 +124,7 @@ main{width:auto;height:auto;padding:70px 16px 48px}
   <div class="pz bu x" style="--px:0;--py:448;--pw:227;--ph:215" data-d="59 27 46 g; 113 184 61 o; 212 157 22 o" data-k="150 -13 22 b; 245 98 29 b"></div>
 </div>
 
+<!-- イントロ部分の位置も連動して上に調整 -->
 <p class="intro ab fade-hd" style="--l:312;--t:934">こんにちは<br>小泉彩香里です。<br>私の強みは<br>新しいピースを集め続け<br>やりたい！へ向かっていくこと。<br>ここではそのピースをいくつかご紹介します。</p>
 
 <h2 class="hd en ab fade-hd" id="piece" style="--l:100;--t:1556;color:var(--or)">piece</h2>
@@ -359,7 +360,7 @@ const upd = () => {
 const hero = boards[0];
 const startHero = () => {
   if (reduce) { setP(hero.c, 1); return; }
-  let t0; hero.c.classList.0 = hero.c.classList.0 ?? 0; hero.c.classList.remove("snap"); setP(hero.c, 0);
+  let t0; hero.c.classList.remove("snap"); setP(hero.c, 0);
   const f = ts => { t0 = t0 ?? ts; const q = Math.min(1, Math.max(0, (ts - t0 - 150) / 950)); setP(hero.c, ease(q)); if (q < 1) requestAnimationFrame(f); else hero.c.classList.add("snap"); };
   requestAnimationFrame(f);
 };
