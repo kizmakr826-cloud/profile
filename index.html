@@ -103,13 +103,12 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
   main{display:flex;flex-direction:column;width:100%;height:auto;padding:84px 16px 48px;overflow-x:hidden;}
   
   .navw{top:0;left:0;margin:0;width:100%;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(244, 244, 244, 0.9);}
-  .nvname{position:static;font-size:16px;pointer-events:auto}
+  .nvname{position:static;font-size:15px;pointer-events:auto}
   .menu-btn{display:block}
   .nav{position:fixed;top:60px;left:0;width:100%;background:rgba(244, 244, 244, 0.98);flex-direction:column;align-items:center;padding:24px 0;gap:16px;border-bottom:1px solid rgba(0,196,16,0.15);box-shadow:0 10px 30px rgba(0,0,0,0.06);transform:translateY(-120%);opacity:0;visibility:hidden;transition:all .3s ease;pointer-events:auto}
   .nav.open{transform:translateY(0);opacity:1;visibility:visible}
-  .nav a{width:80%;max-width:280px;height:46px;font-size:15px;justify-content:center}
+  .nav a{width:80%;max-width:280px;height:42px;font-size:14px;justify-content:center}
 
-  /* スマホ版ではアニメーション・トランジションを必要最小限にして軽量化 */
   .pz.interactive:hover{transform:none;translate:0 0;rotate:0deg;scale:1}
   .pimg, .pz, .fade-hd {
     transition: none !important;
@@ -168,56 +167,58 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
     white-space: nowrap;
   }
 
+  /* スマホ版のパズル内文字サイズを小さく調整 */
   .board[data-pz="load"] .h2t {
-    font-size: calc(100 * var(--pz-u)) !important;
+    font-size: calc(85 * var(--pz-u)) !important;
     line-height: 1.1;
     left: calc(24 * var(--pz-u)) !important;
-    top: calc(85 * var(--pz-u)) !important;
+    top: calc(95 * var(--pz-u)) !important;
   }
   .board[data-pz="load"] .lead {
-    font-size: calc(48 * var(--pz-u)) !important;
+    font-size: calc(38 * var(--pz-u)) !important;
     line-height: 1.6;
-    left: calc(48 * var(--pz-u)) !important;
-    top: calc(150 * var(--pz-u)) !important;
+    left: calc(44 * var(--pz-u)) !important;
+    top: calc(155 * var(--pz-u)) !important;
   }
 
   .board:not([data-pz="load"]) .pname {
-    font-size: calc(52 * var(--pz-u)) !important;
-    left: calc(40 * var(--pz-u)) !important;
-    top: calc(70 * var(--pz-u)) !important;
+    font-size: calc(42 * var(--pz-u)) !important;
+    left: calc(36 * var(--pz-u)) !important;
+    top: calc(75 * var(--pz-u)) !important;
   }
   .board:not([data-pz="load"]) .pname + .lt {
-    font-size: calc(22 * var(--pz-u)) !important;
-    left: calc(40 * var(--pz-u)) !important;
+    font-size: calc(19 * var(--pz-u)) !important;
+    left: calc(36 * var(--pz-u)) !important;
     top: calc(150 * var(--pz-u)) !important;
   }
   .board:not([data-pz="load"]) .pm {
-    font-size: calc(26 * var(--pz-u)) !important;
+    font-size: calc(22 * var(--pz-u)) !important;
     line-height: 1.6;
     left: calc(32 * var(--pz-u)) !important;
     top: calc(64 * var(--pz-u)) !important;
   }
   .lt { color: var(--gy); }
 
-  .intro { font-size: calc(18 * var(--u)); line-height: calc(36 * var(--u)); letter-spacing: .12em; white-space: normal; margin: 32px 0; }
-  .hd { font-size: calc(60 * var(--u)); margin: 48px 0 16px; }
-  .num { font-size: calc(90 * var(--u)); margin: 24px 0 8px; }
-  .etx { white-space: normal; font-size: calc(15 * var(--u)); line-height: 1.8; letter-spacing: .14em; margin: 8px 0; width: 100%; }
+  /* スマホ版のテキスト全般のサイズを小さく調整 */
+  .intro { font-size: 15px; line-height: 2.0; letter-spacing: .1em; white-space: normal; margin: 24px 0; }
+  .hd { font-size: 32px; margin: 40px 0 12px; }
+  .num { font-size: 72px; margin: 20px 0 6px; }
+  .etx { white-space: normal; font-size: 13.5px; line-height: 1.85; letter-spacing: .1em; margin: 6px 0; width: 100%; color: #333; }
   
   .pimg {
     position: relative !important;
     left: auto !important;
     top: auto !important;
     width: 100% !important;
-    margin: 24px 0 48px !important;
+    margin: 20px 0 36px !important;
   }
   .pimg svg { width: 100%; height: auto; }
   
   .band.wh { display: none; }
-  .band.gn { position: relative !important; left: auto !important; margin: 48px -16px; width: 100vw; height: calc(100 * var(--u)); }
-  .mq { font-size: calc(36 * var(--u)); line-height: 1.2; }
-  .mq span { padding-right: 40px; }
-  .cr { width: auto; margin-top: 48px; position: relative !important; font-weight: 500; text-align: center; }
+  .band.gn { position: relative !important; left: auto !important; margin: 36px -16px; width: 100vw; height: 60px; }
+  .mq { font-size: 26px; line-height: 1.2; }
+  .mq span { padding-right: 30px; }
+  .cr { width: auto; margin-top: 36px; position: relative !important; font-size: 12px; font-weight: 500; text-align: center; }
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
