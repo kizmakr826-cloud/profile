@@ -60,7 +60,7 @@ transition: transform 0.3s ease;
 .num{font-size:calc(124*var(--u));line-height:1;font-weight:900;color:var(--or)}
 .etx{font-size:calc(17*var(--u));line-height:calc(36.8*var(--u));letter-spacing:.17em;color:#000;white-space:nowrap;font-weight:700}
 
-.pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.2),1);transform:translate(calc((1 - var(--pp))*80px), calc((1 - var(--pp))*25px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*5deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.4s ease;pointer-events:none}
+.pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);transform:translate(calc((1 - var(--pp))*120px), calc((1 - var(--pp))*40px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*8deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.6s ease;pointer-events:none}
 .pimg.done{transform:translate(0,0) rotate(calc(var(--rot)*1deg));animation:flt var(--du,3.2s) ease-in-out var(--dl,0s) infinite}
 .pimg svg{display:block;width:100%;height:auto;overflow:visible}
 
@@ -68,18 +68,18 @@ transition: transform 0.3s ease;
 .board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u))}
 [data-pz]{--p:0}
 
-.pz{--pp:clamp(0,calc(var(--p)*2.2 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.01));opacity:clamp(0,calc(var(--pp)*2),1);transition:translate 0.5s cubic-bezier(0.16, 1, 0.3, 1),rotate 0.5s cubic-bezier(0.16, 1, 0.3, 1),scale 0.5s cubic-bezier(0.16, 1, 0.3, 1)}
+.pz{--pp:clamp(0,calc(var(--p)*1.5 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.02));opacity:clamp(0,calc(var(--pp)*2),1);transition:translate 0.8s cubic-bezier(0.16, 1, 0.3, 1),rotate 0.8s cubic-bezier(0.16, 1, 0.3, 1),scale 0.8s cubic-bezier(0.16, 1, 0.3, 1)}
 .done .pz{transform:none;opacity:1}
 
 .pz.interactive:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-3)*var(--u));rotate:var(--ha,-0.5deg);scale:1.008;transition:translate 0.3s cubic-bezier(0.16, 1, 0.3, 1),rotate 0.3s cubic-bezier(0.16, 1, 0.3, 1),scale 0.3s cubic-bezier(0.16, 1, 0.3, 1)}
 
-[data-pz="load"].snap .pz{animation:heroPita 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.1s)}
-[data-pz]:not([data-pz="load"]).snap .pz{animation:pita 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.12s)}
+[data-pz="load"].snap .pz{animation:heroPita 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.15s)}
+[data-pz]:not([data-pz="load"]).snap .pz{animation:pita 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.2s)}
 
-@keyframes heroPita{0%{scale:1.015;translate:0 -1px}100%{scale:1;translate:0 0}}
-@keyframes pita{0%{scale:1.01}100%{scale:1}}
+@keyframes heroPita{0%{scale:1.025;translate:0 -1px}100%{scale:1;translate:0 0}}
+@keyframes pita{0%{scale:1.015}100%{scale:1}}
 
-.fade-hd{--p:0;--pp:clamp(0,calc(var(--p)*2.0),1);opacity:clamp(0,calc(var(--pp)*2),1);transform:translateY(calc((1 - var(--pp))*10px));transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.4s ease;}
+.fade-hd{--p:0;--pp:clamp(0,calc(var(--p)*1.4),1);opacity:clamp(0,calc(var(--pp)*2),1);transform:translateY(calc((1 - var(--pp))*16px));transition:transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.6s ease;}
 .fade-hd.done{transform:none;opacity:1}
 
 .og{--col:var(--or)}.bu{--col:var(--bl)}.pb{--col:var(--pb)}.gy{--col:var(--gy)}.bk{--col:#000}
@@ -484,10 +484,10 @@ const build = () => {
     items.forEach((a, i) => {
       const r = a.getBoundingClientRect(), cx = r.left + r.width / 2 - (cr.left + cr.width / 2);
       const side = cx < -20 ? -1 : cx > 20 ? 1 : (i % 2 ? 1 : -1);
-      a.style.setProperty("--x", side * Math.min(30 + rnd(seed++) * 50, vw * .1) + "px");
-      a.style.setProperty("--y", ((rnd(seed++) - .5) * 50 + (load ? -20 : 0)) + "px");
-      a.style.setProperty("--r", ((rnd(seed++) - .5) * 5).toFixed(1) + "deg");
-      a.style.setProperty("--d", (i * .15 / items.length).toFixed(2));
+      a.style.setProperty("--x", side * Math.min(50 + rnd(seed++) * 80, vw * .15) + "px");
+      a.style.setProperty("--y", ((rnd(seed++) - .5) * 80 + (load ? -40 : 0)) + "px");
+      a.style.setProperty("--r", ((rnd(seed++) - .5) * 8).toFixed(1) + "deg");
+      a.style.setProperty("--d", (i * .3 / items.length).toFixed(2));
     });
   });
 };
@@ -499,7 +499,7 @@ const upd = () => {
   boards.forEach(({ c, load }) => {
     if (load) return;
     const r = c.getBoundingClientRect();
-    const p = reduce ? 1 : ease(Math.min(1, Math.max(0, (vh * 1.15 - r.top) / (vh * 0.18))));
+    const p = reduce ? 1 : ease(Math.min(1, Math.max(0, (vh * 0.98 - r.top) / (vh * 0.35))));
     setP(c, p);
     if (p >= .999) c.classList.add("snap"); else if (p < .9) c.classList.remove("snap");
   });
@@ -507,7 +507,7 @@ const upd = () => {
   fadeHds.forEach(el => {
     if (reduce) { el.style.setProperty("--p", "1"); el.classList.add("done"); return; }
     const r = el.getBoundingClientRect();
-    const p = ease(Math.min(1, Math.max(0, (vh * 1.15 - r.top) / (vh * 0.18))));
+    const p = ease(Math.min(1, Math.max(0, (vh * 0.98 - r.top) / (vh * 0.35))));
     el.style.setProperty("--p", p.toFixed(3));
     el.classList.toggle("done", p >= .999);
   });
@@ -515,7 +515,7 @@ const upd = () => {
   pimgs.forEach(el => {
     if (reduce) { el.style.setProperty("--p", "1"); el.classList.add("done"); return; }
     const r = el.getBoundingClientRect();
-    const p = ease(Math.min(1, Math.max(0, (vh * 1.15 - r.top) / (vh * 0.18))));
+    const p = ease(Math.min(1, Math.max(0, (vh * 0.98 - r.top) / (vh * 0.35))));
     el.style.setProperty("--p", p.toFixed(3));
     el.classList.toggle("done", p >= .999);
   });
@@ -524,7 +524,7 @@ const hero = boards[0];
 const startHero = () => {
   if (reduce) { setP(hero.c, 1); return; }
   let t0; hero.c.classList.remove("snap"); setP(hero.c, 0);
-  const f = ts => { t0 = t0 ?? ts; const q = Math.min(1, Math.max(0, (ts - t0 - 50) / 400)); setP(hero.c, ease(q)); if (q < 1) requestAnimationFrame(f); else hero.c.classList.add("snap"); };
+  const f = ts => { t0 = t0 ?? ts; const q = Math.min(1, Math.max(0, (ts - t0 - 100) / 600)); setP(hero.c, ease(q)); if (q < 1) requestAnimationFrame(f); else hero.c.classList.add("snap"); };
   requestAnimationFrame(f);
 };
 build(); upd(); startHero();
