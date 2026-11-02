@@ -12,12 +12,21 @@
 *,*::before,*::after{box-sizing:inherit;cursor:var(--cur)}
 html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:calc(120*var(--u))}
 body{margin:0;background:var(--bg);overflow-x:hidden;font-family:"Zen Kaku Gothic New","Yu Gothic",sans-serif;font-weight:700}
-main{position:relative;width:calc(1440*var(--u));height:calc(4142*var(--u));margin:0 auto}
+main{position:relative;width:calc(1440*var(--u));height:calc(4920*var(--u));margin:0 auto}
 .ab{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));margin:0}
-.navw{position:fixed;top:calc(65*var(--u));left:50%;width:calc(1440*var(--u));margin-left:calc(-720*var(--u));height:0;z-index:100;pointer-events:none}
-.nav{position:absolute;right:calc(49*var(--u));top:0;display:flex;gap:calc(20*var(--u));pointer-events:auto}
-.nav a{display:grid;place-items:center;height:calc(41*var(--u));padding:0 calc(25*var(--u));border-radius:99px;background:#fff;color:var(--gr);font-size:calc(17*var(--u));font-weight:900;text-decoration:none;transition:translate .3s cubic-bezier(.3,1.6,.5,1),background .2s,color .2s}
-.nav a:hover,.nav a:focus-visible{translate:0 calc(-5*var(--u));background:var(--gr);color:#fff}
+.navw{position:fixed;top:calc(38*var(--u));left:50%;width:calc(1440*var(--u));margin-left:calc(-720*var(--u));height:0;z-index:100;pointer-events:none;transition:opacity .6s cubic-bezier(0.16, 1, 0.3, 1),translate .8s cubic-bezier(.16,1,.3,1)}
+.navw:not(.show){opacity:0;visibility:hidden;translate:0 calc(-20*var(--u))}
+.nvname{position:absolute;left:calc(49*var(--u));top:calc(6*var(--u));line-height:calc(41*var(--u));font-size:calc(19*var(--u));font-weight:900;letter-spacing:.04em;color:var(--gr);white-space:nowrap}
+.nav{position:absolute;right:calc(49*var(--u));top:0;display:flex;gap:calc(19*var(--u));pointer-events:auto}
+.nav a{display:grid;place-items:center;height:calc(41*var(--u));padding:0 calc(25*var(--u));border-radius:99px;background:var(--gr);color:#fff;font-size:calc(17*var(--u));font-weight:900;text-decoration:none;transition:translate .3s cubic-bezier(.3,1.6,.5,1),background .2s,color .2s,box-shadow .2s}
+.nav a:hover,.nav a:focus-visible{translate:0 calc(-4*var(--u));background:#fff;color:var(--gr);box-shadow:0 8px 20px rgba(0,196,16,0.15)}
+.band{position:absolute;left:50%;margin-left:-50vw;width:100vw;top:calc(var(--t)*var(--u));height:calc(var(--h)*var(--u))}
+.band.wh{background:#fff}
+.band.gn{background:var(--gr);overflow:hidden;display:flex;align-items:center}
+.mq{display:flex;flex:none;width:max-content;color:#fff;font-size:calc(70.8*var(--u));line-height:calc(90*var(--u));font-weight:900;white-space:nowrap;animation:mq 30s linear infinite}
+.mq span{padding-right:calc(150*var(--u))}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.intro{margin:0;font-size:calc(28*var(--u));line-height:calc(67*var(--u));letter-spacing:.12em;color:var(--or);font-weight:900;white-space:nowrap}
 .board.ab{position:absolute;margin:0}
 .en{font-family:"Outfit","Poppins",sans-serif;font-weight:800}
 .hd{margin:0;font-size:calc(80*var(--u));line-height:1;font-weight:900;white-space:nowrap}
@@ -25,28 +34,28 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4142*var(--u));marg
 .etx{font-size:calc(17*var(--u));line-height:calc(36.8*var(--u));letter-spacing:.17em;color:#000;white-space:nowrap;font-weight:700}
 
 /* 画像ピース */
-.pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);transform:translate(calc((1 - var(--pp))*350px), calc((1 - var(--pp))*120px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*20deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.8s ease;pointer-events:none}
+.pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);transform:translate(calc((1 - var(--pp))*300px), calc((1 - var(--pp))*100px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*15deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.9s ease;pointer-events:none}
 .pimg.done{transform:translate(0,0) rotate(calc(var(--rot)*1deg));animation:flt var(--du,6s) ease-in-out var(--dl,0s) infinite}
 .pimg svg{display:block;width:100%;height:auto;overflow:visible}
 
-@keyframes flt{0%,100%{transform:translate(0,0) rotate(calc(var(--rot)*1deg - 2deg))}50%{transform:translate(calc(var(--fx,6)*1px*var(--k,1)),calc(-14*var(--u))) rotate(calc(var(--rot)*1deg + 2deg))}}
+@keyframes flt{0%,100%{transform:translate(0,0) rotate(calc(var(--rot)*1deg - 2deg))}50%{transform:translate(calc(var(--fx,6)*1px*var(--k,1)),calc(-12*var(--u))) rotate(calc(var(--rot)*1deg + 2deg))}}
 .board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u))}
 [data-pz]{--p:0}
 
 /* パズルピース全体（heroボード含む） */
-.pz{--pp:clamp(0,calc(var(--p)*1.1 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.03));opacity:clamp(0,calc(var(--pp)*2),1);transition:translate 1.2s cubic-bezier(0.16, 1, 0.3, 1),rotate 1.2s cubic-bezier(0.16, 1, 0.3, 1),scale 1.2s cubic-bezier(0.16, 1, 0.3, 1)}
+.pz{--pp:clamp(0,calc(var(--p)*1.1 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.02));opacity:clamp(0,calc(var(--pp)*2),1);transition:translate 1.4s cubic-bezier(0.16, 1, 0.3, 1),rotate 1.4s cubic-bezier(0.16, 1, 0.3, 1),scale 1.4s cubic-bezier(0.16, 1, 0.3, 1)}
 .done .pz{transform:none;opacity:1}
-.pz:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-4)*var(--u));rotate:var(--ha,-1deg);scale:1.01}
+.pz:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-3)*var(--u));rotate:var(--ha,-0.5deg);scale:1.008;transition:translate 0.3s cubic-bezier(0.16, 1, 0.3, 1),rotate 0.3s cubic-bezier(0.16, 1, 0.3, 1),scale 0.3s cubic-bezier(0.16, 1, 0.3, 1)}
 
-/* heroロード時専用のピタッと止まるスナップアニメーション（キュッと収まる動き） */
-[data-pz="load"].snap .pz{animation:heroPita 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;animation-delay:calc(var(--d,0)*.25s)}
-[data-pz]:not([data-pz="load"]).snap .pz{animation:pita 1.0s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.4s)}
+/* heroロード時専用のスナップアニメーション */
+[data-pz="load"].snap .pz{animation:heroPita 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.2s)}
+[data-pz]:not([data-pz="load"]).snap .pz{animation:pita 1.0s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.35s)}
 
-@keyframes heroPita{0%{scale:1.04;translate:0 -2px}70%{scale:0.99;translate:0 1px}100%{scale:1;translate:0 0}}
-@keyframes pita{0%{scale:1.02}100%{scale:1}}
+@keyframes heroPita{0%{scale:1.025;translate:0 -1px}100%{scale:1;translate:0 0}}
+@keyframes pita{0%{scale:1.015}100%{scale:1}}
 
 /* テキスト等のフェードイン・スライドアップ */
-.fade-hd{--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);opacity:clamp(0,calc(var(--pp)*2),1);transform:translateY(calc((1 - var(--pp))*30px));transition:transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.8s ease;}
+.fade-hd{--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);opacity:clamp(0,calc(var(--pp)*2),1);transform:translateY(calc((1 - var(--pp))*24px));transition:transform 1.3s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.9s ease;}
 .fade-hd.done{transform:none;opacity:1}
 
 .og{--col:var(--or)}.bu{--col:var(--bl)}.pb{--col:var(--pb)}.gy{--col:var(--gy)}.bk{--col:#000}
@@ -60,16 +69,15 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4142*var(--u));marg
 .nm{font-size:calc(20*var(--u));line-height:1.3;letter-spacing:.12em;font-weight:900}
 .sm{font-size:calc(11*var(--u));line-height:1.3}
 .chip{height:calc(29*var(--u));width:calc(var(--w)*var(--u));border-radius:99px;display:grid;place-items:center;font-size:calc(12*var(--u));letter-spacing:.02em}
-.h2t{font-size:calc(70.5*var(--u));line-height:1.2;font-weight:900;letter-spacing:.005em}
+.h2t{font-size:calc(81.5*var(--u));line-height:1.2;font-weight:900;letter-spacing:.005em}
 .nm2{font-size:calc(28*var(--u));line-height:1.3;font-weight:900;letter-spacing:.04em}
 .chip.sc{height:calc(22*var(--u));font-size:calc(9.5*var(--u));font-weight:900}
 .tx2{font-size:calc(10.5*var(--u));line-height:calc(17.5*var(--u));letter-spacing:.06em}
-.lead{font-size:calc(24.4*var(--u));line-height:calc(40*var(--u));letter-spacing:.18em;font-weight:900}
+.lead{font-size:calc(44*var(--u));line-height:calc(69*var(--u));letter-spacing:.08em;font-weight:900}
 .tx{font-size:calc(14*var(--u));line-height:calc(25*var(--u));letter-spacing:.14em}
 .s{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));height:calc(var(--h)*var(--u));border-radius:calc(24*var(--u));background:#000 center/cover no-repeat}
 .pname{font-size:calc(46*var(--u));line-height:1.2;letter-spacing:.04em;font-weight:900}
 .pm{font-size:calc(17*var(--u));line-height:calc(35.5*var(--u));letter-spacing:.2em;font-weight:700}
-.clos{width:calc(1440*var(--u));text-align:center;color:var(--gr);font-size:calc(70.8*var(--u));line-height:calc(90*var(--u));font-weight:900;white-space:nowrap}
 .cr{width:calc(1440*var(--u));text-align:center;color:#a3a3a3;font-size:calc(14*var(--u));line-height:calc(18*var(--u));font-weight:700;letter-spacing:.04em}
 
 @media(max-width:760px){
@@ -88,7 +96,9 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 .pm{font-size:15px;line-height:1.9;letter-spacing:.08em}
 .hd{font-size:48px;margin:56px 0 12px}.num{font-size:72px;margin-top:28px}
 .pimg{width:100%;margin:16px 0;animation-duration:6s;transform:none!important}
-.clos{width:auto;font-size:30px;line-height:1.3;margin:48px 0 0;white-space:normal}.cr{width:auto;margin-top:16px}
+.board.ab{position:relative;left:auto;top:auto}.cr{width:auto;margin-top:32px;position:static}
+.band.wh{display:none}.band.gn{position:relative;left:auto;margin:32px -16px;width:auto;height:120px}.mq{font-size:34px;line-height:1.3}.mq span{padding-right:60px}
+.intro{font-size:18px;line-height:2.2;letter-spacing:.08em;white-space:normal;margin:24px 0}.nvname{display:none}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -96,44 +106,50 @@ main{width:auto;height:auto;padding:84px 16px 48px}
 </head>
 <body>
 <main id="top">
-<div class="navw en"><nav class="nav" aria-label="ページ内リンク"><a href="#top">top</a><a href="#episode">episode</a><a href="#profile">profile</a></nav></div>
+<div class="navw en"><div class="nvname">小泉 彩香里 <span class="en">/ akari koizumi</span></div><nav class="nav" aria-label="ページ内リンク"><a href="#top">top</a><a href="#piece">piece</a><a href="#profile">profile</a></nav></div>
 
-<div class="board ab" data-pz="load" style="--l:49;--t:148;--bh:662">
-  <div class="pz bu rtl" style="--px:0;--py:0;--pw:664;--ph:203" data-d="588 13 22 w" data-k="172 -15 31.5 b">
-    <div class="t nm2 lt" style="--l:53;--t:86">小泉 彩香里 <span class="en">/ akari koizumi</span></div>
+<div class="band wh" style="--t:1545;--h:2261"></div>
+
+<div class="board ab" data-pz="load" style="--l:49;--t:130;--bh:663">
+  <div class="pz bu rtl" style="--px:0;--py:0;--pw:798;--ph:226" data-d="549.5 37.5 61.5 w; 813 68 22 g" data-k="166 -10 22 b">
+    <div class="t h2t en lt" style="--l:2;--t:134">collect new pieces</div>
   </div>
-  <div class="pz gy x" style="--px:664;--py:0;--pw:343;--ph:203" data-d="252 37 70.5 b" data-k="358 135 35 g"></div>
-  <div class="pz bk rbr" style="--px:1007;--py:0;--pw:335;--ph:662" data-img="hero" data-d="229 14 26 w" data-k="-12 307 24 k"></div>
-  <div class="pz og" style="--px:227;--py:202;--pw:780;--ph:460" data-k="177 0 23 o; 527 -23 44 o; 802 289 33 o">
-    <div class="t h2t en lt" style="--l:47;--t:145">collect new pieces</div>
-    <div class="t lead lt" style="--l:47;--t:265">新しいピースを集め続け<br>やりたい！へ向かっていく</div>
+  <div class="pz gy x" style="--px:798;--py:1;--pw:209;--ph:223" data-d="118.5 38.5 70.5 b" data-k="224 136 35 g"></div>
+  <div class="pz bk rbr" style="--px:1007;--py:1;--pw:335;--ph:662" data-img="hero" data-d="229.5 13.5 26 w" data-k="-25.5 559.5 43.5 k"></div>
+  <div class="pz og" style="--px:227;--py:224;--pw:780;--ph:439" data-k="177 0 23 o; 645.5 -19.5 43.5 o; 798 116 33 o; 678 448 23 o" data-d="216.5 398.5 62.5 w">
+    <div class="t lead lt" style="--l:36;--t:110">新しいピースを集め続け<br>やりたい！へ向かっていく</div>
   </div>
-  <div class="pz gy x" style="--px:0;--py:202;--pw:227;--ph:198" data-d="101 53 84 b; 157 82 44 o"></div>
-  <div class="pz bu x" style="--px:0;--py:400;--pw:227;--ph:262" data-d="59 27 46 g; 90 207 84 o; 182 251 22 w" data-k="135 -10 22 b; 238 201 22 b"></div>
+  <div class="pz gy x" style="--px:0;--py:224;--pw:227;--ph:224" data-d="101 78 84 b; 157 81.5 43.5 o"></div>
+  <div class="pz bu x" style="--px:0;--py:448;--pw:227;--ph:215" data-d="59 27 46 g; 113 184 61 o; 212 157 22 o" data-k="150 -13 22 b; 245 98 29 b"></div>
 </div>
 
-<h2 class="hd en ab fade-hd" id="episode" style="--l:100;--t:1005;color:var(--or)">episode</h2>
+<p class="intro ab fade-hd" style="--l:312;--t:984">こんにちは<br>小泉彩香里です。<br>私の強みは<br>新しいピースを集め続け<br>やりたい！へ向かっていくこと。<br>ここではそのピースをいくつかご紹介します。</p>
 
-<!-- Episode 01 -->
-<div class="num en ab fade-hd" style="--l:98;--t:1124">01</div>
-<p class="etx ab fade-hd" style="--l:98;--t:1271">卒業研究で、映像と記憶のデザインをテーマに、新たなアーカ<br>イブ体験の方法を模索したどり着いた、ここで見つけたピース<br>は「インタラクティブな表現」。けれど、そんなもの作ったこ<br>とはない…AIに聞きながらTouchDesignerを独学しました。</p>
-<p class="etx ab fade-hd" style="--l:98;--t:1456">より能動的な体験が自身の手で実装可能になり、定性的な体験<br>価値を作り出すことができました。</p>
-<div class="pimg" data-img="design" data-shape="570 400 8 0.58,k 0.78,k 0.60,h 0.62,h" style="--l:720;--t:1099;--w:734;--rot:8;--du:5.6s;--dl:0s;--fx:7"></div>
+<h2 class="hd en ab fade-hd" id="piece" style="--l:100;--t:1606;color:var(--or)">piece</h2>
 
-<!-- Episode 02 -->
-<div class="num en ab fade-hd" style="--l:98;--t:1766">02</div>
-<p class="etx ab fade-hd" style="--l:98;--t:1911">高校の部活でカメラを始めたことをきっかけに、カメラの可<br>能性に惹かれるように。音楽も好きな私がここで見つけた<br>ピースは「バンドのライブ撮影やMV制作」。全くの未経験<br>だけれど、実践あるのみ！ライブハウスでバンドマンたちに<br>「カメラをやっていて、作品をぜひ見ていただいて良ければ<br>撮らせてください」声をかけました。</p>
-<p class="etx ab fade-hd" style="--l:98;--t:2169">今では、10組以上のバンドの撮影やクリエイティブを担当す<br>るまでになり、デザイナー以外のクリエイターと一緒に作る<br>楽しさも知りました。</p>
-<div class="pimg" data-img="camera" data-shape="560 410 -11 0.62,k 0.52,h 0.45,h 0.80,k" style="--l:699;--t:1756;--w:724;--rot:-11;--du:6.3s;--dl:-2s;--fx:-6"></div>
+<!-- 01 -->
+<div class="num en ab fade-hd" style="--l:98;--t:1752">01</div>
+<p class="etx ab fade-hd" style="--l:98;--t:1899">卒業研究で、映像と記憶のデザインをテーマに、新たなアーカ<br>イブ体験の方法を模索し、見つけたピースは「インタラクティ<br>ブな表現」。けれど、そんなもの作ったことはない…AIに聞き<br>ながらTouchDesignerを独学しました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:2084">より能動的な体験が自身の手で実装可能になり、定性的な体験<br>価値を作り出すことができました。</p>
+<div class="pimg" data-img="design" data-vb="735 1753 676 503" data-pd="M1023.7 1773.3C1045.9 1773.3 1063.9 1791.3 1063.9 1813.5C1063.9 1824.2 1059.8 1833.9 1053.0 1841.1L1346.0 1885.0C1348.7 1885.4 1350.6 1888.0 1350.2 1890.7L1329.7 2027.0C1335.9 2023.2 1343.1 2021.0 1350.9 2021.0C1373.2 2021.0 1391.2 2039.0 1391.2 2061.3C1391.2 2083.5 1373.2 2101.5 1350.9 2101.5C1338.8 2101.5 1328.0 2096.2 1320.6 2087.8L1299.0 2232.0C1298.6 2234.7 1296.0 2236.6 1293.3 2236.2L1153.6 2215.2C1161.5 2207.9 1166.4 2197.4 1166.4 2185.7C1166.4 2163.5 1148.4 2145.5 1126.2 2145.5C1103.9 2145.5 1085.9 2163.5 1085.9 2185.7C1085.9 2193.1 1087.9 2200.0 1091.3 2205.9L758.9 2156.1C756.2 2155.6 754.3 2153.1 754.7 2150.4L775.2 2013.7C780.0 2018.5 786.6 2021.4 793.8 2021.4C808.4 2021.4 820.3 2009.5 820.3 1994.9C820.3 1980.3 808.4 1968.5 793.8 1968.5C789.4 1968.5 785.2 1969.6 781.5 1971.5L805.9 1809.1C806.3 1806.3 808.8 1804.5 811.6 1804.9L987.5 1831.2C984.9 1825.9 983.4 1819.9 983.4 1813.5C983.4 1791.3 1001.4 1773.3 1023.7 1773.3Z" style="--l:735;--t:1753;--w:676;--rot:0;--du:5.6s;--dl:0s;--fx:7"></div>
 
-<!-- Episode 03 -->
-<div class="num en ab fade-hd" style="--l:98;--t:2441">03</div>
-<p class="etx ab fade-hd" style="--l:98;--t:2584">どのサークルに入ろうか…悩んでいた時、SNSで見かけた縫製<br>技術研究会のファッションショーにビビビッ。ここで見つけた<br>ピースは<br>「自らの手で作る服による表現」。中学の家庭科は大<br>の苦手…しかし、これは苦手を克服するチャンス。裁縫の本や<br>Webを見ながら、完璧でなくてもいいからまずは作ってみるを<br>心がけました。</p>
-<p class="etx ab fade-hd" style="--l:98;--t:2844">数をこなすうちにアレンジまでできるように。より「理想の表<br>現」に近づけています。デザインなどの場面でも縫製によるプ<br>ロトタイプという幅が広がりました。</p>
-<div class="pimg" data-img="sewing" data-shape="530 405 7 0.40,k 0.62,h 0.55,k 0.50,h" style="--l:705;--t:2441;--w:694;--rot:7;--du:5.9s;--dl:-4s;--fx:5"></div>
+<!-- 02 -->
+<div class="num en ab fade-hd" style="--l:98;--t:2394">02</div>
+<p class="etx ab fade-hd" style="--l:98;--t:2539">高校の部活でカメラを始めたことをきっかけに、カメラの可<br>能性に惹かれるように。音楽も好きな私がここで見つけた<br>ピースは「バンドのライブ撮影やMV制作」。全くの未経験<br>だけれど、実践あるのみ！ライブハウスでバンドマンたちに<br>「カメラをやっていて、作品をぜひ見ていただいて良ければ<br>撮らせてください」声をかけました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:2797">今では、10組以上のバンドの撮影やクリエイティブを担当す<br>るまでになり、デザイナー以外のクリエイターと一緒に作る<br>楽しさも知りました。</p>
+<div class="pimg" data-img="camera" data-vb="726 2408 680 517" data-pd="M1097.5 2427.9C1075.3 2429.1 1058.3 2448.1 1059.5 2470.3C1060.0 2481.0 1064.7 2490.4 1071.8 2497.2L781.7 2557.0C779.0 2557.5 777.3 2560.2 777.8 2562.9L805.6 2697.9C799.3 2694.4 791.9 2692.6 784.1 2693.0C761.9 2694.2 744.9 2713.2 746.1 2735.4C747.3 2757.6 766.3 2774.7 788.5 2773.5C800.6 2772.8 811.1 2766.9 818.0 2758.1L847.4 2900.9C848.0 2903.6 850.6 2905.4 853.3 2904.8L991.7 2876.3C983.4 2869.4 977.9 2859.2 977.3 2847.5C976.1 2825.3 993.1 2806.4 1015.3 2805.1C1037.5 2803.9 1056.5 2821.0 1057.7 2843.2C1058.1 2850.5 1056.5 2857.5 1053.4 2863.6L1382.6 2795.8C1385.3 2795.3 1387.0 2792.6 1386.5 2789.9L1358.6 2654.6C1354.1 2659.6 1347.7 2662.9 1340.4 2663.2C1325.8 2664.0 1313.4 2652.9 1312.6 2638.3C1311.8 2623.7 1323.0 2611.2 1337.6 2610.5C1342.0 2610.2 1346.2 2611.1 1350.0 2612.8L1316.9 2451.9C1316.3 2449.2 1313.7 2447.5 1311.0 2448.0L1136.7 2483.9C1139.1 2478.4 1140.2 2472.3 1139.9 2466.0C1138.7 2443.8 1119.7 2426.7 1097.5 2427.9Z" style="--l:726;--t:2408;--w:680;--rot:0;--du:6.3s;--dl:-2s;--fx:-6"></div>
 
-<h2 class="hd en ab fade-hd" id="profile" style="--l:103;--t:3162;color:var(--bl)">profile</h2>
-<div class="board ab" data-pz style="--l:49;--t:3239;--bh:586">
+<!-- 03 -->
+<div class="num en ab fade-hd" style="--l:98;--t:3069">03</div>
+<p class="etx ab fade-hd" style="--l:98;--t:3212">どのサークルに入ろうか…悩んでいた時、SNSで見かけた縫製<br>技術研究会のファッションショーにビビビッ。ここで見つけた<br>ピースは「自らの手で作る服による表現」。中学の家庭科は大<br>の苦手…しかし、これは苦手を克服するチャンス。裁縫の本や<br>Webを見ながら、完璧でなくてもいいからまずは作ってみるを<br>心がけました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:3472">数をこなすうちにアレンジまでできるように。より「理想の表<br>現」に近づけています。デザインなどの場面でも縫製によるプ<br>ロトタイプという幅が広がりました。</p>
+<div class="pimg" data-img="sewing" data-vb="754 3096 626 517" data-pd="M990.3 3157.7C989.5 3135.5 1006.9 3116.8 1029.1 3116.0C1051.4 3115.2 1070.0 3132.6 1070.8 3154.8C1071.2 3165.5 1067.4 3175.3 1060.9 3182.8L1355.2 3216.2C1358.0 3216.5 1359.9 3219.0 1359.6 3221.8L1342.3 3374.2C1334.8 3363.2 1321.9 3356.1 1307.5 3356.6C1285.3 3357.4 1267.9 3376.1 1268.7 3398.3C1269.5 3420.5 1288.2 3437.9 1310.4 3437.1C1320.5 3436.7 1329.5 3432.7 1336.4 3426.4L1320.6 3564.7C1320.3 3567.4 1317.9 3569.4 1315.1 3569.1L1187.6 3554.6C1186.5 3575.2 1169.9 3591.8 1148.9 3592.6C1126.6 3593.4 1108.0 3576.0 1107.2 3553.8C1107.1 3551.0 1107.3 3548.2 1107.7 3545.5L778.2 3508.0C775.5 3507.7 773.5 3505.2 773.8 3502.5L789.4 3365.2C794.4 3369.7 801.0 3372.4 808.3 3372.2C822.9 3371.7 834.3 3359.4 833.8 3344.8C833.3 3330.2 821.0 3318.8 806.4 3319.3C802.0 3319.5 797.8 3320.7 794.2 3322.8L812.8 3159.6C813.1 3156.8 815.6 3154.9 818.3 3155.2L995.1 3175.3C992.2 3170.0 990.6 3164.1 990.3 3157.7Z" style="--l:754;--t:3096;--w:626;--rot:0;--du:5.9s;--dl:-4s;--fx:5"></div>
+
+<!-- 電光掲示板 -->
+<div class="band gn en" style="--t:3806;--h:274" aria-label="You are one of my new pieces !!"><div class="mq" aria-hidden="true"><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div></div></div>
+
+<h2 class="hd en ab fade-hd" id="profile" style="--l:103;--t:4221;color:var(--bl)">profile</h2>
+<div class="board ab" data-pz style="--l:49;--t:4320;--bh:586">
   <div class="pz bu rtl" style="--px:0;--py:0;--pw:895;--ph:293" data-k="923 175 54.5 b; -15 126 23 b; 215 318 44.5 b; 671 308 23 b" data-d="488 14 22 w">
     <div class="t pname lt" style="--l:52;--t:104">小泉 彩香里 <span class="en">/ akari koizumi</span></div>
     <div class="t lt" style="--l:52;--t:172;font-size:calc(17*var(--u));letter-spacing:.04em;line-height:1.3;font-weight:700">2003年8月26日生まれ O型 INFP-T</div>
@@ -148,8 +164,7 @@ main{width:auto;height:auto;padding:84px 16px 48px}
   </div>
 </div>
 
-<p class="clos en ab" style="--l:0;--t:3915">You are one of my new pieces !!</p>
-<p class="cr en ab" style="--l:0;--t:4088">©2026 akari koizumi</p>
+<p class="cr en ab" style="--l:0;--t:4985">©2026 akari koizumi</p>
 </main>
 
 <script>
@@ -252,14 +267,14 @@ pieces.forEach((el, i) => {
     let svgHtml = `
       <svg viewBox="0 0 ${pw} ${ph}" style="position:absolute; left:0; top:0; width:100%; height:100%; overflow:visible; pointer-events:none;">
         <defs>
-          <mask id="${maskId}">
+          <mask id="${maskId}" maskUnits="userSpaceOnUse" x="-150" y="-150" width="${pw+300}" height="${ph+300}">
             <path d="${basePath}" fill="white" />
             ${myKnobs.map(k => `<circle cx="${k.x}" cy="${k.y}" r="${k.r}" fill="white" />`).join('')}
             ${myDataD.map(h => `<circle cx="${h.x}" cy="${h.y}" r="${h.r}" fill="black" />`).join('')}
             ${myHoles.map(h => `<circle cx="${h[0]}" cy="${h[1]}" r="${h[2]}" fill="black" />`).join('')}
           </mask>
         </defs>
-        <image href="${url}" x="-40" y="-40" width="${pw+80}" height="${ph+80}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />
+        <rect x="-150" y="-150" width="${pw+300}" height="${ph+300}" fill="#000" mask="url(#${maskId})" /><image onerror="this.style.display='none'" href="${url}" x="-40" y="-40" width="${pw+80}" height="${ph+80}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />
       </svg>
     `;
     el.insertAdjacentHTML('afterbegin', svgHtml);
@@ -286,25 +301,13 @@ const jig = (W, H, feats) => {
   return { d: d + "Z", w: W + 2 * p, h: H + 2 * p };
 };
 document.querySelectorAll(".pimg").forEach((el, n) => {
-  const [W, H, , ...fs] = el.dataset.shape.split(/\s+/), g = jig(+W, +H, fs.map(s => { const [a, b] = s.split(","); return [+a, b]; }));
-  const url = IMAGES[el.dataset.img], id = "pj" + n;
-  
-  let svgContent = `
-    <svg viewBox="0 0 ${g.w} ${g.h}" aria-hidden="true" style="overflow:visible;">
-      <defs>
-        <mask id="${id}">
-          <path d="${g.d}" fill="white" stroke="none" />
-        </mask>
-      </defs>
-      ${url ? `<image href="${url}" width="${g.w}" height="${g.h}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})" />` : ''}
-    </svg>
-  `;
-  el.innerHTML = svgContent;
+  const [vx, vy, vw, vh] = el.dataset.vb.split(" ").map(Number), d = el.dataset.pd, url = IMAGES[el.dataset.img], id = "pj" + n;
+  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw}" height="${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${url ? `<image onerror="this.style.display='none'" href="${url}" x="${vx}" y="${vy}" width="${vw}" height="${vh}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})"/>` : ""}</svg>`;
 });
 
 const rnd = i => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
 const boards = [...document.querySelectorAll("[data-pz]")].map(c => ({ c, load: c.dataset.pz === "load", items: [...c.children].filter(e => e.classList.contains("pz")) }));
-const ease = x => 1 - Math.pow(1 - x, 2);
+const ease = x => 1 - Math.pow(1 - x, 3); // より滑らかな3次イージングに変更
 const setP = (c, p) => { c.style.setProperty("--p", p.toFixed(3)); c.classList.toggle("done", p >= .999); };
 const build = () => {
   let seed = 1;
@@ -320,8 +323,10 @@ const build = () => {
     });
   });
 };
+const navw = document.querySelector(".navw"); let navOn = false;
 const upd = () => {
   const vh = innerHeight;
+  if (!navOn && document.getElementById("piece").getBoundingClientRect().top < vh * 0.80) { navOn = true; navw.classList.add("show"); }
   boards.forEach(({ c, load }) => {
     if (load) return;
     const r = c.getBoundingClientRect();
@@ -349,11 +354,20 @@ const upd = () => {
 const hero = boards[0];
 const startHero = () => {
   if (reduce) { setP(hero.c, 1); return; }
-  let t0; setP(hero.c, 0);
-  const f = ts => { t0 = t0 ?? ts; const q = Math.min(1, Math.max(0, (ts - t0 - 150) / 900)); setP(hero.c, ease(q)); if (q < 1) requestAnimationFrame(f); else hero.c.classList.add("snap"); };
+  let t0; hero.c.classList.remove("snap"); setP(hero.c, 0);
+  const f = ts => { t0 = t0 ?? ts; const q = Math.min(1, Math.max(0, (ts - t0 - 150) / 950)); setP(hero.c, ease(q)); if (q < 1) requestAnimationFrame(f); else hero.c.classList.add("snap"); };
   requestAnimationFrame(f);
 };
 build(); upd(); startHero();
+
+/* topを押すと、ページを開いた時のアニメーションからもう一度再生 */
+document.querySelector('.nav a[href="#top"]').addEventListener("click", e => {
+  e.preventDefault();
+  const t0 = performance.now();
+  const go = () => { if (scrollY < 4 || performance.now() - t0 > 2500) startHero(); else requestAnimationFrame(go); };
+  scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+  requestAnimationFrame(go);
+});
 addEventListener("scroll", upd, { passive: true });
 addEventListener("resize", () => { build(); upd(); });
 </script>
