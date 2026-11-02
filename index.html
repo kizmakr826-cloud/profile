@@ -31,7 +31,6 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .nav a{display:grid;place-items:center;height:calc(41*var(--u));padding:0 calc(25*var(--u));border-radius:99px;background:var(--gr);color:#fff;font-size:calc(17*var(--u));font-weight:900;text-decoration:none;transition:translate .3s cubic-bezier(.3,1.6,.5,1),background .2s,color .2s,box-shadow .2s}
 .nav a:hover,.nav a:focus-visible{translate:0 calc(-4*var(--u));background:#fff;color:var(--gr);box-shadow:0 8px 20px rgba(0,196,16,0.15);cursor:none}
 
-/* ハンバーガーボタン */
 .menu-btn{display:none;background:var(--gr);border:none;border-radius:99px;width:40px;height:40px;cursor:pointer;position:relative;z-index:110;pointer-events:auto;box-shadow:0 4px 12px rgba(0,196,16,0.2)}
 .menu-btn span{position:absolute;left:9px;right:9px;height:2.5px;background:#fff;border-radius:2px;transition:all .3s ease}
 .menu-btn span:nth-child(1){top:13px}
@@ -54,7 +53,6 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .num{font-size:calc(124*var(--u));line-height:1;font-weight:900;color:var(--or)}
 .etx{font-size:calc(17*var(--u));line-height:calc(36.8*var(--u));letter-spacing:.17em;color:#000;white-space:nowrap;font-weight:700}
 
-/* 画像ピース */
 .pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);transform:translate(calc((1 - var(--pp))*300px), calc((1 - var(--pp))*100px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*15deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.9s ease;pointer-events:none}
 .pimg.done{transform:translate(0,0) rotate(calc(var(--rot)*1deg));animation:flt var(--du,3.2s) ease-in-out var(--dl,0s) infinite}
 .pimg svg{display:block;width:100%;height:auto;overflow:visible}
@@ -63,11 +61,9 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u))}
 [data-pz]{--p:0}
 
-/* パズルピース全体 */
 .pz{--pp:clamp(0,calc(var(--p)*1.1 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.02));opacity:clamp(0,calc(var(--pp)*2),1);transition:translate 1.4s cubic-bezier(0.16, 1, 0.3, 1),rotate 1.4s cubic-bezier(0.16, 1, 0.3, 1),scale 1.4s cubic-bezier(0.16, 1, 0.3, 1)}
 .done .pz{transform:none;opacity:1}
 
-/* ホバーアニメーションは指定されたピースのみに適用 */
 .pz.interactive:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-3)*var(--u));rotate:var(--ha,-0.5deg);scale:1.008;transition:translate 0.3s cubic-bezier(0.16, 1, 0.3, 1),rotate 0.3s cubic-bezier(0.16, 1, 0.3, 1),scale 0.3s cubic-bezier(0.16, 1, 0.3, 1)}
 
 [data-pz="load"].snap .pz{animation:heroPita 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.2s)}
@@ -106,15 +102,21 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
   html{scroll-padding-top:70px;}
   main{display:flex;flex-direction:column;width:100%;height:auto;padding:84px 16px 48px;overflow-x:hidden;}
   
-  .navw{top:0;left:0;margin:0;width:100%;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+  .navw{top:0;left:0;margin:0;width:100%;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(244, 244, 244, 0.9);}
   .nvname{position:static;font-size:16px;pointer-events:auto}
   .menu-btn{display:block}
-  .nav{position:fixed;top:60px;left:0;width:100%;background:rgba(244, 244, 244, 0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);flex-direction:column;align-items:center;padding:24px 0;gap:16px;border-bottom:1px solid rgba(0,196,16,0.15);box-shadow:0 10px 30px rgba(0,0,0,0.06);transform:translateY(-120%);opacity:0;visibility:hidden;transition:all .4s cubic-bezier(0.16, 1, 0.3, 1);pointer-events:auto}
+  .nav{position:fixed;top:60px;left:0;width:100%;background:rgba(244, 244, 244, 0.98);flex-direction:column;align-items:center;padding:24px 0;gap:16px;border-bottom:1px solid rgba(0,196,16,0.15);box-shadow:0 10px 30px rgba(0,0,0,0.06);transform:translateY(-120%);opacity:0;visibility:hidden;transition:all .3s ease;pointer-events:auto}
   .nav.open{transform:translateY(0);opacity:1;visibility:visible}
   .nav a{width:80%;max-width:280px;height:46px;font-size:15px;justify-content:center}
 
-  /* スマホ版でのホバーアニメーションを完全無効化 */
+  /* スマホ版ではアニメーション・トランジションを必要最小限にして軽量化 */
   .pz.interactive:hover{transform:none;translate:0 0;rotate:0deg;scale:1}
+  .pimg, .pz, .fade-hd {
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 
   .ab {
     position: relative !important;
@@ -208,7 +210,6 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
     top: auto !important;
     width: 100% !important;
     margin: 24px 0 48px !important;
-    animation-duration: 3.2s;
   }
   .pimg svg { width: 100%; height: auto; }
   
@@ -239,14 +240,11 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 <div class="band wh" style="--t:1480;--h:2220"></div>
 
 <div class="board ab" data-pz="load" style="--l:49;--t:80;--bh:663">
-  <!-- 左上のタイトルピースはホバーなしに変更 -->
   <div class="pz bu rtl" style="--px:0;--py:0;--pw:798;--ph:226" data-d="798 68 22 g; 549.5 37.5 30 w">
     <div class="t h2t en lt" style="--l:2;--t:134">collect new pieces</div>
   </div>
   <div class="pz gy x" style="--px:798;--py:1;--pw:209;--ph:223" data-d="118.5 38.5 70.5 b" data-k="224 136 35 g"></div>
-  <!-- 右端の画像ピースはホバーなしに変更 -->
   <div class="pz bk rbr" style="--px:1007;--py:1;--pw:335;--ph:662" data-img="hero" data-d="229.5 13.5 26 w" data-k="-25.5 559.5 43.5 k"></div>
-  <!-- 「新しいピースを集め続け やりたい！へ向かっていく」のオレンジピースのみ interactive を付与 -->
   <div class="pz og interactive" style="--px:227;--py:224;--pw:780;--ph:439" data-k="177 0 23 o; 645.5 -19.5 43.5 o; 798 116 33 o; 678 448 23 o" data-d="216.5 398.5 62.5 w">
     <div class="t lead lt" style="--l:36;--t:110">新しいピースを集め続け<br>やりたい！へ向かっていく</div>
   </div>
@@ -284,14 +282,12 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 
 <h2 class="hd en ab fade-hd" id="profile" style="--l:103;--t:3985;color:var(--bl)">profile</h2>
 <div class="board ab" data-pz style="--l:49;--t:4084;--bh:586">
-  <!-- 「小泉 彩香里」の名前が入ったピースのみ interactive を付与 -->
   <div class="pz bu rtl interactive" style="--px:0;--py:0;--pw:895;--ph:293" data-k="923 175 54.5 b; -15 126 23 b; 215 318 44.5 b; 671 308 23 b" data-d="488 14 22 w">
     <div class="t pname lt" style="--l:52;--t:104">小泉 彩香里 <span class="en">/ akari koizumi</span></div>
     <div class="t lt" style="--l:52;--t:172;font-size:calc(17*var(--u));letter-spacing:.04em;line-height:1.3;font-weight:700">2003年8月26日生まれ O型 INFP-T</div>
   </div>
   <div class="pz gy" style="--px:895;--py:0;--pw:447;--ph:293" data-d="400 98 70 o; 96 104 24 o" data-k="224 308 22 g"></div>
   <div class="pz og" style="--px:0;--py:293;--pw:447;--ph:293" data-d="313 236 97.5 w; 16 174 21 w" data-k="462 146 23.5 o"></div>
-  <!-- その他のプロフィールピースはホバーなしに変更 -->
   <div class="pz gy" style="--px:447;--py:293;--pw:448;--ph:293" data-k="463 146 23 g; 167 311 35 g">
     <p class="t pm lt" style="--l:89;--t:74;color:var(--or)">千葉大学 大学院<br>融合理工学府 創成工学専攻<br>デザインコース<br>意匠形態学研究室 所属</p>
   </div>
@@ -326,7 +322,6 @@ const mk = (spec, cls, host) => spec.split(";").map(s => s.trim()).filter(Boolea
 const geo = el => ["px","py","pw","ph"].map(k => parseFloat(el.style.getPropertyValue("--" + k)));
 const kn = [];
 
-/* 1. 基本パーツの生成と凸の収集 */
 pieces.forEach(el => {
   const bg = document.createElement("div"); bg.className = "bg"; el.prepend(bg); el._bg = bg;
   if (el.dataset.d) mk(el.dataset.d, "", bg);
@@ -336,7 +331,6 @@ pieces.forEach(el => {
   }
 });
 
-/* 2. 凹み（穴）の計算 */
 const socks = new Map();
 kn.forEach(([o, x, y, r]) => {
   const [ox, oy] = geo(o), ax = ox + x, ay = oy + y;
@@ -347,7 +341,6 @@ kn.forEach(([o, x, y, r]) => {
   socks.get(t).push([ax - tx, ay - ty, r]);
 });
 
-/* 3. 画像パズル(Hero)のSVGマスク化 ＆ 色パズルのCSSマスク処理 */
 pieces.forEach((el, i) => {
   const url = el.dataset.img ? IMAGES[el.dataset.img] : null;
   
@@ -433,16 +426,6 @@ pieces.forEach(el => {
   el.style.setProperty("--hy", (-(4 + d * 4)).toFixed(0));
 });
 
-/* 4. エピソード画像(浮遊ピース)の処理 */
-const jig = (W, H, feats) => {
-  const R = 38, c = 34, p = R + c + 12, f = n => n.toFixed(1), sides = [[p, p, 1, 0, W], [p + W, p, 0, 1, H], [p + W, p + H, -1, 0, W], [p, p + H, 0, -1, H]];
-  let d = `M${p} ${p}`;
-  sides.forEach(([sx, sy, dx, dy, L], i) => {
-    const [pos, ty] = feats[i], a = pos * L, A = [sx + dx * (a - c / 2), sy + dy * (a - c / 2)], B = [sx + dx * (a + c / 2), sy + dy * (a + c / 2)];
-    d += ` L${f(A[0])} ${f(A[1])} A${R} ${R} 0 1 ${ty === "k" ? 1 : 0} ${f(B[0])} ${f(B[1])} L${f(sx + dx * L)} ${f(sy + dy * L)}`;
-  });
-  return { d: d + "Z", w: W + 2 * p, h: H + 2 * p };
-};
 document.querySelectorAll(".pimg").forEach((el, n) => {
   const [vx, vy, vw, vh] = el.dataset.vb.split(" ").map(Number), d = el.dataset.pd, url = IMAGES[el.dataset.img], id = "pj" + n;
   
@@ -514,7 +497,6 @@ const startHero = () => {
 };
 build(); upd(); startHero();
 
-/* ハンバーガーメニューの開閉制御 */
 const menuBtn = document.querySelector(".menu-btn");
 const nav = document.querySelector(".nav");
 menuBtn.addEventListener("click", () => {
@@ -528,7 +510,6 @@ nav.querySelectorAll("a").forEach(link => {
   });
 });
 
-/* topを押すと、ページを開いた時のアニメーションからもう一度再生 */
 document.querySelector('.nav a[href="#top"]').addEventListener("click", e => {
   e.preventDefault();
   const t0 = performance.now();
