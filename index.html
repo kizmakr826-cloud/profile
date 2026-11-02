@@ -12,7 +12,7 @@
 *,*::before,*::after{box-sizing:inherit;cursor:var(--cur)}
 html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:calc(100*var(--u))}
 body{margin:0;background:var(--bg);overflow-x:hidden;font-family:"Zen Kaku Gothic New","Yu Gothic",sans-serif;font-weight:700}
-main{position:relative;width:calc(1440*var(--u));height:calc(4800*var(--u));margin:0 auto}
+main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));margin:0 auto}
 .ab{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));margin:0}
 .navw{position:fixed;top:0;left:0;width:100%;height:calc(70*var(--u));z-index:100;pointer-events:none;transition:opacity .6s cubic-bezier(0.16, 1, 0.3, 1),translate .8s cubic-bezier(.16,1,.3,1);background:rgba(244, 244, 244, 0.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.4)}
 .navw:not(.show){opacity:0;visibility:hidden;translate:0 calc(-20*var(--u))}
@@ -80,7 +80,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4800*var(--u));marg
 .s{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));height:calc(var(--h)*var(--u));border-radius:calc(24*var(--u));background:#000 center/cover no-repeat}
 .pname{font-size:calc(46*var(--u));line-height:1.2;letter-spacing:.04em;font-weight:900}
 .pm{font-size:calc(17*var(--u));line-height:calc(35.5*var(--u));letter-spacing:.2em;font-weight:700}
-.cr{width:calc(1440*var(--u));text-align:center;color:#a3a3a3;font-size:calc(14*var(--u));line-height:calc(18*var(--u));font-weight:700;letter-spacing:.04em}
+.cr{width:calc(1440*var(--u));text-align:center;color:#a3a3a3;font-size:calc(14*var(--u));line-height:calc(18*var(--u));font-weight:500;letter-spacing:.04em}
 
 @media(max-width:760px){
 :root{--u:1px}
@@ -98,7 +98,7 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 .pm{font-size:15px;line-height:1.9;letter-spacing:.08em}
 .hd{font-size:48px;margin:56px 0 12px}.num{font-size:72px;margin-top:28px}
 .pimg{width:100%;margin:16px 0;animation-duration:6s;transform:none!important}
-.board.ab{position:relative;left:auto;top:auto}.cr{width:auto;margin-top:32px;position:static}
+.board.ab{position:relative;left:auto;top:auto}.cr{width:auto;margin-top:32px;position:static;font-weight:500}
 .band.wh{display:none}.band.gn{position:relative;left:auto;margin:32px -16px;width:auto;height:90px}.mq{font-size:28px;line-height:1.2}.mq span{padding-right:40px}
 .intro{font-size:18px;line-height:2.2;letter-spacing:.08em;white-space:normal;margin:24px 0}.nvname{display:none}
 }
@@ -112,7 +112,6 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 
 <div class="band wh" style="--t:1480;--h:2220"></div>
 
-<!-- heroボード（文字・写真ありピースにのみ .interactive を付与） -->
 <div class="board ab" data-pz="load" style="--l:49;--t:80;--bh:663">
   <div class="pz bu rtl interactive" style="--px:0;--py:0;--pw:798;--ph:226" data-d="549.5 37.5 61.5 w; 813 68 22 g">
     <div class="t h2t en lt" style="--l:2;--t:134">collect new pieces</div>
@@ -155,7 +154,6 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 <div class="band gn en" style="--t:3700;--h:180" aria-label="You are one of my new pieces !!"><div class="mq" aria-hidden="true"><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div><div><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span><span>You are one of my new pieces !!</span></div></div></div>
 
 <h2 class="hd en ab fade-hd" id="profile" style="--l:103;--t:3985;color:var(--bl)">profile</h2>
-<!-- profileボード（文字情報を含むピースにのみ .interactive を付与） -->
 <div class="board ab" data-pz style="--l:49;--t:4084;--bh:586">
   <div class="pz bu rtl interactive" style="--px:0;--py:0;--pw:895;--ph:293" data-k="923 175 54.5 b; -15 126 23 b; 215 318 44.5 b; 671 308 23 b" data-d="488 14 22 w">
     <div class="t pname lt" style="--l:52;--t:104">小泉 彩香里 <span class="en">/ akari koizumi</span></div>
@@ -171,7 +169,7 @@ main{width:auto;height:auto;padding:70px 16px 48px}
   </div>
 </div>
 
-<p class="cr en ab" style="--l:0;--t:4710">©2026 akari koizumi</p>
+<p class="cr en ab" style="--l:0;--t:4770">©2026 akari koizumi</p>
 </main>
 
 <script>
