@@ -212,17 +212,17 @@ transition: transform 0.3s ease;
     top: calc(140 * var(--pz-u)) !important;
   }
 
-  /* profile内の大学名・学んでいること（.pm）：テキスト自体は左揃えのまま、ブロック全体をピースの中央付近に配置 */
+  /* profile内の大学名・学んでいること（.pm）：テキストは左揃えのまま、ピースの中央付近へ確実に出現するように再配置 */
   .board:not([data-pz="load"]) .pm {
     font-size: calc(17 * var(--pz-u)) !important;
     line-height: 1.65;
-    left: 50% !important;
+    left: 12% !important;
     top: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    transform: translateY(-50%) !important;
     white-space: normal !important;
     text-align: left !important;
-    width: max-content !important;
-    max-width: 90% !important;
+    width: auto !important;
+    max-width: 80% !important;
   }
   .lt { color: var(--gy); }
 
