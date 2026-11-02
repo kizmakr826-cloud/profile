@@ -116,7 +116,7 @@ transition: transform 0.3s ease;
     width: 100% !important;
     height: auto !important;
     min-height: auto !important;
-    position: static !important;
+    position: relative !important;
     padding: 76px 16px 24px !important;
     overflow-x: hidden;
     box-sizing: border-box;
@@ -137,11 +137,13 @@ transition: transform 0.3s ease;
     transform: none !important;
   }
 
+  /* スマホ版では絶対配置を完全にリセットし、フローレイアウトに統一 */
   .ab {
-    position: static !important;
+    position: relative !important;
     left: auto !important;
     top: auto !important;
-    margin-bottom: 24px;
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
   }
 
   .board {
@@ -233,11 +235,16 @@ transition: transform 0.3s ease;
   }
   .pimg svg { width: 100%; height: auto; }
   
-  .band.wh { display: none; }
-  .band.gn { position: static !important; left: auto !important; margin: 28px -16px 20px !important; width: 100vw; height: 48px; }
+  /* 余白の原因となっていたPC用の白い帯を完全に非表示に */
+  .band.wh { display: none !important; }
+  
+  /* 電光掲示板とプロフィール、クレジットの配置を正常な順番に整理 */
+  .band.gn { position: relative !important; left: auto !important; margin: 28px -16px 20px !important; width: 100vw; height: 48px; }
   .mq { font-size: 20px; line-height: 1.2; }
   .mq span { padding-right: 24px; }
-  .cr { width: auto; margin: 20px 0 0 !important; position: static !important; font-size: 11px; font-weight: 500; text-align: center; }
+  
+  #profile { position: relative !important; margin-top: 24px !important; }
+  .cr { width: auto; margin: 24px 0 0 !important; position: relative !important; font-size: 11px; font-weight: 500; text-align: center; }
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -458,7 +465,7 @@ document.querySelectorAll(".pimg").forEach((el, n) => {
     }
   }
 
-  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw} ${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
+  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw}" height="${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
 });
 
 const rnd = i => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
