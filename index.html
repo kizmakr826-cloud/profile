@@ -24,10 +24,10 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4142*var(--u));marg
 .num{font-size:calc(124*var(--u));line-height:1;font-weight:900;color:var(--or)}
 .etx{font-size:calc(17*var(--u));line-height:calc(36.8*var(--u));letter-spacing:.17em;color:#000;white-space:nowrap;font-weight:700}
 
-/* 画像ピース：ホバー時に浮き上がるインタラクションを追加（ポインターイベントも有効化） */
-.pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);transform:translate(calc((1 - var(--pp))*350px), calc((1 - var(--pp))*120px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*20deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.8s ease;z-index:10}
+/* 画像ピース：ホバー時は他のパーツ同様にわずかに浮き上がるように調整（transitionで滑らかに） */
+.pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);transform:translate(calc((1 - var(--pp))*350px), calc((1 - var(--pp))*120px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*20deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.8s ease,translate 0.3s ease,rotate 0.3s ease,scale 0.3s ease;z-index:10}
 .pimg.done{transform:translate(0,0) rotate(calc(var(--rot)*1deg));animation:flt var(--du,6s) ease-in-out var(--dl,0s) infinite}
-.pimg:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-4)*var(--u));rotate:calc(var(--rot)*1deg + var(--ha,-1deg));scale:1.01}
+.pimg:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-2)*var(--u));rotate:calc(var(--rot)*1deg + var(--ha,-0.5deg));scale:1.005}
 .pimg svg{display:block;width:100%;height:auto;overflow:visible}
 
 @keyframes flt{0%,100%{transform:translate(0,0) rotate(calc(var(--rot)*1deg - 2deg))}50%{transform:translate(calc(var(--fx,6)*1px*var(--k,1)),calc(-14*var(--u))) rotate(calc(var(--rot)*1deg + 2deg))}}
@@ -37,7 +37,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4142*var(--u));marg
 /* パズルピース全体 */
 .pz{--pp:clamp(0,calc(var(--p)*1.1 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.03));opacity:clamp(0,calc(var(--pp)*2),1);transition:translate 1.2s cubic-bezier(0.16, 1, 0.3, 1),rotate 1.2s cubic-bezier(0.16, 1, 0.3, 1),scale 1.2s cubic-bezier(0.16, 1, 0.3, 1)}
 .done .pz{transform:none;opacity:1}
-.pz:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-4)*var(--u));rotate:var(--ha,-1deg);scale:1.01}
+.pz:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-2)*var(--u));rotate:var(--ha,-0.5deg);scale:1.005}
 
 /* heroロード時専用のピタッと止まるスナップアニメーション */
 [data-pz="load"].snap .pz{animation:heroPita 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;animation-delay:calc(var(--d,0)*.25s)}
@@ -290,11 +290,10 @@ document.querySelectorAll(".pimg").forEach((el, n) => {
   const [W, H, , ...fs] = el.dataset.shape.split(/\s+/), g = jig(+W, +H, fs.map(s => { const [a, b] = s.split(","); return [+a, b]; }));
   const url = IMAGES[el.dataset.img], id = "pj" + n;
   
-  // 各エピソード画像にもパズルピース同様のホバー浮き上がり用カスタムプロパティを付与
   const a = rnd0(hs++), b = rnd0(hs++), c = rnd0(hs++), d = rnd0(hs++);
-  el.style.setProperty("--ha", ((b > .5 ? 1 : -1) * (0.5 + a * 0.6)).toFixed(1) + "deg");
-  el.style.setProperty("--hx", ((c - .5) * 6).toFixed(0));
-  el.style.setProperty("--hy", (-(4 + d * 4)).toFixed(0));
+  el.style.setProperty("--ha", ((b > .5 ? 1 : -1) * (0.3 + a * 0.4)).toFixed(1) + "deg");
+  el.style.setProperty("--hx", ((c - .5) * 3).toFixed(0));
+  el.style.setProperty("--hy", (-(2 + d * 2)).toFixed(0));
 
   let svgContent = `
     <svg viewBox="0 0 ${g.w} ${g.h}" aria-hidden="true" style="overflow:visible;">
