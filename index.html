@@ -100,16 +100,15 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 @media(max-width:760px){
   :root{--u:min(calc(100vw / 430), 1.2px)}
   html{scroll-padding-top:70px;}
-  main{display:flex;flex-direction:column;width:100%;height:auto;padding:70px 14px 40px;overflow-x:hidden;}
+  main{display:flex;flex-direction:column;width:100%;height:auto;padding:84px 16px 48px;overflow-x:hidden;}
   
-  .navw{top:0;left:0;margin:0;width:100%;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:rgba(244, 244, 244, 0.95);}
+  .navw{top:0;left:0;margin:0;width:100%;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(244, 244, 244, 0.9);}
   .nvname{position:static;font-size:14px;pointer-events:auto}
   .menu-btn{display:block}
-  .nav{position:fixed;top:56px;left:0;width:100%;background:rgba(244, 244, 244, 0.98);flex-direction:column;align-items:center;padding:20px 0;gap:14px;border-bottom:1px solid rgba(0,196,16,0.15);box-shadow:0 10px 30px rgba(0,0,0,0.06);transform:translateY(-120%);opacity:0;visibility:hidden;transition:all .2s ease;pointer-events:auto}
+  .nav{position:fixed;top:60px;left:0;width:100%;background:rgba(244, 244, 244, 0.98);flex-direction:column;align-items:center;padding:24px 0;gap:16px;border-bottom:1px solid rgba(0,196,16,0.15);box-shadow:0 10px 30px rgba(0,0,0,0.06);transform:translateY(-120%);opacity:0;visibility:hidden;transition:all .3s ease;pointer-events:auto}
   .nav.open{transform:translateY(0);opacity:1;visibility:visible}
-  .nav a{width:80%;max-width:260px;height:38px;font-size:13px;justify-content:center}
+  .nav a{width:80%;max-width:280px;height:40px;font-size:13px;justify-content:center}
 
-  /* スマホ版の負荷軽減のため、アニメーションや重いエフェクトを完全オフ */
   .pz.interactive:hover{transform:none;translate:0 0;rotate:0deg;scale:1}
   .pimg, .pz, .fade-hd {
     transition: none !important;
@@ -126,12 +125,12 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 
   .board {
     --board-w: 1342;
-    --pz-u: calc(min(100vw - 28px, 460px) / var(--board-w));
+    --pz-u: calc(min(100vw - 32px, 500px) / var(--board-w));
     position: relative !important;
     isolation: isolate;
     width: calc(var(--board-w) * var(--pz-u)) !important;
     height: calc(var(--bh) * var(--pz-u)) !important;
-    margin: 16px auto 24px !important;
+    margin: 20px auto 28px !important;
     left: auto !important;
     top: auto !important;
   }
@@ -142,7 +141,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
     top: calc(var(--py) * var(--pz-u)) !important;
     width: calc(var(--pw) * var(--pz-u)) !important;
     height: calc(var(--ph) * var(--pz-u)) !important;
-    border-radius: calc(10 * var(--pz-u)) !important;
+    border-radius: calc(12 * var(--pz-u)) !important;
     padding: 0;
   }
   .bg { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; background: var(--col) center/cover no-repeat; pointer-events: none; }
@@ -168,58 +167,58 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
     white-space: nowrap;
   }
 
-  /* パズル内の文字サイズを小さく調整 */
+  /* スマホ版のパズル内文字サイズをさらに小さく調整 */
   .board[data-pz="load"] .h2t {
-    font-size: calc(64 * var(--pz-u)) !important;
+    font-size: calc(72 * var(--pz-u)) !important;
     line-height: 1.1;
-    left: calc(20 * var(--pz-u)) !important;
-    top: calc(105 * var(--pz-u)) !important;
+    left: calc(22 * var(--pz-u)) !important;
+    top: calc(100 * var(--pz-u)) !important;
   }
   .board[data-pz="load"] .lead {
-    font-size: calc(28 * var(--pz-u)) !important;
+    font-size: calc(32 * var(--pz-u)) !important;
     line-height: 1.6;
-    left: calc(36 * var(--pz-u)) !important;
-    top: calc(165 * var(--pz-u)) !important;
+    left: calc(40 * var(--pz-u)) !important;
+    top: calc(160 * var(--pz-u)) !important;
   }
 
   .board:not([data-pz="load"]) .pname {
-    font-size: calc(32 * var(--pz-u)) !important;
-    left: calc(28 * var(--pz-u)) !important;
-    top: calc(85 * var(--pz-u)) !important;
+    font-size: calc(36 * var(--pz-u)) !important;
+    left: calc(32 * var(--pz-u)) !important;
+    top: calc(80 * var(--pz-u)) !important;
   }
   .board:not([data-pz="load"]) .pname + .lt {
-    font-size: calc(15 * var(--pz-u)) !important;
-    left: calc(28 * var(--pz-u)) !important;
+    font-size: calc(17 * var(--pz-u)) !important;
+    left: calc(32 * var(--pz-u)) !important;
     top: calc(150 * var(--pz-u)) !important;
   }
   .board:not([data-pz="load"]) .pm {
-    font-size: calc(17 * var(--pz-u)) !important;
+    font-size: calc(19 * var(--pz-u)) !important;
     line-height: 1.6;
-    left: calc(24 * var(--pz-u)) !important;
-    top: calc(72 * var(--pz-u)) !important;
+    left: calc(28 * var(--pz-u)) !important;
+    top: calc(68 * var(--pz-u)) !important;
   }
   .lt { color: var(--gy); }
 
-  /* スマホ版の全体的な文字サイズをさらにコンパクトに */
-  .intro { font-size: 13px; line-height: 1.9; letter-spacing: .08em; white-space: normal; margin: 16px 0; }
-  .hd { font-size: 22px; margin: 28px 0 8px; }
-  .num { font-size: 50px; margin: 12px 0 2px; }
-  .etx { white-space: normal; font-size: 11.5px; line-height: 1.75; letter-spacing: .06em; margin: 4px 0; width: 100%; color: #333; }
+  /* スマホ版の通常のテキストサイズを全体的に小さく調整 */
+  .intro { font-size: 14px; line-height: 2.0; letter-spacing: .1em; white-space: normal; margin: 20px 0; }
+  .hd { font-size: 26px; margin: 36px 0 10px; }
+  .num { font-size: 60px; margin: 16px 0 4px; }
+  .etx { white-space: normal; font-size: 12.5px; line-height: 1.8; letter-spacing: .08em; margin: 4px 0; width: 100%; color: #333; }
   
   .pimg {
     position: relative !important;
     left: auto !important;
     top: auto !important;
     width: 100% !important;
-    margin: 12px 0 24px !important;
+    margin: 16px 0 32px !important;
   }
   .pimg svg { width: 100%; height: auto; }
   
   .band.wh { display: none; }
-  .band.gn { position: relative !important; left: auto !important; margin: 24px -14px; width: 100vw; height: 44px; }
-  .mq { font-size: 18px; line-height: 1.2; }
-  .mq span { padding-right: 20px; }
-  .cr { width: auto; margin-top: 24px; position: relative !important; font-size: 10.5px; font-weight: 500; text-align: center; }
+  .band.gn { position: relative !important; left: auto !important; margin: 32px -16px; width: 100vw; height: 50px; }
+  .mq { font-size: 22px; line-height: 1.2; }
+  .mq span { padding-right: 24px; }
+  .cr { width: auto; margin-top: 32px; position: relative !important; font-size: 11px; font-weight: 500; text-align: center; }
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
