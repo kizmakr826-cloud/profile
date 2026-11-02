@@ -22,6 +22,17 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .nav{position:absolute;right:max(32px, 4vw);top:calc(14.5*var(--u));display:flex;gap:calc(19*var(--u));pointer-events:auto}
 .nav a{display:grid;place-items:center;height:calc(41*var(--u));padding:0 calc(25*var(--u));border-radius:99px;background:var(--gr);color:#fff;font-size:calc(17*var(--u));font-weight:900;text-decoration:none;transition:translate .3s cubic-bezier(.3,1.6,.5,1),background .2s,color .2s,box-shadow .2s}
 .nav a:hover,.nav a:focus-visible{translate:0 calc(-4*var(--u));background:#fff;color:var(--gr);box-shadow:0 8px 20px rgba(0,196,16,0.15);cursor:none}
+
+/* ハンバーガーボタン（デフォルトPCでは非表示） */
+.menu-btn{display:none;background:var(--gr);border:none;border-radius:99px;width:40px;height:40px;cursor:pointer;position:relative;z-index:110;pointer-events:auto;box-shadow:0 4px 12px rgba(0,196,16,0.2)}
+.menu-btn span{position:absolute;left:9px;right:9px;height:2.5px;background:#fff;border-radius:2px;transition:all .3s ease}
+.menu-btn span:nth-child(1){top:13px}
+.menu-btn span:nth-child(2){top:18.5px}
+.menu-btn span:nth-child(3){top:24px}
+.menu-btn.active span:nth-child(1){top:18.5px;transform:rotate(45deg)}
+.menu-btn.active span:nth-child(2){opacity:0}
+.menu-btn.active span:nth-child(3){top:18.5px;transform:rotate(-45deg)}
+
 .band{position:absolute;left:50%;margin-left:-50vw;width:100vw;top:calc(var(--t)*var(--u));height:calc(var(--h)*var(--u))}
 .band.wh{background:#fff}
 .band.gn{background:var(--gr);overflow:hidden;display:flex;align-items:center}
@@ -35,7 +46,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .num{font-size:calc(124*var(--u));line-height:1;font-weight:900;color:var(--or)}
 .etx{font-size:calc(17*var(--u));line-height:calc(36.8*var(--u));letter-spacing:.17em;color:#000;white-space:nowrap;font-weight:700}
 
-/* 画像ピース（浮遊アニメーションをより速く、大きく上下するように調整） */
+/* 画像ピース */
 .pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);transform:translate(calc((1 - var(--pp))*300px), calc((1 - var(--pp))*100px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*15deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.9s ease;pointer-events:none}
 .pimg.done{transform:translate(0,0) rotate(calc(var(--rot)*1deg));animation:flt var(--du,3.2s) ease-in-out var(--dl,0s) infinite}
 .pimg svg{display:block;width:100%;height:auto;overflow:visible}
@@ -48,17 +59,14 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .pz{--pp:clamp(0,calc(var(--p)*1.1 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.02));opacity:clamp(0,calc(var(--pp)*2),1);transition:translate 1.4s cubic-bezier(0.16, 1, 0.3, 1),rotate 1.4s cubic-bezier(0.16, 1, 0.3, 1),scale 1.4s cubic-bezier(0.16, 1, 0.3, 1)}
 .done .pz{transform:none;opacity:1}
 
-/* 文字や写真が含まれるピース（インタラクティブ対象）のみホバーアニメーションを適用 */
 .pz.interactive:hover{z-index:60;translate:calc(var(--hx,0)*var(--u)) calc(var(--hy,-3)*var(--u));rotate:var(--ha,-0.5deg);scale:1.008;transition:translate 0.3s cubic-bezier(0.16, 1, 0.3, 1),rotate 0.3s cubic-bezier(0.16, 1, 0.3, 1),scale 0.3s cubic-bezier(0.16, 1, 0.3, 1)}
 
-/* heroロード時専用のスナップアニメーション */
 [data-pz="load"].snap .pz{animation:heroPita 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.2s)}
 [data-pz]:not([data-pz="load"]).snap .pz{animation:pita 1.0s cubic-bezier(0.16, 1, 0.3, 1) backwards;animation-delay:calc(var(--d,0)*.35s)}
 
 @keyframes heroPita{0%{scale:1.025;translate:0 -1px}100%{scale:1;translate:0 0}}
 @keyframes pita{0%{scale:1.015}100%{scale:1}}
 
-/* テキスト等のフェードイン・スライドアップ */
 .fade-hd{--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);opacity:clamp(0,calc(var(--pp)*2),1);transform:translateY(calc((1 - var(--pp))*24px));transition:transform 1.3s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.9s ease;}
 .fade-hd.done{transform:none;opacity:1}
 
@@ -86,10 +94,15 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 
 @media(max-width:760px){
 :root{--u:1px}
-html{scroll-padding-top:60px;}
-main{width:auto;height:auto;padding:70px 16px 48px}
+html{scroll-padding-top:70px;}
+main{width:auto;height:auto;padding:84px 16px 48px}
 .ab,.pimg{position:static}
-.navw{top:0;left:0;margin:0;width:100%;height:56px}.nvname{top:11px}.nav{top:11px;right:16px;gap:8px}.nav a{height:34px;padding:0 16px;font-size:13px}
+.navw{top:0;left:0;margin:0;width:100%;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.nvname{position:static;font-size:16px;pointer-events:auto}
+.menu-btn{display:block}
+.nav{position:fixed;top:60px;left:0;width:100%;background:rgba(244, 244, 244, 0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);flex-direction:column;align-items:center;padding:24px 0;gap:16px;border-bottom:1px solid rgba(0,196,16,0.15);box-shadow:0 10px 30px rgba(0,0,0,0.06);transform:translateY(-120%);opacity:0;visibility:hidden;transition:all .4s cubic-bezier(0.16, 1, 0.3, 1);pointer-events:auto}
+.nav.open{transform:translateY(0);opacity:1;visibility:visible}
+.nav a{width:80%;max-width:280px;height:46px;font-size:15px;justify-content:center}
 .board{width:auto;height:auto;display:flex;flex-direction:column;gap:14px;margin:0}
 .pz{position:relative;left:auto;top:auto;width:auto;height:auto;transform:none!important;opacity:1!important;border-radius:24px!important;padding:28px 24px}
 .c{display:none}.pz.x{display:none}.pz{isolation:isolate}.bg{z-index:-1;-webkit-mask-image:none!important;mask-image:none!important}
@@ -102,7 +115,7 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 .pimg{width:100%;margin:16px 0;animation-duration:3.2s;transform:none!important}
 .board.ab{position:relative;left:auto;top:auto}.cr{width:auto;margin-top:32px;position:static;font-weight:500}
 .band.wh{display:none}.band.gn{position:relative;left:auto;margin:32px -16px;width:auto;height:90px}.mq{font-size:28px;line-height:1.2}.mq span{padding-right:40px}
-.intro{font-size:18px;line-height:2.2;letter-spacing:.08em;white-space:normal;margin:24px 0}.nvname{display:none}
+.intro{font-size:18px;line-height:2.2;letter-spacing:.08em;white-space:normal;margin:24px 0}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -110,7 +123,17 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 </head>
 <body>
 <main id="top">
-<div class="navw en"><div class="nvname">akari koizumi</div><nav class="nav" aria-label="ページ内リンク"><a href="#top">top</a><a href="#piece">piece</a><a href="#profile">profile</a></nav></div>
+<div class="navw en">
+  <div class="nvname">akari koizumi</div>
+  <button class="menu-btn" aria-label="メニューを開閉">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav" aria-label="ページ内リンク">
+    <a href="#top">top</a>
+    <a href="#piece">piece</a>
+    <a href="#profile">profile</a>
+  </nav>
+</div>
 
 <div class="band wh" style="--t:1480;--h:2220"></div>
 
@@ -326,7 +349,7 @@ document.querySelectorAll(".pimg").forEach((el, n) => {
     }
   }
 
-  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw}" height="${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
+  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw} ${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
 });
 
 const rnd = i => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
@@ -384,6 +407,20 @@ const startHero = () => {
   requestAnimationFrame(f);
 };
 build(); upd(); startHero();
+
+/* ハンバーガーメニューの開閉制御 */
+const menuBtn = document.querySelector(".menu-btn");
+const nav = document.querySelector(".nav");
+menuBtn.addEventListener("click", () => {
+  menuBtn.classList.toggle("active");
+  nav.classList.toggle("open");
+});
+nav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    menuBtn.classList.remove("active");
+    nav.classList.remove("open");
+  });
+});
 
 /* topを押すと、ページを開いた時のアニメーションからもう一度再生 */
 document.querySelector('.nav a[href="#top"]').addEventListener("click", e => {
