@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>akari koizumi</title>
+<!-- カーソルと同じデザインのSVGをファビコンに設定 -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg width=%2264%22 height=%2264%22 viewBox=%220 0 61 61%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E %3Cpath d=%22M20.0119 7.64739C19.8571 8.61174 19.896 9.62338 20.1643 10.628C21.1856 14.4509 25.1129 16.7221 28.9358 15.7011C32.7588 14.6798 35.0301 10.7526 34.0089 6.92955C33.7405 5.92501 33.2705 5.02846 32.6555 4.26979L48.6389 -2.63806e-05L52.9087 15.9834C51.9444 15.8286 50.9328 15.8675 49.9281 16.1358C46.1052 17.157 43.834 21.0844 44.8551 24.9073C45.8764 28.7303 49.8036 31.0017 53.6266 29.9804C54.6313 29.7119 55.5274 29.2412 56.2861 28.626L60.5562 44.6104L44.5718 48.8805C45.1868 49.6392 45.6578 50.5354 45.9261 51.54C46.9472 55.3629 44.676 59.2902 40.853 60.3115C37.0301 61.3328 33.1029 59.0613 32.0815 55.2384C31.8132 54.2339 31.7744 53.2222 31.9292 52.2578L15.9457 56.5277L11.6756 40.5433C10.9169 41.1584 10.0208 41.6292 9.01614 41.8976C5.19308 42.9189 1.26591 40.6476 0.244623 36.8245C-0.776497 33.0016 1.49473 29.0743 5.3177 28.053C6.32233 27.7847 7.33392 27.7459 8.2983 27.9007L4.02848 11.9172L20.0119 7.64739Z%22 fill=%22%2300C410%22/%3E %3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +16,8 @@
   --cur:url("data:image/svg+xml,%3Csvg width=%2264%22 height=%2264%22 viewBox=%220 0 61 61%22 fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22%3E %3Cpath d=%22M20.0119 7.64739C19.8571 8.61174 19.896 9.62338 20.1643 10.628C21.1856 14.4509 25.1129 16.7221 28.9358 15.7011C32.7588 14.6798 35.0301 10.7526 34.0089 6.92955C33.7405 5.92501 33.2705 5.02846 32.6555 4.26979L48.6389 -2.63806e-05L52.9087 15.9834C51.9444 15.8286 50.9328 15.8675 49.9281 16.1358C46.1052 17.157 43.834 21.0844 44.8551 24.9073C45.8764 28.7303 49.8036 31.0017 53.6266 29.9804C54.6313 29.7119 55.5274 29.2412 56.2861 28.626L60.5562 44.6104L44.5718 48.8805C45.1868 49.6392 45.6578 50.5354 45.9261 51.54C46.9472 55.3629 44.676 59.2902 40.853 60.3115C37.0301 61.3328 33.1029 59.0613 32.0815 55.2384C31.8132 54.2339 31.7744 53.2222 31.9292 52.2578L15.9457 56.5277L11.6756 40.5433C10.9169 41.1584 10.0208 41.6292 9.01614 41.8976C5.19308 42.9189 1.26591 40.6476 0.244623 36.8245C-0.776497 33.0016 1.49473 29.0743 5.3177 28.053C6.32233 27.7847 7.33392 27.7459 8.2983 27.9007L4.02848 11.9172L20.0119 7.64739Z%22 fill=%22%2300C410%22/%3E %3C/svg%3E") 32 32,auto;
   --or:#f26411;--bl:#415efd;--pb:#415efd;--gy:#fff;--bg:#f4f4f4;--gr:#00c410;
   box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px)
 }
 *,*::before,*::after{box-sizing:inherit;cursor:var(--cur)}
 html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:calc(100*var(--u))}
@@ -28,6 +31,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .nav a{display:grid;place-items:center;height:calc(41*var(--u));padding:0 calc(25*var(--u));border-radius:99px;background:var(--gr);color:#fff;font-size:calc(17*var(--u));font-weight:900;text-decoration:none;transition:translate .3s cubic-bezier(.3,1.6,.5,1),background .2s,color .2s,box-shadow .2s}
 .nav a:hover,.nav a:focus-visible{translate:0 calc(-4*var(--u));background:#fff;color:var(--gr);box-shadow:0 8px 20px rgba(0,196,16,0.15);cursor:none}
 
+/* ハンバーガーボタン */
 .menu-btn{display:none;background:var(--gr);border:none;border-radius:99px;width:40px;height:40px;cursor:pointer;position:relative;z-index:110;pointer-events:auto;box-shadow:0 4px 12px rgba(0,196,16,0.2)}
 .menu-btn span{position:absolute;left:9px;right:9px;height:2.5px;background:#fff;border-radius:2px;transition:all .3s ease}
 .menu-btn span:nth-child(1){top:13px}
@@ -50,6 +54,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .num{font-size:calc(124*var(--u));line-height:1;font-weight:900;color:var(--or)}
 .etx{font-size:calc(17*var(--u));line-height:calc(36.8*var(--u));letter-spacing:.17em;color:#000;white-space:nowrap;font-weight:700}
 
+/* 画像ピース */
 .pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));--p:0;--pp:clamp(0,calc(var(--p)*1.1),1);transform:translate(calc((1 - var(--pp))*300px), calc((1 - var(--pp))*100px)) rotate(calc(var(--rot)*1deg + (1 - var(--pp))*15deg));opacity:clamp(0,calc(var(--pp)*2),1);transition:transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),opacity 0.9s ease;pointer-events:none}
 .pimg.done{transform:translate(0,0) rotate(calc(var(--rot)*1deg));animation:flt var(--du,3.2s) ease-in-out var(--dl,0s) infinite}
 .pimg svg{display:block;width:100%;height:auto;overflow:visible}
@@ -58,6 +63,7 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u))}
 [data-pz]{--p:0}
 
+/* パズルピース全体 */
 .pz{--pp:clamp(0,calc(var(--p)*1.1 - var(--d,0)),1);position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));transform:translate(calc((1 - var(--pp))*var(--x,0px)),calc((1 - var(--pp))*var(--y,0px))) rotate(calc((1 - var(--pp))*var(--r,0deg))) scale(calc(1 + (1 - var(--pp))*0.02));opacity:clamp(0,calc(var(--pp)*2),1);transition:translate 1.4s cubic-bezier(0.16, 1, 0.3, 1),rotate 1.4s cubic-bezier(0.16, 1, 0.3, 1),scale 1.4s cubic-bezier(0.16, 1, 0.3, 1)}
 .done .pz{transform:none;opacity:1}
 
@@ -79,9 +85,17 @@ main{position:relative;width:calc(1440*var(--u));height:calc(4860*var(--u));marg
 .c{position:absolute;left:calc((var(--cx) - var(--rr))*var(--u));top:calc((var(--cy) - var(--rr))*var(--u));width:calc(var(--rr)*2*var(--u));height:calc(var(--rr)*2*var(--u));border-radius:50%;pointer-events:none}
 .c.k{z-index:5}
 .t{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));margin:0;white-space:nowrap}
-.lt{color:var(--gy)}
+.lt{color:var(--gy)}.cb{color:var(--bl)}.cp{color:var(--pb)}
+.nm{font-size:calc(20*var(--u));line-height:1.3;letter-spacing:.12em;font-weight:900}
+.sm{font-size:calc(11*var(--u));line-height:1.3}
+.chip{height:calc(29*var(--u));width:calc(var(--w)*var(--u));border-radius:99px;display:grid;place-items:center;font-size:calc(12*var(--u));letter-spacing:.02em}
 .h2t{font-size:calc(81.5*var(--u));line-height:1.2;font-weight:900;letter-spacing:.005em}
+.nm2{font-size:calc(28*var(--u));line-height:1.3;font-weight:900;letter-spacing:.04em}
+.chip.sc{height:calc(22*var(--u));font-size:calc(9.5*var(--u));font-weight:900}
+.tx2{font-size:calc(10.5*var(--u));line-height:calc(17.5*var(--u));letter-spacing:.06em}
 .lead{font-size:calc(44*var(--u));line-height:calc(69*var(--u));letter-spacing:.08em;font-weight:900}
+.tx{font-size:calc(14*var(--u));line-height:calc(25*var(--u));letter-spacing:.14em}
+.s{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));height:calc(var(--h)*var(--u));border-radius:calc(24*var(--u));background:#000 center/cover no-repeat}
 .pname{font-size:calc(46*var(--u));line-height:1.2;letter-spacing:.04em;font-weight:900}
 .pm{font-size:calc(17*var(--u));line-height:calc(35.5*var(--u));letter-spacing:.2em;font-weight:700}
 .cr{width:calc(1440*var(--u));text-align:center;color:#a3a3a3;font-size:calc(14*var(--u));line-height:calc(18*var(--u));font-weight:500;letter-spacing:.04em}
@@ -98,9 +112,7 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 .nav.open{transform:translateY(0);opacity:1;visibility:visible}
 .nav a{width:80%;max-width:280px;height:46px;font-size:15px;justify-content:center}
 
-/* スマホ版でのホバーアニメーションを完全無効化 */
-.pz.interactive:hover{transform:none;translate:0 0;rotate:0deg;scale:1}
-
+/* スマホ版でもPC版と同様のパズル構造・アスペクト比を維持して綺麗に組み上げる設定 */
 .board{position:relative;isolation:isolate;width:calc(1100*var(--u));height:calc(var(--bh)*var(--u));margin:24px auto}
 .board.ab{position:relative;left:auto;top:auto}
 .pz{position:absolute;left:calc(var(--px)*var(--u));top:calc(var(--py)*var(--u));width:calc(var(--pw)*var(--u));height:calc(var(--ph)*var(--u));border-radius:calc(5*var(--u));padding:0}
@@ -117,7 +129,7 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 .pz.bk{min-height:auto}
 .h2t{font-size:calc(65*var(--u));line-height:1.2;font-weight:900;letter-spacing:.005em}
 .lead{font-size:calc(36*var(--u));line-height:calc(58*var(--u));letter-spacing:.08em;font-weight:900}
-.etx{white-space:normal;font-size:calc(15*var(--u));line-height:1.8;letter-spacing:.08em;margin:12px 0;width:calc(1000*var(--u))}
+.etx{white-space:nowrap;font-size:calc(15*var(--u));line-height:calc(33*var(--u));letter-spacing:.14em;margin:0}
 .hd{font-size:calc(70*var(--u));margin:56px 0 16px;order:0}
 .num{font-size:calc(110*var(--u));margin-top:24px}
 .pimg{position:absolute;left:calc(var(--l)*var(--u));top:calc(var(--t)*var(--u));width:calc(var(--w)*var(--u));margin:0;animation-duration:3.2s}
@@ -125,12 +137,12 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 .band.wh{display:none}
 .band.gn{position:relative;left:auto;margin:48px -16px;width:auto;height:calc(140*var(--u));order:4}
 .mq{font-size:calc(45*var(--u));line-height:1.2}.mq span{padding-right:80px}
-.intro{font-size:calc(24*var(--u));line-height:calc(56*var(--u));letter-spacing:.12em;white-space:normal;margin:32px 0}
+.intro{font-size:calc(24*var(--u));line-height:calc(56*var(--u));letter-spacing:.12em;white-space:nowrap;margin:32px 0}
 
+/* スマホ版の順番調整 */
 #piece { order: 0; }
 .board.ab[data-pz="load"] { order: 1; }
 .intro { order: 2; }
-.hd#piece ~ .num, .hd#piece ~ .etx, .hd#piece ~ .pimg { order: 3; }
 .band.gn { order: 4; }
 #profile { order: 5; }
 .board.ab:not([data-pz="load"]) { order: 6; }
@@ -174,20 +186,23 @@ main{display:flex;flex-direction:column;width:auto;height:auto;padding:84px 16px
 
 <!-- 01 -->
 <div class="num en ab fade-hd" style="--l:98;--t:1702">01</div>
-<p class="etx ab fade-hd" style="--l:98;--t:1849">卒業研究で、映像と記憶のデザインをテーマに、新たなアーカイブ<br>体験の方法を模索し、見つけたピースは「インタラクティブな表<br>現」 けれど、そんなもの作ったことはない... AIに聞きながら<br>Touch Designerを独学しました。</p>
-<p class="etx ab fade-hd" style="--l:98;--t:2085">より能動的な体験が自身の手で実装可能になり、定性的な体験価値<br>を作り出すことができました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:1849">卒業研究では「映像と記憶のデザイン」をテーマに、<br>新たなアーカイブ体験の方法を模索しました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:1949">そこで見つけたピースは、「インタラクティブな表現」。<br>でも、作ったことはない……。そこでAIにも相談し<br>ながら, TouchDesignerを独学しました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:2085">その結果、より能動的な体験を自分の手で実装できる<br>ように。定性的な価値を持つ体験を、デザインとして<br>形にすることができました。</p>
 <div class="pimg" data-img="design" data-vb="735 1703 676 503" data-pd="M1023.7 1723.3C1045.9 1723.3 1063.9 1741.3 1063.9 1763.5C1063.9 1774.2 1059.8 1783.9 1053.0 1791.1L1346.0 1835.0C1348.7 1835.4 1350.6 1838.0 1350.2 1840.7L1329.7 1977.0C1335.9 1973.2 1343.1 1971.0 1350.9 1971.0C1373.2 1971.0 1391.2 1989.0 1391.2 2011.3C1391.2 2033.5 1373.2 2051.5 1350.9 2051.5C1338.8 2051.5 1328.0 2046.2 1320.6 2037.8L1299.0 2182.0C1298.6 2184.7 1296.0 2186.6 1293.3 2186.2L1153.6 2165.2C1161.5 2157.9 1166.4 2147.4 1166.4 2135.7C1166.4 2113.5 1148.4 2095.5 1126.2 2095.5C1103.9 2095.5 1085.9 2113.5 1085.9 2135.7C1085.9 2143.1 1087.9 2150.0 1091.3 2155.9L758.9 2106.1C756.2 2105.6 754.3 2103.1 754.7 2100.4L775.2 1963.7C780.0 1968.5 786.6 1971.4 793.8 1971.4C808.4 1971.4 820.3 1959.5 820.3 1944.9C820.3 1930.3 808.4 1918.5 793.8 1918.5C789.4 1918.5 785.2 1919.6 781.5 1921.5L805.9 1759.1C806.3 1756.3 808.8 1754.5 811.6 1754.9L987.5 1781.2C984.9 1775.9 983.4 1769.9 983.4 1763.5C983.4 1741.3 1001.4 1723.3 1023.7 1723.3Z" style="--l:735;--t:1703;--w:676;--rot:0;--du:3.0s;--dl:0s;--fx:7"></div>
 
 <!-- 02 -->
 <div class="num en ab fade-hd" style="--l:98;--t:2344">02</div>
-<p class="etx ab fade-hd" style="--l:98;--t:2489">高校の部活でカメラを始めたことをきっかけに、カメラの可能性に<br>惹かれるように。音楽も好きな私がここで見つけたピースは「バン<br>ドのライブ撮影やMV制作」。全くの未経験だけれど、実践あるの<br>み！ ライブハウスでバンドマンたちに「カメラをやっていて、作品<br>をぜひ見ていただいて良ければ撮らせてください」声をかけまし<br>た。</p>
-<p class="etx ab fade-hd" style="--l:98;--t:2799">今では、10組以上のバンドの撮影やクリエイティブを担当するまで<br>になり、デザイナー以外のクリエイターと一緒に作る楽しさも知り<br>ました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:2489">高校の部活動でカメラを始めたことをきっかけに、<br>その可能性に惹かれるように。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:2589">音楽も好きな私が見つけたピースは、「バンドの<br>ライブ撮影やMV制作」。全くの未経験だったけれど、<br>まずは実践あるのみ！ ライブハウスでバンドマンた<br>ちに「カメラをやっていて、作品をぜひ見ていただき、<br>よければ撮らせてください」と声をかけました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:2799">今では10組以上のバンドの撮影やクリエイティブを<br>担当するまでに。デザイナー以外のクリエイターと一緒<br>にものづくりをする楽しさも知りました。</p>
 <div class="pimg" data-img="camera" data-vb="726 2358 680 517" data-pd="M1097.5 2377.9C1075.3 2379.1 1058.3 2398.1 1059.5 2420.3C1060.0 2431.0 1064.7 2440.4 1071.8 2447.2L781.7 2507.0C779.0 2507.5 777.3 2510.2 777.8 2512.9L805.6 2647.9C799.3 2644.4 791.9 2642.6 784.1 2643.0C761.9 2644.2 744.9 2663.2 746.1 2685.4C747.3 2707.6 766.3 2724.7 788.5 2723.5C800.6 2722.8 811.1 2716.9 818.0 2708.1L847.4 2850.9C848.0 2853.6 850.6 2855.4 853.3 2854.8L991.7 2826.3C983.4 2819.4 977.9 2809.2 977.3 2797.5C976.1 2775.3 993.1 2756.4 1015.3 2755.1C1037.5 2753.9 1056.5 2771.0 1057.7 2793.2C1058.1 2800.5 1056.5 2807.5 1053.4 2813.6L1382.6 2745.8C1385.3 2745.3 1387.0 2742.6 1386.5 2739.9L1358.6 2604.6C1354.1 2609.6 1347.7 2612.9 1340.4 2613.2C1325.8 2614.0 1313.4 2602.9 1312.6 2588.3C1311.8 2573.7 1323.0 2561.2 1337.6 2560.5C1342.0 2560.2 1346.2 2561.1 1350.0 2562.8L1316.9 2401.9C1316.3 2399.2 1313.7 2397.5 1311.0 2398.0L1136.7 2433.9C1139.1 2428.4 1140.2 2422.3 1139.9 2416.0C1138.7 2393.8 1119.7 2376.7 1097.5 2377.9Z" style="--l:726;--t:2358;--w:680;--rot:0;--du:3.4s;--dl:-1s;--fx:-6"></div>
 
 <!-- 03 -->
 <div class="num en ab fade-hd" style="--l:98;--t:3019">03</div>
-<p class="etx ab fade-hd" style="--l:98;--t:3162">どのサークルに入ろうか… 悩んでいた時、SNSで見かけた縫製技術研<br>究会のファッションショーにビビビッ。ここで見つけたピースは<br>「自らの手で作る服による表現」。中学の家庭科は大の苦手… しか<br>し、これは苦手を克服するチャンス。裁縫の本やWebを見ながら、<br>完璧でなくてもいいからまずは作ってみるを心がけました。</p>
-<p class="etx ab fade-hd" style="--l:98;--t:3472">数をこなすうちにアレンジまでできるように。より「理想の表現」<br>に近づけています。デザインなどの場面でも縫製によるプロトタイ<br>プという幅が広がりました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:3162">サークルに入ろうか迷っていたとき、SNSで見かけた<br>縫製技術研究会のファッションショーにビビビッ。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:3262">そこで見つけたピースは、「自分の手で作る服による<br>表現」。中学の家庭科は大の苦手……。でも、これは<br>苦手を克服するチャンス！ 裁縫の本やWebを参考に、<br>完璧でなくてもいいから、まずは作ってみることを心が<br>けました。</p>
+<p class="etx ab fade-hd" style="--l:98;--t:3472">数をこなすうちに、アレンジまでできるように。<br>デザインの場面でも、縫製によるプロトタイピングとい<br>う新たな選択肢が広がりました。</p>
 <div class="pimg" data-img="sewing" data-vb="754 3046 626 517" data-pd="M990.3 3107.7C989.5 3085.5 1006.9 3066.8 1029.1 3066.0C1051.4 3065.2 1070.0 3082.6 1070.8 3104.8C1071.2 3115.5 1067.4 3125.3 1060.9 3132.8L1355.2 3166.2C1358.0 3166.5 1359.9 3169.0 1359.6 3171.8L1342.3 3324.2C1334.8 3313.2 1321.9 3306.1 1307.5 3306.6C1285.3 3307.4 1267.9 3326.1 1268.7 3348.3C1269.5 3370.5 1288.2 3387.9 1310.4 3387.1C1320.5 3386.7 1329.5 3382.7 1336.4 3376.4L1320.6 3514.7C1320.3 3517.4 1317.9 3519.4 1315.1 3519.1L1187.6 3504.6C1186.5 3525.2 1169.9 3541.8 1148.9 3542.6C1126.6 3543.4 1108.0 3526.0 1107.2 3503.8C1107.1 3501.0 1107.3 3498.2 1107.7 3495.5L778.2 3458.0C775.5 3457.7 773.5 3455.2 773.8 3452.5L789.4 3315.2C794.4 3319.7 801.0 3322.4 808.3 3322.2C822.9 3321.7 834.3 3309.4 833.8 3294.8C833.3 3280.2 821.0 3268.8 806.4 3269.3C802.0 3269.5 797.8 3270.7 794.2 3272.8L812.8 3109.6C813.1 3106.8 815.6 3104.9 818.3 3105.2L995.1 3125.3C992.2 3120.0 990.6 3114.1 990.3 3107.7Z" style="--l:754;--t:3046;--w:626;--rot:0;--du:3.2s;--dl:-2s;--fx:5"></div>
 
 <!-- 電光掲示板 -->
@@ -235,6 +250,7 @@ const mk = (spec, cls, host) => spec.split(";").map(s => s.trim()).filter(Boolea
 const geo = el => ["px","py","pw","ph"].map(k => parseFloat(el.style.getPropertyValue("--" + k)));
 const kn = [];
 
+/* 1. 基本パーツの生成と凸の収集 */
 pieces.forEach(el => {
   const bg = document.createElement("div"); bg.className = "bg"; el.prepend(bg); el._bg = bg;
   if (el.dataset.d) mk(el.dataset.d, "", bg);
@@ -244,6 +260,7 @@ pieces.forEach(el => {
   }
 });
 
+/* 2. 凹み（穴）の計算 */
 const socks = new Map();
 kn.forEach(([o, x, y, r]) => {
   const [ox, oy] = geo(o), ax = ox + x, ay = oy + y;
@@ -254,8 +271,10 @@ kn.forEach(([o, x, y, r]) => {
   socks.get(t).push([ax - tx, ay - ty, r]);
 });
 
+/* 3. 画像パズル(Hero)のSVGマスク化 ＆ 色パズルのCSSマスク処理 */
 pieces.forEach((el, i) => {
   const url = el.dataset.img ? IMAGES[el.dataset.img] : null;
+  
   if (!url) {
     if (socks.has(el)) {
       const m = socks.get(el).map(([x, y, r]) => `radial-gradient(circle at calc(${x}*var(--u)) calc(${y}*var(--u)),transparent calc(${r - .5}*var(--u)),#000 calc(${r - .5}*var(--u) + 1px))`).join(",");
@@ -266,24 +285,53 @@ pieces.forEach((el, i) => {
   } else {
     const pw = parseFloat(el.style.getPropertyValue("--pw"));
     const ph = parseFloat(el.style.getPropertyValue("--ph"));
-    const myKnobs = el.dataset.k ? el.dataset.k.split(";").map(s => { const [x, y, r] = s.trim().split(/\s+/).map(Number); return !isNaN(x) ? {x, y, r} : null; }).filter(Boolean) : [];
-    const myDataD = el.dataset.d ? el.dataset.d.split(";").map(s => { const [x, y, r] = s.trim().split(/\s+/).map(Number); return !isNaN(x) ? {x, y, r} : null; }).filter(Boolean) : [];
+    
+    const myKnobs = [];
+    if (el.dataset.k) {
+      el.dataset.k.split(";").forEach(s => {
+        const [x, y, r] = s.trim().split(/\s+/).map(Number);
+        if (!isNaN(x)) myKnobs.push({x, y, r});
+      });
+    }
+    
+    const myDataD = [];
+    if (el.dataset.d) {
+      el.dataset.d.split(";").forEach(s => {
+        const [x, y, r] = s.trim().split(/\s+/).map(Number);
+        if (!isNaN(x)) myDataD.push({x, y, r});
+      });
+    }
+    
     const myHoles = socks.get(el) || [];
 
     const getR = (cls, def) => el.classList.contains(cls) ? 54 : def;
-    const r_tl = getR('rtl', 5), r_tr = getR('rtr', 5), r_br = getR('rbr', 5), r_bl = getR('rbl', 5);
+    const r_tl = getR('rtl', 5);
+    const r_tr = getR('rtr', 5);
+    const r_br = getR('rbr', 5);
+    const r_bl = getR('rbl', 5);
 
-    const basePath = `M ${r_tl},0 L ${pw - r_tr},0 A ${r_tr},${r_tr} 0 0 1 ${pw},${r_tr} L ${pw},${ph - r_br} A ${r_br},${r_br} 0 0 1 ${pw - r_br},${ph} L ${r_bl},${ph} A ${r_bl},${r_bl} 0 0 1 0,${ph - r_bl} L 0,${r_tl} A ${r_tl},${r_tl} 0 0 1 ${r_tl},0 Z`;
+    const basePath = `
+      M ${r_tl},0
+      L ${pw - r_tr},0 A ${r_tr},${r_tr} 0 0 1 ${pw},${r_tr}
+      L ${pw},${ph - r_br} A ${r_br},${r_br} 0 0 1 ${pw - r_br},${ph}
+      L ${r_bl},${ph} A ${r_bl},${r_bl} 0 0 1 0,${ph - r_bl}
+      L 0,${r_tl} A ${r_tl},${r_tl} 0 0 1 ${r_tl},0 Z
+    `;
+
     const maskId = `pz-mask-${i}`;
     
     el.style.background = 'transparent';
     el._bg.style.display = 'none';
     el.querySelectorAll('.c').forEach(c => c.style.display = 'none');
     
-    const pad = el.dataset.img === "hero" ? 120 : 40;
-    const imgSvgTag = `<image onerror="this.style.display='none'" href="${url}" x="${-pad}" y="${-pad}" width="${pw + pad*2}" height="${ph + pad*2}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />`;
+    let imgSvgTag = "";
+    if (el.dataset.img === "hero") {
+      imgSvgTag = `<image onerror="this.style.display='none'" href="${url}" x="-120" y="-120" width="${pw+240}" height="${ph+240}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />`;
+    } else {
+      imgSvgTag = `<image onerror="this.style.display='none'" href="${url}" x="-40" y="-40" width="${pw+80}" height="${ph+80}" preserveAspectRatio="xMidYMid slice" mask="url(#${maskId})" />`;
+    }
 
-    el.insertAdjacentHTML('afterbegin', `
+    let svgHtml = `
       <svg viewBox="0 0 ${pw} ${ph}" style="position:absolute; left:0; top:0; width:100%; height:100%; overflow:visible; pointer-events:none;">
         <defs>
           <mask id="${maskId}" maskUnits="userSpaceOnUse" x="-150" y="-150" width="${pw+300}" height="${ph+300}">
@@ -295,44 +343,63 @@ pieces.forEach((el, i) => {
         </defs>
         <rect x="-150" y="-150" width="${pw+300}" height="${ph+300}" fill="#000" mask="url(#${maskId})" />${imgSvgTag}
       </svg>
-    `);
+    `;
+    el.insertAdjacentHTML('afterbegin', svgHtml);
   }
 });
 
 let hs = 7; const rnd0 = i => { const s = Math.sin(i * 91.7 + 17.3) * 43758.5453; return s - Math.floor(s); };
 pieces.forEach(el => {
   const [, , w, h] = geo(el), m = Math.max(w, h), a = rnd0(hs++), b = rnd0(hs++), c = rnd0(hs++), d = rnd0(hs++);
-  el.style.setProperty("--ha", ((b > .5 ? 1 : -1) * (m >= 700 ? 0.3 + a * 0.4 : m >= 450 ? 0.5 + a * 0.6 : 1 + a * 1.2)).toFixed(1) + "deg");
+  const mag = m >= 700 ? 0.3 + a * 0.4 : m >= 450 ? 0.5 + a * 0.6 : 1 + a * 1.2;
+  el.style.setProperty("--ha", ((b > .5 ? 1 : -1) * mag).toFixed(1) + "deg");
   el.style.setProperty("--hx", ((c - .5) * 6).toFixed(0));
   el.style.setProperty("--hy", (-(4 + d * 4)).toFixed(0));
 });
 
+/* 4. エピソード画像(浮遊ピース)の処理 */
+const jig = (W, H, feats) => {
+  const R = 38, c = 34, p = R + c + 12, f = n => n.toFixed(1), sides = [[p, p, 1, 0, W], [p + W, p, 0, 1, H], [p + W, p + H, -1, 0, W], [p, p + H, 0, -1, H]];
+  let d = `M${p} ${p}`;
+  sides.forEach(([sx, sy, dx, dy, L], i) => {
+    const [pos, ty] = feats[i], a = pos * L, A = [sx + dx * (a - c / 2), sy + dy * (a - c / 2)], B = [sx + dx * (a + c / 2), sy + dy * (a + c / 2)];
+    d += ` L${f(A[0])} ${f(A[1])} A${R} ${R} 0 1 ${ty === "k" ? 1 : 0} ${f(B[0])} ${f(B[1])} L${f(sx + dx * L)} ${f(sy + dy * L)}`;
+  });
+  return { d: d + "Z", w: W + 2 * p, h: H + 2 * p };
+};
 document.querySelectorAll(".pimg").forEach((el, n) => {
   const [vx, vy, vw, vh] = el.dataset.vb.split(" ").map(Number), d = el.dataset.pd, url = IMAGES[el.dataset.img], id = "pj" + n;
-  const pad = el.dataset.img === "sewing" ? 140 : 0;
-  const imgTag = url ? `<image onerror="this.style.display='none'" href="${url}" x="${vx - pad}" y="${vy - (pad*1.7)}" width="${vw + pad*2}" height="${vh + pad*3.4}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})"/>` : "";
-  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw} ${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
+  
+  let imgTag = "";
+  if (url) {
+    if (el.dataset.img === "sewing") {
+      imgTag = `<image onerror="this.style.display='none'" href="${url}" x="${vx - 140}" y="${vy - 240}" width="${vw + 280}" height="${vh + 280}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})"/>`;
+    } else {
+      imgTag = `<image onerror="this.style.display='none'" href="${url}" x="${vx}" y="${vy}" width="${vw}" height="${vh}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})"/>`;
+    }
+  }
+
+  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw}" height="${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${imgTag}</svg>`;
 });
 
 const rnd = i => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
 const boards = [...document.querySelectorAll("[data-pz]")].map(c => ({ c, load: c.dataset.pz === "load", items: [...c.children].filter(e => e.classList.contains("pz")) }));
 const ease = x => 1 - Math.pow(1 - x, 3);
 const setP = (c, p) => { c.style.setProperty("--p", p.toFixed(3)); c.classList.toggle("done", p >= .999); };
-
 const build = () => {
   let seed = 1;
   boards.forEach(({ c, load, items }) => {
     const cr = c.getBoundingClientRect(), vw = cr.width;
     items.forEach((a, i) => {
       const r = a.getBoundingClientRect(), cx = r.left + r.width / 2 - (cr.left + cr.width / 2);
-      a.style.setProperty("--x", (cx < -20 ? -1 : cx > 20 ? 1 : (i % 2 ? 1 : -1)) * Math.min(90 + rnd(seed++) * 160, vw * .3) + "px");
+      const side = cx < -20 ? -1 : cx > 20 ? 1 : (i % 2 ? 1 : -1);
+      a.style.setProperty("--x", side * Math.min(90 + rnd(seed++) * 160, vw * .3) + "px");
       a.style.setProperty("--y", ((rnd(seed++) - .5) * 160 + (load ? -80 : 0)) + "px");
       a.style.setProperty("--r", ((rnd(seed++) - .5) * 16).toFixed(1) + "deg");
       a.style.setProperty("--d", (i * .6 / items.length).toFixed(2));
     });
   });
 };
-
 const navw = document.querySelector(".navw"); let navOn = false;
 const upd = () => {
   const vh = innerHeight;
@@ -343,17 +410,25 @@ const upd = () => {
     const r = c.getBoundingClientRect();
     const p = reduce ? 1 : ease(Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.65))));
     setP(c, p);
-    c.classList.toggle("snap", p >= .999);
+    if (p >= .999) c.classList.add("snap"); else if (p < .9) c.classList.remove("snap");
   });
 
-  [...fadeHds, ...pimgs].forEach(el => {
+  fadeHds.forEach(el => {
     if (reduce) { el.style.setProperty("--p", "1"); el.classList.add("done"); return; }
-    const p = ease(Math.min(1, Math.max(0, (vh * 0.80 - el.getBoundingClientRect().top) / (vh * 0.65))));
+    const r = el.getBoundingClientRect();
+    const p = ease(Math.min(1, Math.max(0, (vh * 0.80 - r.top) / (vh * 0.65))));
+    el.style.setProperty("--p", p.toFixed(3));
+    el.classList.toggle("done", p >= .999);
+  });
+
+  pimgs.forEach(el => {
+    if (reduce) { el.style.setProperty("--p", "1"); el.classList.add("done"); return; }
+    const r = el.getBoundingClientRect();
+    const p = ease(Math.min(1, Math.max(0, (vh * 0.80 - r.top) / (vh * 0.65))));
     el.style.setProperty("--p", p.toFixed(3));
     el.classList.toggle("done", p >= .999);
   });
 };
-
 const hero = boards[0];
 const startHero = () => {
   if (reduce) { setP(hero.c, 1); return; }
@@ -361,9 +436,9 @@ const startHero = () => {
   const f = ts => { t0 = t0 ?? ts; const q = Math.min(1, Math.max(0, (ts - t0 - 150) / 950)); setP(hero.c, ease(q)); if (q < 1) requestAnimationFrame(f); else hero.c.classList.add("snap"); };
   requestAnimationFrame(f);
 };
-
 build(); upd(); startHero();
 
+/* ハンバーガーメニューの開閉制御 */
 const menuBtn = document.querySelector(".menu-btn");
 const nav = document.querySelector(".nav");
 menuBtn.addEventListener("click", () => {
@@ -377,6 +452,7 @@ nav.querySelectorAll("a").forEach(link => {
   });
 });
 
+/* topを押すと、ページを開いた時のアニメーションからもう一度再生 */
 document.querySelector('.nav a[href="#top"]').addEventListener("click", e => {
   e.preventDefault();
   const t0 = performance.now();
@@ -384,7 +460,6 @@ document.querySelector('.nav a[href="#top"]').addEventListener("click", e => {
   scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
   requestAnimationFrame(go);
 });
-
 addEventListener("scroll", upd, { passive: true });
 addEventListener("resize", () => { build(); upd(); });
 </script>
