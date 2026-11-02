@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>小泉 彩香里 / akari koizumi</title>
+<title>akari koizumi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
@@ -106,7 +106,7 @@ main{width:auto;height:auto;padding:70px 16px 48px}
 </head>
 <body>
 <main id="top">
-<div class="navw en"><div class="nvname">小泉 彩香里 <span class="en">/ akari koizumi</span></div><nav class="nav" aria-label="ページ内リンク"><a href="#top">top</a><a href="#piece">piece</a><a href="#profile">profile</a></nav></div>
+<div class="navw en"><div class="nvname">akari koizumi</div><nav class="nav" aria-label="ページ内リンク"><a href="#top">top</a><a href="#piece">piece</a><a href="#profile">profile</a></nav></div>
 
 <div class="band wh" style="--t:1480;--h:2220"></div>
 
@@ -305,7 +305,7 @@ const jig = (W, H, feats) => {
 };
 document.querySelectorAll(".pimg").forEach((el, n) => {
   const [vx, vy, vw, vh] = el.dataset.vb.split(" ").map(Number), d = el.dataset.pd, url = IMAGES[el.dataset.img], id = "pj" + n;
-  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw} ${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${url ? `<image onerror="this.style.display='none'" href="${url}" x="${vx}" y="${vy}" width="${vw}" height="${vh}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})"/>` : ""}</svg>`;
+  el.innerHTML = `<svg viewBox="${vx} ${vy} ${vw} ${vh}" aria-hidden="true" style="overflow:visible;"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${vx}" y="${vy}" width="${vw}" height="${vh}"><path d="${d}" fill="white"/></mask></defs><path d="${d}" fill="#000"/>${url ? `<image onerror="this.style.display='none'" href="${url}" x="${vx}" y="${vy}" width="${vw}" height="${vh}" preserveAspectRatio="xMidYMid slice" mask="url(#${id})"/>` : ""}</svg>`;
 });
 
 const rnd = i => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
@@ -375,5 +375,7 @@ document.querySelector('.nav a[href="#top"]').addEventListener("click", e => {
 addEventListener("scroll", upd, { passive: true });
 addEventListener("resize", () => { build(); upd(); });
 </script>
+<ElicitationsGroup>
+</ElicitationsGroup>
 </body>
 </html>
